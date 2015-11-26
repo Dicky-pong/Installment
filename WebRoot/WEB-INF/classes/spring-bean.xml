@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!--==========================================  dao  ==========================================-->
+    <bean id="baseDao" class="com.qfq.dao.impl.BaseDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!--========================================== service  ==========================================-->
+	<!-- 用户管理 -->
+	<bean id="userInfoService" class="com.qfq.service.impl.UserInfoServiceImpl">
+		<property name="baseDao" ref="baseDao"/>
+	</bean>
+	
+	
+	<!--==========================================  action  ==========================================-->
+	<!-- 用户管理 -->
+	<bean id="userAction" class="com.qfq.action.UserInfoAction" >
+		<property name="userInfoService" ref="userInfoService"/>
+	</bean>
+	
+</beans>
