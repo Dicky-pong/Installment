@@ -1,0 +1,131 @@
+#zoom{
+    position: relative;
+    padding-left: 190px;
+    float: left;
+}
+#zoomMiddle{
+    width: 500px;
+    height: 500px;
+    position: relative;
+}
+
+
+#make{
+    width: 100px;
+    height: 100px;
+    background: #abcdef;
+    opacity: 0.5;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: none;
+}
+
+
+#zoomMiddle img{
+    max-width: 100%;
+}
+#zoomSmall{
+    width: 517px;
+    /*overflow: hidden;*/
+    height: 56px;
+    position: relative;
+
+}
+
+#zoomSmall span{
+    float: left;
+    border: 1px solid #000;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+    display: inline;
+}
+
+#zoomSmallImg{
+    float: left;
+    overflow: hidden;
+    width: 490px;
+    height: 56px;
+    position: relative;
+}
+
+#zoomSmallImg ul{
+    margin: 2px;
+    width: 344px;
+    position: absolute;
+
+    left: 0px;
+    top: 0px;
+}
+
+#zoomSmallImg ul li{
+    float: left;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    margin: 0px 2px;
+    list-style-type: none;
+}
+
+#zoomSmallImg ul li.curr{
+    border: 2px solid orange;
+}
+
+#zoomSmallImg ul li img{
+    width: 50px;
+    height: 50px;
+}
+
+#zoomLa{
+    border: 2px solid #000;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 750px;
+    top: 38px;
+    overflow: hidden;
+     display: none;
+}
+
+#zoomLa img{
+    width: 600px;
+    height: 600px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.container {
+    background: #fff;
+    padding-top: 50px;
+}
+
+.container::after {
+    content: "";
+    height: 0px;
+    width: 0px;
+    clear: both;
+    display: block;
+}
+
+.container .goodinfo {
+    float: left;
+    margin-left: 50px;
+}
+.container .goodinfo h1 {
+    font-size: 26px;
+
+}
+
+.container .goodinfo span.great {
+    margin-top: 13px;
+    display: block;
+    border-bottom: 1px solid #E2E2E2;
+    padding-bottom: 10px;
+    width: 500px;
+}
+
+.container .goodinfo span .ficon {
+    color: #CF211A;
+}
