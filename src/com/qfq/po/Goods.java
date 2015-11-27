@@ -16,7 +16,6 @@ public class Goods implements java.io.Serializable {
 	private Category category;
 	private String name;
 	private String brand;
-	private Double price;
 	private String descript;
 	private Integer colorId;
 	private Integer TId;
@@ -38,7 +37,6 @@ public class Goods implements java.io.Serializable {
 		this.category = category;
 		this.name = name;
 		this.brand = brand;
-		this.price = price;
 		this.descript = descript;
 		this.colorId = colorId;
 		this.TId = TId;
@@ -80,14 +78,6 @@ public class Goods implements java.io.Serializable {
 
 	public void setBrand(String brand) {
 		this.brand = brand;
-	}
-
-	public Double getPrice() {
-		return this.price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
 	}
 
 	public String getDescript() {
