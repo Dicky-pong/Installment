@@ -7,7 +7,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>农资联盟杯</title>
-	 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/index.css">
+
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/index.css">
+
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/reset.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/goodslist.css">
 	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -34,6 +36,11 @@
 		<nav class="main_nav">
 			<div class="first_class">
 				<ul>
+					<c:forEach items="${requestScope.categoryList }" var="category">
+						<li>${category.name }</li><div class="bd"></div>
+					</c:forEach>
+				</ul>
+				<%--<ul>
 					<li>一级菜单1</li><div class="bd"></div><!--
 				 --><li>一级菜单2</li><div class="bd"></div><!--
 				 --><li>一级菜单3</li><div class="bd"></div><!--
@@ -43,23 +50,23 @@
 				 --><li>一级菜单7</li><div class="bd"></div><!--
 			     --><li>一级菜单8</li>
 				</ul>
-			</div>
+			--%></div>
 			<div class="show_class">
-				<div id="wrapper01" class="section">
+				<c:forEach items="${requestScope.categoryList }" var="category" varStatus="status">
+					
+					<div id="wrapper0${status.count }" class="section">
 					<div class="title_bg">
-						<div class="title"><img src="img/gnb_banner_line.gif" alt="">
-							<ul><!--
-							--><li>二级菜单1</li><!--
-							--><li>二级菜单2</li><!--
-							--><li>二级菜单3</li><!--
-							--><li>二级菜单4</li><!--
-						    --><li>二级菜单5</li>
+						<div class="title"><img src="${pageContext.request.contextPath }/img/gnb_banner_line.gif" alt="">
+							<ul>
+								<c:forEach items="${category.categories }" var="category2">
+									<li><a href="http://localhost:8080/Installment/showGoods.do?categoryId=${category2.id }">${category2.name}</a></li>
+								</c:forEach>
 							</ul>
 						</div>
 					</div>
-					<div class="other_class">
+					<%--<div class="other_class">
 						<div class="other_bg">
-							<img src="img/GNB_BANNER_DST_150807.jpg" alt="">
+							<img src="${pageContext.request.contextPath }/img/GNB_BANNER_DST_150807.jpg" alt="">
 							<ul>
 								<li>三级菜单1</li>
 								<li>三级菜单2</li>
@@ -82,46 +89,16 @@
 								<li>三级菜单8</li>
 								<li>三级菜单9</li>
 							</ul>
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-	                        <ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-                            <ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
+							
                         
 						</div>
 					</div>
-				</div>
+				--%></div>
+				</c:forEach>
+				
 				<div id="wrapper02" class="section">
 					<div class="title_bg">
-						<div class="title"><img src="img/gnb_banner_line.gif" alt="">
+						<div class="title"><img src="${pageContext.request.contextPath }/img/gnb_banner_line.gif" alt="">
 							<ul><!--
 							--><li>二级菜单1</li><!--
 							--><li>二级菜单2</li><!--
@@ -133,7 +110,7 @@
 					</div>
 					<div class="other_class">
 						<div class="other_bg">
-							<img src="img/GNB_BANNER_DST_150807.jpg" alt="">
+							<img src="${pageContext.request.contextPath }/img/GNB_BANNER_DST_150807.jpg" alt="">
 							<ul>
 								<li>三级菜单1</li>
 								<li>三级菜单2</li>
@@ -193,80 +170,7 @@
 						</div>
 					</div>
 				</div>
-				<div id="wrapper03" class="section">
-					<div class="title_bg">
-						<div class="title"><img src="img/gnb_banner_line.gif" alt="">
-							<ul><!--
-							--><li>二级菜单1</li><!--
-							--><li>二级菜单2</li><!--
-							--><li>二级菜单3</li><!--
-							--><li>二级菜单4</li><!--
-						    --><li>二级菜单5</li>
-							</ul>
-						</div>
-					</div>
-					<div class="other_class">
-						<div class="other_bg">
-							<img src="img/GNB_BANNER_DST_150807.jpg" alt="">
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-	                        <ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-                            <ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-                        
-						</div>
-					</div>
-				</div>
+				
 			</div>
 		</nav>
 		<section class="container">
@@ -360,131 +264,18 @@
 				
 				<div class="goods_show">
 					<ul>
-						<li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li><!--
-					 --><li>
-							<div class="good_img"><img src="img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
-							<a href="" class="name">苹果6S</a>
-							<span class="price">￥229.05*24期</span>
-						</li>
+						<c:forEach var="goods" items="${requestScope.goodsList }">
+							<li>
+								<div class="good_img"><img src="${pageContext.request.contextPath }/img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
+								<a href="" class="name">${goods.name }</a>
+								<c:set var="monthprovide" value="${goods.monthprovides.iterator().next()}" scope="page"/>
+								<%-- 有一个mothprovide是空的就报异常 --%>
+								<c:if test="${monthprovide != null}" >
+									<span class="price">￥${monthprovide.unitPrice }*${monthprovide.months }期</span>
+								
+								</c:if>
+							</li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>
@@ -494,7 +285,7 @@
 		<h4>农资联盟杯作品展示小demo</h4>
 		<p>&copy;copyright EarlTechnology 2015 </p>
 	</footer>
-	<script src="js/index.js"></script>
-	<script src="js/goodslist.js"></script>
+	<script src="${pageContext.request.contextPath }/js/index.js"></script>
+	<script src="${pageContext.request.contextPath }/js/goodslist.js"></script>
 </body>
 </html>
