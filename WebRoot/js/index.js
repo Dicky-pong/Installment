@@ -38,13 +38,22 @@ $(function(){
 	});
 
 	$('#login').click(function(){
-		alert("ninico");
 		$(".popWrap").show();
 	});
 	
 	if($("#loginnameError").html() != "" || $("#msg").html() != "" || $("#passwordError").html() != "" || $("#verifyCodeError").html() != ""){
 		$(".popWrap").show();
 	}
+	
+	
+	
+	
+	$(".errorClass").each(function(){
+		$this = $(this);
+		if($this.html() != ""){
+			$this.show();
+		}
+	});
 
 	//$('.section').each(function(){
 	//	var $this = $(this);

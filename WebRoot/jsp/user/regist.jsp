@@ -36,7 +36,7 @@
           <input class="inputClass" type="text" name="userInfoEntity.username" id="loginname" value="${form.loginname }"/>
         </td>
         <td class="tdError">
-          <label class="errorClass" id="loginnameError">${errors.loginname }</label>
+          <p class="errorClass" id="loginnameError">${errors.loginname }</p>
         </td>
       </tr>
       <tr>
@@ -45,7 +45,7 @@
           <input class="inputClass" type="password" name="userInfoEntity.password" id="loginpass" value="${form.loginpass }"/>
         </td>
         <td>
-          <label class="errorClass" id="loginpassError">${errors.loginpass }</label>
+          <p class="errorClass" id="loginpassError">${errors.loginpass }</p>
         </td>
       </tr>
       <tr>
@@ -54,7 +54,7 @@
           <input class="inputClass" type="password" name="userInfoEntity.reloginpass" id="reloginpass" value="${form.reloginpass }"/>
         </td>
         <td>
-          <label class="errorClass" id="reloginpassError">${errors.reloginpass}</label>
+          <p class="errorClass" id="reloginpassError">${errors.reloginpass}</p>
         </td>
       </tr>
       <tr>
@@ -63,7 +63,7 @@
           <input class="inputClass" type="text" name="userInfoEntity.email" id="email" value="${form.email }"/>
         </td>
         <td>
-          <label class="errorClass" id="emailError">${errors.email}</label>
+          <p class="errorClass" id="emailError">${errors.email}</p>
         </td>
       </tr>
       <tr>
@@ -72,7 +72,7 @@
           <input class="inputClass" type="text" name="userInfoEntity.verifyCode" id="verifyCode" value="${form.verifyCode }"/>
         </td>
         <td>
-          <label class="errorClass" id="verifyCodeError">${errors.verifyCode}</label>
+          <p class="errorClass" id="verifyCodeError">${errors.verifyCode}</p>
         </td>
       </tr>
       <tr>

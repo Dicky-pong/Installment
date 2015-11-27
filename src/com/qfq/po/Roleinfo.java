@@ -13,7 +13,8 @@ public class Roleinfo implements java.io.Serializable {
 
 	private Integer id;
 	private String name;
-	private Set userinfos = new HashSet(0);
+	private Set admins = new HashSet(0);
+	private Set rolemenus = new HashSet(0);
 
 	// Constructors
 
@@ -27,9 +28,10 @@ public class Roleinfo implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Roleinfo(String name, Set userinfos) {
+	public Roleinfo(String name, Set admins, Set rolemenus) {
 		this.name = name;
-		this.userinfos = userinfos;
+		this.admins = admins;
+		this.rolemenus = rolemenus;
 	}
 
 	// Property accessors
@@ -50,12 +52,20 @@ public class Roleinfo implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public Set getUserinfos() {
-		return this.userinfos;
+	public Set getAdmins() {
+		return this.admins;
 	}
 
-	public void setUserinfos(Set userinfos) {
-		this.userinfos = userinfos;
+	public void setAdmins(Set admins) {
+		this.admins = admins;
+	}
+
+	public Set getRolemenus() {
+		return this.rolemenus;
+	}
+
+	public void setRolemenus(Set rolemenus) {
+		this.rolemenus = rolemenus;
 	}
 
 }

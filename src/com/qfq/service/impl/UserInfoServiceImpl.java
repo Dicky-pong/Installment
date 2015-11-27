@@ -3,7 +3,11 @@ package com.qfq.service.impl;
 
 import java.io.IOException;
 
+
+
+import java.sql.SQLException;
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.MessagingException;
@@ -19,6 +23,8 @@ import com.qfq.entity.UserInfoEntity;
 
 import com.qfq.po.Userinfo;
 import com.qfq.service.UserInfoService;
+import com.qfq.utils.UserException;
+import com.sun.xml.internal.ws.wsdl.writer.UsingAddressing;
 
 public class UserInfoServiceImpl implements UserInfoService{
 	private BaseDao baseDao;
@@ -49,29 +55,38 @@ public class UserInfoServiceImpl implements UserInfoService{
 	
 	
 	public boolean ajaxValidateLoginname(String username){
-		
-		
-		return false;
-		
+			String hql = "from Userinfo u where u.username ='"+username+"'";
+			List list =   baseDao.findByHql(hql);
+			if(list.size()>0)
+			return false;
+			return true;
 	}
 
 
 	public boolean ajaxValidateEmail(String email) {
 		String hql = "from Userinfo u where u.email ='"+email+"'";
-		  Number number = (Number) baseDao.findByHql(hql);
-		   return number.intValue()==0;
+		List list =   baseDao.findByHql(hql);
+		if(list.size()>0)
+		return false;
+		return true;
+			
 	}
 
 
-	public void regist(UserInfoEntity formUser) {
+	public void saveUser(UserInfoEntity formUser) {
 		/*
 		 * 1. 数据的补齐
 		 */
-		System.out.println("cccccccccc");
-		formUser.setStatus(false);
-		formUser.setActivationCode(CommonUtils.uuid() + CommonUtils.uuid());
-		System.out.println("dddddddd");
-		baseDao.save(formUser);
+		Userinfo userinfo = new Userinfo();
+		userinfo.setUsername(formUser.getUsername());
+		userinfo.setPassword(formUser.getPassword());
+		userinfo.setIp(formUser.getIp());
+		userinfo.setEmail(formUser.getEmail());
+		userinfo.setStatus((short) 0);
+		userinfo.setActivationCode(CommonUtils.uuid() + CommonUtils.uuid());
+		System.out.println("准备执行！");
+		baseDao.save(userinfo);
+		System.out.println("执行成功！");
 		/*
 		 * 3. 发邮件
 		 */
@@ -100,7 +115,7 @@ public class UserInfoServiceImpl implements UserInfoService{
 		String subject = prop.getProperty("subject");
 		// MessageForm.format方法会把第一个参数中的{0},使用第二个参数来替换。
 		// 例如MessageFormat.format("你好{0}, 你{1}!", "张三", "去死吧"); 返回“你好张三，你去死吧！”
-		String content = MessageFormat.format(prop.getProperty("content"), formUser.getActivationCode());
+		String content = MessageFormat.format(prop.getProperty("content"), userinfo.getActivationCode());
 		Mail mail = new Mail(from, to, subject, content);
 		/*
 		 * 发送邮件
@@ -113,5 +128,23 @@ public class UserInfoServiceImpl implements UserInfoService{
 			throw new RuntimeException(e);
 		}
 		
+	}
+
+
+	public void updateActivation(String code) throws UserException {
+		/*
+		 * 1.通过激活码查询用户
+		 * 2.如果用户为null，说明是无效激活码，抛出异常，给出异常信息(无效激活码)
+		 * 3.查询用户状态是否为true,如果为true，抛出异常，给出异常信息（请不要二次激活）
+		 * 4.修改用户状态为true
+		 */
+		Userinfo user;
+		String hql = " from Userinfo u where u.activationCode='"+code+"'";
+		user=  (Userinfo) baseDao.loadObject(hql);
+		if(user==null)throw new UserException("无效的激活码！");
+		System.out.println(user.getStatus());
+		if(user.getStatus()!=0)throw new UserException("您已经激活过了，请不要二次激活！");
+		user.setStatus((short) 1);
+		baseDao.saveOrUpdate(Userinfo.class);//修改状态
 	}
 }

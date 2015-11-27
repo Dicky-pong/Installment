@@ -13,11 +13,17 @@
         <property name="name" type="java.lang.String">
             <column name="name" length="20" not-null="true" />
         </property>
-        <set name="userinfos" inverse="true">
+        <set name="admins" inverse="true">
             <key>
                 <column name="r_id" />
             </key>
-            <one-to-many class="com.qfq.po.Userinfo" />
+            <one-to-many class="com.qfq.po.Admin" />
+        </set>
+        <set name="rolemenus" inverse="true">
+            <key>
+                <column name="r_id" />
+            </key>
+            <one-to-many class="com.qfq.po.Rolemenu" />
         </set>
     </class>
 </hibernate-mapping>

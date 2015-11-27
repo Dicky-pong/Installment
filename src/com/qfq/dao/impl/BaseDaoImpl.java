@@ -4,17 +4,14 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.util.Collection;
 import java.util.List;
-
-import org.apache.velocity.runtime.log.SystemLogChute;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
 import com.qfq.dao.BaseDao;
 
 
@@ -24,12 +21,23 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 	
 	/** 保存或更新指定的持久化对象 */
 	public void save(Object obj) {
+		System.out.println(getConnection());
+		System.out.println(obj);
+	try {
 		getHibernateTemplate().save(obj);
+	  } catch (Exception e) {
+	   e.printStackTrace();
+	  }
 	}
 	
 	/** 保存或更新指定的持久化对象 */
 	public void saveOrUpdate(Object obj) {
-		getHibernateTemplate().saveOrUpdate(obj);
+		try {
+			getHibernateTemplate().saveOrUpdate(obj);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 	}
 	
 	/** 删除指定ID的持久化对象 */
@@ -51,10 +59,17 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 	public Object loadObject(String hql) {
 		final String hql1 = hql;
 		Object obj = null;
-		List list = getHibernateTemplate().find(hql1);
-		if(list.size()>0)
-			obj=list.get(0);
+		try {
+			List list = getHibernateTemplate().find(hql1);
+			if(list.size()>0)
+				obj=list.get(0);
+			
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return obj;
+		
 	}
 	
 	/** 查询指定类的满足条件的持久化对象 */

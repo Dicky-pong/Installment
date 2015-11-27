@@ -25,7 +25,7 @@
 	$("#imgVerifyCode").attr("src", "/Installment/VerifyCode_verify.do?a=" + new Date().getTime());
 }
 	</script>
-</head>
+<link rel="stylesheet" href="../css/index.css" type="text/css"></link></head>
 <body>
 	<header>
 		<nav class="top_nav">
@@ -268,19 +268,19 @@
 				<div class="popBody">
 					<form name="frmLgn" id="frmLgn" class="loginCont" action="UserInfo_login.do" method="post" onsubmit="return true;">
 						<div class="formInput">
-							<label class="error" id="msg">${msg}</label>
-							<label for="username">用户名:</label><input id="username" name="userInfoEntity.username" type="text" placeholder="用户名/邮箱/电话号码" required/>
-							<label id="loginnameError" class="error">${errors.loginname }</label>
+							<p class="errorClass" id="msg">${msg}</p>
+							<label for="username">用户名:</label><input id="username" name="userInfoEntity.username" type="text" placeholder="用户名/邮箱/电话号码" value="${form.username }" required />
+							<p id="loginnameerror" class="errorClass">${error.loginname }</p>
 						</div>
 						<div class="formInput">
-							<label for="password">密码:</label><input id="password" name="userInfoEntity.password" type="text" placeholder="请输入密码" required/>
-							<label id="passwordError" class="error">${errors.password}</label>
+							<label for="password">密码:</label><input id="password" name="userInfoEntity.password" type="text" placeholder="请输入密码" value="${form.password }"required/>
+							<p id="passworderror" class="errorClass">${error.loginpass}</p>
 						</div>
 						<div class="formInput">
-							<label for="verify">验证码:</label><input id="verify" name="userInfoEntity.verifyCode" type="text" placeholder="请输入验证码" required/>
+							<label for="verify">验证码:</label><input id="verify" name="userInfoEntity.verifyCode" type="text" placeholder="请输入验证码" value="${form.verifyCode }" required/>
 							<img id="imgVerifyCode" src="<c:url value='/VerifyCode_verify.do'/>"/>
                        		<a href="javascript:_hyz()">换一张</a>
-							<p id="verifyCodeError" class="error">${errors.verifyCode}</p>
+							<p id="verifyCodeerror" class="errorClass">${error.verifyCode}</p>
 						</div>
 						<div class="loginOpt">
 							<a href="" class="btn">忘记密码？</a>

@@ -12,13 +12,11 @@ public class Userinfo implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
-	private Roleinfo roleinfo;
 	private String username;
 	private String password;
 	private String email;
 	private Short status;
 	private String activationCode;
-	private String area;
 	private String ip;
 	private Set installments = new HashSet(0);
 	private Set dataheavies = new HashSet(0);
@@ -30,16 +28,14 @@ public class Userinfo implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Userinfo(Roleinfo roleinfo, String username, String password,
-			String email, Short status, String activationCode, String area,
-			String ip, Set installments, Set dataheavies) {
-		this.roleinfo = roleinfo;
+	public Userinfo(String username, String password, String email,
+			Short status, String activationCode, String ip, Set installments,
+			Set dataheavies) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.status = status;
 		this.activationCode = activationCode;
-		this.area = area;
 		this.ip = ip;
 		this.installments = installments;
 		this.dataheavies = dataheavies;
@@ -53,14 +49,6 @@ public class Userinfo implements java.io.Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Roleinfo getRoleinfo() {
-		return this.roleinfo;
-	}
-
-	public void setRoleinfo(Roleinfo roleinfo) {
-		this.roleinfo = roleinfo;
 	}
 
 	public String getUsername() {
@@ -101,14 +89,6 @@ public class Userinfo implements java.io.Serializable {
 
 	public void setActivationCode(String activationCode) {
 		this.activationCode = activationCode;
-	}
-
-	public String getArea() {
-		return this.area;
-	}
-
-	public void setArea(String area) {
-		this.area = area;
 	}
 
 	public String getIp() {
