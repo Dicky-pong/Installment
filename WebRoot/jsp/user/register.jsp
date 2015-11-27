@@ -6,9 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <title>趣分期</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="../../css/index.css" type="text/css"></link>
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css"></link>
+    <link rel="stylesheet" href="../../css/register.css" type="text/css"></link>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"type="text/ecmascript"></script>
     <script>
@@ -50,19 +50,24 @@
                     <div class="popBody">
                         <form name="frmLgn" id="frmLgn" action="UserInfo_regist.do" method="post" class="loginCont" onsubmit="return true;">
                             <div class="formInput">
-                                <label for="username">用户名:</label><input id="username" name="userInfoEntity.username" type="text" placeholder="用户名/邮箱/电话号码"/>
+                                <label for="username">用户名:</label><input id="username" name="userInfoEntity.username" type="text" placeholder="用户名/邮箱/电话号码" required="required" value="${form.username }"/>
+                                <p class="errorClass" id="loginnameError">${errors.loginname }</p>
                             </div>
                             <div class="formInput">
-                                <label for="password">密码:</label><input id="password" name="userInfoEntity.password" type="text" placeholder="请输入密码"/>
+                                <label for="password">密码:</label><input id="password" name="userInfoEntity.password" type="password" placeholder="请输入密码" required="required" value="${form.password }"/>
+                                <p class="errorClass" id="loginpassError">${errors.loginpass }</p>
                             </div>
                             <div class="formInput">
-                                <label for="reloginpass">重复密码:</label><input id="reloginpass" name="userInfoEntity.reloginpass" type="text" placeholder="请输入密码"/>
+                                <label for="reloginpass">重复密码:</label><input id="reloginpass" name="userInfoEntity.reloginpass" type="password" placeholder="请确认密码" required="required" value="${form.reloginpass }"/>
+                          	  	<p class="errorClass" id="reloginpassError">${errors.reloginpass}</p>
                             </div>
                             <div class="formInput">
-                                <label for="email">邮箱:</label><input id="email" name="userInfoEntity.email" type="text" placeholder="请输入密码"/>
+                                <label for="email">邮箱:</label><input id="email" name="userInfoEntity.email" type="text" placeholder="请输入邮箱" required="required" value="${form.email }"/>
+                                <p class="errorClass" id="emailError">${errors.email}</p>
                             </div>
                             <div class="formInput">
-                                <label for="verify">验证码:</label><input id="verify" name="userInfoEntity.verifyCode" type="text" placeholder="请输入密码"/>
+                                <label for="verify">验证码:</label><input id="verify" name="userInfoEntity.verifyCode" type="text" placeholder="请输入验证码" required="required" value="${form.verifyCode }"/>
+                            	<p class="errorClass" id="verifyCodeError">${errors.verifyCode}</p>
                             </div>
                              <div id="divVerifyCode">
                              <img id="imgVerifyCode" src="<c:url value='/VerifyCode_verify.do'/>"/>
@@ -84,7 +89,7 @@
     <p>&copy;copyright  2015 </p>
 </footer>
 
-<script src="js/index.js"></script>
-<script src="js/silder.js"></script>
+<script src="../../js/index.js"></script>
+<script src="../../js/silder.js"></script>
 </body>
 </html>

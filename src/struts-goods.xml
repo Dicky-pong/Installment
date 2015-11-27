@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+	
+<struts>
+	<package name="goods" extends="struts-default" >
+
+		<action name="showGoods" class="goodsAction" method="showGoods" >
+			<result name="success">/jsp/goods/goodslist.jsp</result>
+		</action>
+		<!-- <action name="rent-update" class="com.gym.action.StudentAction" method="">
+			<result>/jsp/xsgl/student-rent-update.jsp</result>
+		</action> -->
+
+	</package>
+</struts>

@@ -10,9 +10,6 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="roleinfo" class="com.qfq.po.Roleinfo" fetch="select">
-            <column name="r_id" />
-        </many-to-one>
         <property name="username" type="java.lang.String">
             <column name="username" length="20" />
         </property>
@@ -27,9 +24,6 @@
         </property>
         <property name="activationCode" type="java.lang.String">
             <column name="activationCode" length="64" />
-        </property>
-        <property name="area" type="java.lang.String">
-            <column name="area" length="50" />
         </property>
         <property name="ip" type="java.lang.String">
             <column name="ip" length="20" />

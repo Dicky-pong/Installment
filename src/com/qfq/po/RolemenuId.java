@@ -8,8 +8,8 @@ public class RolemenuId implements java.io.Serializable {
 
 	// Fields
 
-	private Integer MId;
-	private Integer RId;
+	private Menu menu;
+	private Roleinfo roleinfo;
 
 	// Constructors
 
@@ -18,27 +18,27 @@ public class RolemenuId implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public RolemenuId(Integer MId, Integer RId) {
-		this.MId = MId;
-		this.RId = RId;
+	public RolemenuId(Menu menu, Roleinfo roleinfo) {
+		this.menu = menu;
+		this.roleinfo = roleinfo;
 	}
 
 	// Property accessors
 
-	public Integer getMId() {
-		return this.MId;
+	public Menu getMenu() {
+		return this.menu;
 	}
 
-	public void setMId(Integer MId) {
-		this.MId = MId;
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 
-	public Integer getRId() {
-		return this.RId;
+	public Roleinfo getRoleinfo() {
+		return this.roleinfo;
 	}
 
-	public void setRId(Integer RId) {
-		this.RId = RId;
+	public void setRoleinfo(Roleinfo roleinfo) {
+		this.roleinfo = roleinfo;
 	}
 
 	public boolean equals(Object other) {
@@ -50,21 +50,22 @@ public class RolemenuId implements java.io.Serializable {
 			return false;
 		RolemenuId castOther = (RolemenuId) other;
 
-		return ((this.getMId() == castOther.getMId()) || (this.getMId() != null
-				&& castOther.getMId() != null && this.getMId().equals(
-				castOther.getMId())))
-				&& ((this.getRId() == castOther.getRId()) || (this.getRId() != null
-						&& castOther.getRId() != null && this.getRId().equals(
-						castOther.getRId())));
+		return ((this.getMenu() == castOther.getMenu()) || (this.getMenu() != null
+				&& castOther.getMenu() != null && this.getMenu().equals(
+				castOther.getMenu())))
+				&& ((this.getRoleinfo() == castOther.getRoleinfo()) || (this
+						.getRoleinfo() != null
+						&& castOther.getRoleinfo() != null && this
+						.getRoleinfo().equals(castOther.getRoleinfo())));
 	}
 
 	public int hashCode() {
 		int result = 17;
 
 		result = 37 * result
-				+ (getMId() == null ? 0 : this.getMId().hashCode());
+				+ (getMenu() == null ? 0 : this.getMenu().hashCode());
 		result = 37 * result
-				+ (getRId() == null ? 0 : this.getRId().hashCode());
+				+ (getRoleinfo() == null ? 0 : this.getRoleinfo().hashCode());
 		return result;
 	}
 

@@ -9,6 +9,7 @@ public class Admin implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
+	private Roleinfo roleinfo;
 	private String name;
 	private String password;
 
@@ -19,7 +20,8 @@ public class Admin implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Admin(String name, String password) {
+	public Admin(Roleinfo roleinfo, String name, String password) {
+		this.roleinfo = roleinfo;
 		this.name = name;
 		this.password = password;
 	}
@@ -32,6 +34,14 @@ public class Admin implements java.io.Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Roleinfo getRoleinfo() {
+		return this.roleinfo;
+	}
+
+	public void setRoleinfo(Roleinfo roleinfo) {
+		this.roleinfo = roleinfo;
 	}
 
 	public String getName() {

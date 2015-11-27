@@ -307,7 +307,7 @@ footer{
     color: #CF211A;
     margin-bottom: 15px;
 }
-.popWrap .popCont .popInner input[type=text]{
+.popWrap .popCont .popInner input[type=text],input[type=password]{
     border: none;
     border-top: 1px solid #DEDEDE;
     border-bottom: 1px solid #DEDEDE;
@@ -320,11 +320,11 @@ footer{
 
 
 .popWrap .popCont .popInner input[type=submit]{
-    width: 100px;
-    height: 71px;
+    width: 89px;
+    height: 59px;
     position: absolute;
-    margin-top: -113px;
-    margin-left: 279px;
+    margin-top: -150px;
+    margin-left: 289px;
     border: 1px solid #B3B3B3;
     background: #CF211A;
     color: #FFF;
@@ -374,4 +374,30 @@ footer{
 	margin-left: .2em;
 }
 
+
+.errorClass {
+	position: absolute;
+    border: 2px solid #CF211A;
+    padding: 5px;
+    border-radius: 5px;
+    color: #CF211A;
+    font-weight: 600;
+    margin-top: -51px;
+    margin-left: 179px;
+    background: #fff;
+    display:none;
+}
+
+.errorClass::after {
+    content: "";
+    height: 0px;
+    width: 0px;
+    display: block;
+    clear: both;
+    position: absolute;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid #CF211A;
+    margin-top: 5px;
+}
 

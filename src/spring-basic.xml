@@ -11,7 +11,7 @@
 		<property name="url" value="jdbc:mysql://localhost:3306/installment?useUnicode=true&amp;characterEncoding=UTF-8">
 		</property>
 		<property name="username" value="root"></property>
-		<property name="password" value="mysqladmin"></property>
+		<property name="password" value="root"></property>
 	</bean>
 
     <!-- SessionFactory -->
@@ -29,6 +29,8 @@
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <!-- 设置Hibernate是否在控制台输出SQL语句，开发调试阶段通常设为true -->
                 <prop key="hibernate.show_sql">true</prop>
+                <!-- 自动提交 -->
+                <prop key="hibernate.connection.autocommit">true </prop> 
 				<!-- 设置Hibernate一个提交批次中的最大SQL语句数 -->
                 <prop key="hibernate.jdbc.batch_size">50</prop>
             </props>

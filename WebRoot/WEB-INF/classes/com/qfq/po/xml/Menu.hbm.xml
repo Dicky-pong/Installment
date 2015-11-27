@@ -19,5 +19,11 @@
         <property name="url" type="java.lang.String">
             <column name="url" length="50" />
         </property>
+        <set name="rolemenus" inverse="true">
+            <key>
+                <column name="m_id" />
+            </key>
+            <one-to-many class="com.qfq.po.Rolemenu" />
+        </set>
     </class>
 </hibernate-mapping>

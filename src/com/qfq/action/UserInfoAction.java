@@ -6,17 +6,20 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.qfq.entity.UserInfoEntity;
 import com.qfq.po.Userinfo;
 import com.qfq.service.UserInfoService;
-import com.qfq.service.impl.UserInfoServiceImpl;
 
-import freemarker.template.utility.Execute;
 
 public class UserInfoAction extends BaseAction{
+	//版本ID
+	private static final long serialVersionUID = 2803636538398903766L;
 	
 	private UserInfoEntity userInfoEntity;
 	private UserInfoService userInfoService;
@@ -40,12 +43,11 @@ public class UserInfoAction extends BaseAction{
 	 * @return
 	 */
 	public String login(){
-		System.out.println(userInfoEntity.getUsername());
 		//校验表单数据
 		Map<String,String> errors = validateLogin(userInfoEntity, this.getSession());
 		if(errors.size() > 0) {
 			this.getRequest().setAttribute("form", userInfoEntity);
-			this.getRequest().setAttribute("errors", errors);
+			this.getRequest().setAttribute("error", errors);
 			return "failed";
 		}
 		Userinfo user= userInfoService.login(userInfoEntity);
@@ -92,29 +94,29 @@ public class UserInfoAction extends BaseAction{
 		 * 1. 封装表单数据到User对象
 		 */
 		UserInfoEntity formUser = userInfoEntity;
+		System.out.println(formUser.getUsername());
+		System.out.println(formUser.getPassword());
 		/*
 		 * 2. 校验之, 如果校验失败，保存错误信息，返回到regist.jsp显示
 		 */
 		Map<String,String> errors = validateRegist(formUser, this.getSession());
 		if(errors.size() > 0) {
+			System.out.println(errors.get("loginname"));
 			this.getRequest().setAttribute("form", formUser);
 			this.getRequest().setAttribute("errors", errors);
 			return "regist";
 		}
-		System.out.println("22222222");
 		/*
 		 * 获取用户ip地址，数据写入formUser
 		 */
 		String ip= this.getIpAddr();
-		System.out.println(ip);
 		formUser.setIp(ip);
 		
 		/*
 		 * 3. 使用service完成业务
 		 */
-		System.out.println("bbbbbbbbbb");
-		userInfoService.regist(formUser);
-		System.out.println("aaaaaaa");
+		userInfoService.saveUser(formUser);
+		System.out.println("完成保存操作");
 		/*
 		 * 4. 保存成功信息，转发到msg.jsp显示！
 		 */
@@ -129,7 +131,6 @@ public class UserInfoAction extends BaseAction{
 	 * @return
 	 */
 	private String getIpAddr( ) { 
-		System.out.println("11111111");
 		String ip = this.getRequest().getHeader("x-forwarded-for"); 
 		if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
 			ip = this.getRequest().getHeader("Proxy-Client-IP"); 
@@ -181,7 +182,7 @@ public class UserInfoAction extends BaseAction{
 		return errors;
 	}
 	
-	/*
+	/**
 	 * 注册校验
 	 * 对表单的字段进行逐个校验，如果有错误，使用当前字段名称为key，错误信息为value，保存到map中
 	 * 返回map
@@ -246,5 +247,28 @@ public class UserInfoAction extends BaseAction{
 		return errors;
 	}
 	
+	
+	/**
+	 * 激活功能
+	 * @return
+	 */
+	public String activation() {
+		
+		/*
+		 * 1. 获取参数激活码
+		 * 2. 用激活码调用service方法完成激活
+		 *   > service方法有可能抛出异常, 把异常信息拿来，保存到request中，转发到msg.jsp显示
+		 * 3. 保存成功信息到request，转发到msg.jsp显示。
+		 */
+		String code = this.getRequest().getParameter("activationCode");
+		try {
+			userInfoService.updateActivation(code);
+			this.getRequest().setAttribute("msg", "恭喜，激活成功，请马上登录！");
+		} catch (Exception e) {
+			// 说明service抛出了异常
+			this.getRequest().setAttribute("msg", e.getMessage());
+		}
+		return "failed";
+	}
 }
 
