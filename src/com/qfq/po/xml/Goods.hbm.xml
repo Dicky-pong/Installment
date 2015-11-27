@@ -19,30 +19,34 @@
         <property name="brand" type="java.lang.String">
             <column name="brand" length="30" />
         </property>
-        
+        <property name="price" type="java.lang.Double">
+            <column name="price" precision="22" scale="0" />
+        </property>
         <property name="descript" type="java.lang.String">
             <column name="descript" />
         </property>
         <property name="colorId" type="java.lang.Integer">
             <column name="color_id" />
         </property>
-        
+        <property name="TId" type="java.lang.Integer">
+            <column name="t_id" />
+        </property>
         <property name="date" type="java.util.Date">
             <column name="date" length="10" />
         </property>
-        <set name="colors" inverse="true" lazy="false">
+        <set name="colors" inverse="true">
             <key>
                 <column name="g_id" />
             </key>
             <one-to-many class="com.qfq.po.Color" />
         </set>
-        <set name="monthprovides" inverse="true" lazy="false">
+        <set name="monthprovides" inverse="true">
             <key>
                 <column name="g_id" />
             </key>
             <one-to-many class="com.qfq.po.Monthprovide" />
         </set>
-        <set name="goodstypes" inverse="true" lazy="false">
+        <set name="goodstypes" inverse="true">
             <key>
                 <column name="g_id" />
             </key>
