@@ -1,0 +1,257 @@
+#zoom{
+    position: relative;
+    padding-left: 190px;
+    float: left;
+}
+#zoomMiddle{
+    width: 500px;
+    height: 500px;
+    position: relative;
+}
+
+.clr {
+    clear: both;
+}
+
+#goodinfomain{
+    width: 1340px;
+    margin: 0 auto ;
+}
+
+
+#make{
+    width: 100px;
+    height: 100px;
+    background: #abcdef;
+    opacity: 0.5;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: none;
+}
+
+
+#zoomMiddle img{
+    max-width: 100%;
+}
+#zoomSmall{
+    width: 517px;
+    /*overflow: hidden;*/
+    height: 56px;
+    position: relative;
+
+}
+
+#zoomSmall span{
+    float: left;
+    border: 1px solid #000;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+    display: inline;
+}
+
+#zoomSmallImg{
+    float: left;
+    overflow: hidden;
+    width: 490px;
+    height: 56px;
+    position: relative;
+}
+
+#zoomSmallImg ul{
+    margin: 2px;
+    width: 344px;
+    position: absolute;
+
+    left: 0px;
+    top: 0px;
+}
+
+#zoomSmallImg ul li{
+    float: left;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    margin: 0px 2px;
+    list-style-type: none;
+}
+
+#zoomSmallImg ul li.curr{
+    border: 2px solid orange;
+}
+
+#zoomSmallImg ul li img{
+    width: 50px;
+    height: 50px;
+}
+
+#zoomLa{
+    border: 2px solid #000;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 750px;
+    top: 38px;
+    overflow: hidden;
+     display: none;
+}
+
+#zoomLa img{
+    width: 600px;
+    height: 600px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.container {
+    background: #fff;
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+.container::after {
+    content: "";
+    height: 0px;
+    width: 0px;
+    clear: both;
+    display: block;
+}
+
+.container .goodinfo {
+    float: left;
+    margin-left: 50px;
+}
+.container .goodinfo h1 {
+    font-size: 26px;
+
+}
+
+.container .goodinfo span.great {
+    margin-top: 13px;
+    display: block;
+    border-bottom: 1px solid #E2E2E2;
+    padding-bottom: 10px;
+    width: 500px;
+}
+
+.container .goodinfo span .ficon {
+    color: #CF211A;
+}
+
+.container .goodinfo table {
+    font-size: 15px;
+    margin-bottom: 140px;
+}
+
+.container .goodinfo table .imgShow th {
+    vertical-align: top;
+}
+
+.container .goodinfo table tr td {
+    padding-left: 10px;
+    height: 40px;
+
+}
+
+.container .goodinfo table tr td .goodimg {
+    max-width: 50px;
+    float: left;
+    vertical-align: top;
+    margin-left: 10px;
+}
+
+.container .goodinfo table tr td .goodimg.active {
+    border:3px solid #000;
+
+}
+
+.container .goodinfo table tr .select {
+    display: inline-block;
+    border: 1px solid #B8B8B8;
+    padding: 5px;
+    text-align: center;
+    background: #F4F4F4;
+    width: 55px;
+}
+
+.container .goodinfo table tr td input[type=number] {
+    width: 31px;
+}
+
+.container .goodinfo .btns {
+    margin-left: 30px;
+}
+
+.container .goodinfo .btns input[type=button] {
+    display: inline-block;
+    border: 1px solid #A0A0A0;
+    height: 51px;
+    width: 106px;
+    color: #FFF;
+}
+
+.container .goodinfo .btns #buy {
+    background: #333333;
+}
+.container .goodinfo .btns #add {
+    background: #CF211A;
+}
+.container .goodinfo .btns #sc {
+    background: #fdfdfd;
+    color: #000;
+}
+
+.gooddetails {
+    text-align: center;
+    margin-top: 79px;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.gooddetails h1 {
+    display: block;
+    font-size: 28px;
+    /* width: 1000px; */
+    border-bottom: 1px solid #BBB;
+    padding-bottom: 29px;
+    margin-bottom: 20px;
+}
+
+
+.gooddetails ul li {
+    float: left;
+    display: block;
+    width: 33%;
+    text-align: center;
+    border: 1px solid #EDEDED;
+    line-height: 45px;
+    background: #F5F5F5;
+    color: #5C5C5C;
+    font-weight: 600;
+    font-size: 15px;
+    border-bottom: 3px solid #CF211A;
+}
+
+.gooddetails ul .active {
+    background: #CF211A;
+    color: #FFF;
+
+}
+
+.gooddetails ul:after {
+    clear: both;
+    content: ' ';
+    display: block;
+    height: 0;
+}
+
+.gooddetails .info {
+    border: 1px solid #000;
+    display: none;
+}
+
+.gooddetails .info.active {
+    display: block;
+}
