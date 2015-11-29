@@ -267,11 +267,10 @@
 							<li>
 								<div class="good_img"><img src="${pageContext.request.contextPath }/img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
 								<a href="" class="name">${goods.name }</a>
-								<c:set var="monthprovide" value="${goods.monthprovides.iterator().next()}" scope="page"/>
 								<%-- 有一个mothprovide是空的就报异常 --%>
-								<c:if test="${monthprovide != null}" >
+								<c:if test="${goods.monthprovides.iterator().hasNext()}" >
+									<c:set var="monthprovide" value="${goods.monthprovides.iterator().next()}" scope="page"/>
 									<span class="price">￥${monthprovide.unitPrice }*${monthprovide.months }期</span>
-								
 								</c:if>
 							</li>
 						</c:forEach>
