@@ -17,8 +17,6 @@ public class Goods implements java.io.Serializable {
 	private String name;
 	private String brand;
 	private String descript;
-	private Integer colorId;
-	private Integer TId;
 	private Date date;
 	private Set colors = new HashSet(0);
 	private Set monthprovides = new HashSet(0);
@@ -38,8 +36,6 @@ public class Goods implements java.io.Serializable {
 		this.name = name;
 		this.brand = brand;
 		this.descript = descript;
-		this.colorId = colorId;
-		this.TId = TId;
 		this.date = date;
 		this.colors = colors;
 		this.monthprovides = monthprovides;
@@ -86,22 +82,6 @@ public class Goods implements java.io.Serializable {
 
 	public void setDescript(String descript) {
 		this.descript = descript;
-	}
-
-	public Integer getColorId() {
-		return this.colorId;
-	}
-
-	public void setColorId(Integer colorId) {
-		this.colorId = colorId;
-	}
-
-	public Integer getTId() {
-		return this.TId;
-	}
-
-	public void setTId(Integer TId) {
-		this.TId = TId;
 	}
 
 	public Date getDate() {
