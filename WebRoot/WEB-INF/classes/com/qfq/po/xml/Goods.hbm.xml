@@ -23,9 +23,6 @@
         <property name="descript" type="java.lang.String">
             <column name="descript" />
         </property>
-        <property name="colorId" type="java.lang.Integer">
-            <column name="color_id" />
-        </property>
         
         <property name="date" type="java.util.Date">
             <column name="date" length="10" />
