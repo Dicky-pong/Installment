@@ -35,7 +35,7 @@
 		</global-exception-mappings>	
     </package>
     
-     <package name="main" extends="qfq" >
+     <package name="main" extends="qfq">
 		<action name="*_*" class="com.qfq.action.{1}Action" method="{2}">
 			<result name="input" >/jsp/index.jsp</result>
 			<result name="regist" >/jsp/user/register.jsp</result>

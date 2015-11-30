@@ -82,4 +82,10 @@ $(function(){
         make.hide();
         la.hide();
     });
+
+
+    $('.gooddetails li').click(function(){
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.gooddetails .info').eq($(this).index()).addClass('active').siblings().removeClass('active');
+    })
 })
