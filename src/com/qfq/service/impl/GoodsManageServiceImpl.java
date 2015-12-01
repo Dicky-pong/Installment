@@ -103,13 +103,31 @@ public class GoodsManageServiceImpl implements GoodsManageService{
 	public int getGoodsCount(String goodsName, String goodsBrand,
 			String categoryID) {
 		String hql = "select count(g.id) from Goods g " +
-				"where g.name LIKE '%"+goodsName+"%' and g.brand like'%"+goodsBrand+"%' and g.c_id = "+categoryID;
+				"where g.name LIKE '%"+goodsName+"%' and g.brand like'%"+goodsBrand+"%'";
+		if(categoryID != null && !"".equals(categoryID.trim())){
+			hql += " and g.c_id = "+categoryID.trim();
+		}
 		try{
 			return baseDao.countQuery(hql);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+	
+	public List<Goods> getPaperGoods(String goodsName, String goodsBrand,
+			String categoryID, int beginIndex, int everyPage) {
+		String hql = "from Goods g " +
+				"where g.name LIKE '%"+goodsName+"%' and g.brand like'%"+goodsBrand+"%'";
+		if(categoryID != null && !"".equals(categoryID.trim())){
+			hql += " and g.c_id = "+categoryID.trim();
+		}
+		List<Goods> list = baseDao.findByHql(hql, beginIndex, everyPage);
+		System.out.println("getPagerGoods - hql: "+hql+"\nlist for goods: "+list.size());
+		if(list == null || list.size() == 0){
+			return null;
+		}
+		return list;
 	}
 
 	

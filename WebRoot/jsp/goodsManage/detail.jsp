@@ -36,7 +36,7 @@ function jump(){
           <a href="../glygl/JSGL.html">角色管理</a>
         </li>
         <li role="presentation" class="active">
-          <a href="../spgl/SPGL.html">商品管理</a>
+          <a href="showAllGoods.do">商品管理</a>
         </li>
         <li role="presentation">
           <a href="../sjgl/SJFX.html">用户数据分析</a>
@@ -56,7 +56,7 @@ function jump(){
           <a href="../index.html">趣分期后台管理系统</a>
         </li>
         <li>
-          <a href="SPGL.html">商品管理</a>
+          <a href="showAllGoods.do">商品管理</a>
         </li>
         <li class="active">商品详情</li>
       </ol>
@@ -113,11 +113,11 @@ function jump(){
               	<c:forEach items="${requestScope.goods.goodstypes }" var="goodstype">
               		<td>类型</td>
                 	<td>
-                  		<input type="text" name="style" value="${goodstype.typename }"/>
+                  		<input type="text" name="style" value="${goodstype.typename }" readonly="readonly"/>
                 	</td>
                 	<td>价格</td>
                 	<td>
-                  		<input type="text" name="price" value="${goodstype.price }"/>
+                  		<input type="text" name="price" value="${goodstype.price }" readonly="readonly"/>
                 	</td>
               	</c:forEach>
                 
@@ -140,9 +140,6 @@ function jump(){
             <br />
             <textarea name="detail" cols="70" rows="5" readonly="readonly" >${requestScope.goods.descript }</textarea>
             <br />
-            <button type="button" class="btn btn-default" onclick="jump()">提交</button>
-            &nbsp&nbsp&nbsp
-            <button type="reset" class="btn btn-default">重置</button>
           </form>
 
         </div>

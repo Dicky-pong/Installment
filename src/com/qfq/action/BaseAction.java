@@ -16,7 +16,6 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.qfq.entity.UserInfoEntity;
-import com.qfq.utils.Page;
 import com.qfq.utils.filter.Constants;
 
 @SuppressWarnings("serial")
