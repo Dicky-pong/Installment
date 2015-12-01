@@ -41,7 +41,10 @@
 		validate_form(form);
 	};
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8bab15c6d02b6bb5f3c4837e2ea9298d30e75f55
 	var add = function() {
 		document.body.onclick = function(e) {
 			var e = e || event;
@@ -57,5 +60,8 @@
 	}
 	add();
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8bab15c6d02b6bb5f3c4837e2ea9298d30e75f55
 })();
