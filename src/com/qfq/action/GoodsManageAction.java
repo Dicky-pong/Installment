@@ -11,6 +11,7 @@ import net.sf.json.JSONObject;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
+import com.gym.utils.PageUtil;
 import com.opensymphony.xwork2.ModelDriven;
 import com.qfq.entity.CategoryEntity;
 import com.qfq.po.Category;
@@ -18,7 +19,6 @@ import com.qfq.po.Goods;
 import com.qfq.po.Goodstype;
 import com.qfq.service.GoodsManageService;
 import com.qfq.utils.Page;
-import com.qfq.utils.PageUtil;
 import com.qfq.utils.ResponseUtil;
 
 public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,ServletResponseAware{
@@ -28,7 +28,6 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 	private Page page;
 	
 	private Goods goods = new Goods();
-	private List<Goods> goodsList;
 	private Category category;
 	private List<Category> categoryList;
 	private String[] colorCheck;
@@ -38,12 +37,6 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 	private String categoryId;//添加商品时的二级分类ID
 
 	
-	public List<Goods> getGoodsList() {
-		return goodsList;
-	}
-	public void setGoodsList(List<Goods> goodsList) {
-		this.goodsList = goodsList;
-	}
 	public Page getPage() {
 		return page;
 	}
@@ -122,6 +115,7 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 		int currentPage = 1;
 		String goodsBrand = goods.getBrand();
 		String goodsName = goods.getName();
+		String categoryID = categoryId;
 		if (req.getParameter("currentPage") == null) {
 			currentPage = 1;
 		} else {
@@ -134,12 +128,12 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 			goods.setName(goodsName="");
 		}
 		int everyPage = 5;
-		int totalCount = goodsManageService.getGoodsCount(goods.getName(), goods.getBrand(), categoryId);
+		int totalCount = goodsManageService.getGoodsCount(goods.getName(), goods.getBrand(), categoryID);
 		page = PageUtil.createPage(everyPage, totalCount, currentPage);
-		goodsList = goodsManageService.getPaperGoods(goods.getName(), goods.getBrand(), categoryId, page.getBeginIndex(), everyPage);
-		categoryList = goodsManageService.getAllCatagory();
-		System.out.println("goodsName:"+goods.getName()+"\ngoodsbrand: "+goods.getBrand()+"\ncategoryID:"+categoryId);
-		System.out.println("the goodsList : "+goodsList.size());
+		equips = equipService.getPaperEquip(equip.getEquipType(), equip.getEquipBrand(), page.getBeginIndex(), everyPage);
+		types = equipService.getAllType();
+		brands = equipService.getAllBrand();
+		System.out.println("EquipAciton gettype:"+equip.getEquipType()+"\nadmin.getbrand: "+equip.getEquipBrand());
 		return SUCCESS;
 	}
 	

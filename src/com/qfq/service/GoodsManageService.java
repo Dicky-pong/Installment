@@ -55,5 +55,5 @@ public interface GoodsManageService {
 	 * @param everyPage
 	 * @return
 	 */
-	public List<Goods> getPaperGoods(String goodsName, String goodsBrand, String categoryID, int beginIndex, int everyPage);
+	public List<Goods> getPaperGoods(String goodsName, String goodsBrand, String category, int beginIndex, int everyPage);
 }
