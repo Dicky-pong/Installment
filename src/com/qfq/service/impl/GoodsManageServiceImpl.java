@@ -99,6 +99,18 @@ public class GoodsManageServiceImpl implements GoodsManageService{
 		}
 		return null;
 	}
+	
+	public int getGoodsCount(String goodsName, String goodsBrand,
+			String categoryID) {
+		String hql = "select count(g.id) from Goods g " +
+				"where g.name LIKE '%"+goodsName+"%' and g.brand like'%"+goodsBrand+"%' and g.c_id = "+categoryID;
+		try{
+			return baseDao.countQuery(hql);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 
 	
 }

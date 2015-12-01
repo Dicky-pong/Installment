@@ -11,18 +11,21 @@ import net.sf.json.JSONObject;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
+import com.gym.utils.PageUtil;
 import com.opensymphony.xwork2.ModelDriven;
 import com.qfq.entity.CategoryEntity;
 import com.qfq.po.Category;
 import com.qfq.po.Goods;
 import com.qfq.po.Goodstype;
 import com.qfq.service.GoodsManageService;
+import com.qfq.utils.Page;
 import com.qfq.utils.ResponseUtil;
 
 public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,ServletResponseAware{
 	
 	private HttpServletResponse response;
 	private GoodsManageService goodsManageService;
+	private Page page;
 	
 	private Goods goods = new Goods();
 	private Category category;
@@ -32,7 +35,14 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 	private String[] price;
 	private String[] style;
 	private String categoryId;//添加商品时的二级分类ID
+
 	
+	public Page getPage() {
+		return page;
+	}
+	public void setPage(Page page) {
+		this.page = page;
+	}
 	public String getCategoryId() {
 		return categoryId;
 	}
@@ -101,7 +111,29 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 	}
 	
 	public String showAllGoods(){
-		
+		HttpServletRequest req = ServletActionContext.getRequest();
+		int currentPage = 1;
+		String goodsBrand = goods.getBrand();
+		String goodsName = goods.getName();
+		String categoryID = categoryId;
+		if (req.getParameter("currentPage") == null) {
+			currentPage = 1;
+		} else {
+			currentPage = Integer.parseInt(req.getParameter("currentPage"));
+		}
+		if(goodsBrand == null||"不限".equals(goodsBrand.trim())){
+			goods.setBrand(goodsBrand="");
+		}
+		if(goodsName == null||"不限".equals(goodsName.trim())){
+			goods.setName(goodsName="");
+		}
+		int everyPage = 5;
+		int totalCount = goodsManageService.getGoodsCount(goods.getName(), goods.getBrand(), categoryID);
+		page = PageUtil.createPage(everyPage, totalCount, currentPage);
+		equips = equipService.getPaperEquip(equip.getEquipType(), equip.getEquipBrand(), page.getBeginIndex(), everyPage);
+		types = equipService.getAllType();
+		brands = equipService.getAllBrand();
+		System.out.println("EquipAciton gettype:"+equip.getEquipType()+"\nadmin.getbrand: "+equip.getEquipBrand());
 		return SUCCESS;
 	}
 	

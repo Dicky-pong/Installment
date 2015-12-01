@@ -36,4 +36,24 @@ public interface GoodsManageService {
 	 * @return
 	 */
 	public Goods getGoods(int goodsId);
+	
+	/**
+	 * 获取商品查询条件下的总数目
+	 * @param goodsName
+	 * @param goodsBrand
+	 * @param categoryID
+	 * @return
+	 */
+	public int getGoodsCount(String goodsName, String goodsBrand, String categoryID);
+	
+	/**
+	 * 通过查询条件获取商品列表
+	 * @param goodsName
+	 * @param goodsBrand
+	 * @param category
+	 * @param beginIndex
+	 * @param everyPage
+	 * @return
+	 */
+	public List<Goods> getPaperGoods(String goodsName, String goodsBrand, String category, int beginIndex, int everyPage);
 }
