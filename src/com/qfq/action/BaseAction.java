@@ -2,6 +2,7 @@ package com.qfq.action;
 
 import java.io.IOException;
 
+
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -17,7 +18,6 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.qfq.entity.UserInfoEntity;
-import com.qfq.utils.Page;
 import com.qfq.utils.filter.Constants;
 
 @SuppressWarnings("serial")
@@ -74,16 +74,6 @@ public class BaseAction extends ActionSupport {
 		outString(jsonString);
 	}
 
-	public void outPageString(Page page) {
-
-		JSONArray jsonArray = new JSONArray();
-		if (page.getRoot().size() > 0) {
-			jsonArray = JSONArray.fromObject(page.getRoot());
-		}
-		String jsonString = "{total:" + page.getTotal() + ",root:"
-				+ jsonArray.toString() + "}";
-		outString(jsonString);
-	}
 	
 	@SuppressWarnings("unchecked")
 	public void outTreeJsonList(List list){

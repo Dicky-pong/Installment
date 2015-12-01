@@ -1,5 +1,8 @@
 package com.qfq.po;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Color entity. @author MyEclipse Persistence Tools
  */
@@ -12,6 +15,7 @@ public class Color implements java.io.Serializable {
 	private Goods goods;
 	private String colorname;
 	private String picture;
+	private Set installments = new HashSet(0);
 
 	// Constructors
 
@@ -20,10 +24,11 @@ public class Color implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Color(Goods goods, String colorname, String picture) {
+	public Color(Goods goods, String colorname, String picture, Set installments) {
 		this.goods = goods;
 		this.colorname = colorname;
 		this.picture = picture;
+		this.installments = installments;
 	}
 
 	// Property accessors
@@ -58,6 +63,14 @@ public class Color implements java.io.Serializable {
 
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+
+	public Set getInstallments() {
+		return this.installments;
+	}
+
+	public void setInstallments(Set installments) {
+		this.installments = installments;
 	}
 
 }

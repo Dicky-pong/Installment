@@ -16,5 +16,8 @@
         <property name="typename" type="java.lang.String">
             <column name="typename" length="50" />
         </property>
+        <property name="price" type="java.lang.Double">
+            <column name="price" precision="22" scale="0" />
+        </property>
     </class>
 </hibernate-mapping>

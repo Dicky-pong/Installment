@@ -1,9 +1,9 @@
 package com.qfq.action;
 
 import com.qfq.entity.AdminEntity;
+
 import com.qfq.po.Admin;
 import com.qfq.service.AdminService;
-import com.qfq.utils.Page;
 import com.qfq.utils.filter.Constants;
 
 
@@ -69,19 +69,19 @@ public class AdminAction extends BaseAction{
 	/** 
 	 * 分页查询用户列表 
 	 */
-	public String findPageUser() {
-		try {
-			Page page = new Page();
-			page.setStart(this.getStart());
-			page.setLimit(this.getLimit());
-			adminService.findPageUser(page);
-			this.outPageString(page);
-		} catch (Exception e) {
-			e.printStackTrace();
-			this.outError();
-		}
-		return null;
-	}
+//	public String findPageUser() {
+//		try {
+//			Page page = new Page();
+//			page.setStart(this.getStart());
+//			page.setLimit(this.getLimit());
+//			adminService.findPageUser(page);
+//			this.outPageString(page);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			this.outError();
+//		}
+//		return null;
+//	}
 	
 	/**
 	 * 保存/修改用户

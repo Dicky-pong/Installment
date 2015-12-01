@@ -19,11 +19,5 @@
         <property name="unitPrice" type="java.lang.Double">
             <column name="unitPrice" precision="22" scale="0" />
         </property>
-        <set name="installments" inverse="true">
-            <key>
-                <column name="m_id" />
-            </key>
-            <one-to-many class="com.qfq.po.Installment" />
-        </set>
     </class>
 </hibernate-mapping>
