@@ -12,9 +12,10 @@ public class Menu implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
+	private Menu menu;
 	private String name;
-	private Integer pid;
 	private String url;
+	private Set menus = new HashSet(0);
 	private Set rolemenus = new HashSet(0);
 
 	// Constructors
@@ -24,10 +25,11 @@ public class Menu implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Menu(String name, Integer pid, String url, Set rolemenus) {
+	public Menu(Menu menu, String name, String url, Set menus, Set rolemenus) {
+		this.menu = menu;
 		this.name = name;
-		this.pid = pid;
 		this.url = url;
+		this.menus = menus;
 		this.rolemenus = rolemenus;
 	}
 
@@ -41,6 +43,14 @@ public class Menu implements java.io.Serializable {
 		this.id = id;
 	}
 
+	public Menu getMenu() {
+		return this.menu;
+	}
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
+	}
+
 	public String getName() {
 		return this.name;
 	}
@@ -49,20 +59,20 @@ public class Menu implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public Integer getPid() {
-		return this.pid;
-	}
-
-	public void setPid(Integer pid) {
-		this.pid = pid;
-	}
-
 	public String getUrl() {
 		return this.url;
 	}
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public Set getMenus() {
+		return this.menus;
+	}
+
+	public void setMenus(Set menus) {
+		this.menus = menus;
 	}
 
 	public Set getRolemenus() {

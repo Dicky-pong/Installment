@@ -15,7 +15,7 @@
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	<link rel="stylesheet" type="text/css" href="<c:url value='/jsps/css/order/pay.css'/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/pay.css'/>">
 	<script type="text/javascript" src="<c:url value='/jquery/jquery-1.5.1.js'/>"></script>
 
 <script type="text/javascript">
@@ -29,12 +29,11 @@ $(function() {
   
   <body>
 <div class="divContent">
-	<span class="spanPrice">支付金额：</span><span class="price_t">&yen;${order.total }</span>
-	<span class="spanOid">编号：${order.oid }</span>
+	<span class="spanPrice">支付金额：</span><span class="price_t">&yen;${order.payPrice }</span>
+	<span class="spanOid">编号：${order.orderId }</span>
 </div>
-<form action="<c:url value='/OrderServlet'/>" method="post" id="form1" target="_top">
-<input type="hidden" name="method" value="payment"/>
-<input type="hidden" name="oid" value="${order.oid }"/>
+<form action="Order_payment.do?id=${order.orderId }" method="post" id="form1" target="_top">
+
 <div class="divBank">
 	<div class="divText">选择网上银行</div>
 	<div style="margin-left: 20px;">

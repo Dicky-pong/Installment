@@ -41,6 +41,8 @@
 			<result name="regist" >/jsp/user/register.jsp</result>
 			<result name="success" >/jsp/goods/goodslist.jsp</result>
 			<result name="failed" >/jsp/index.jsp</result>
+			<result name="order" >/jsp/order/order.jsp</result>
+			<result name="pay" >/jsp/order/pay.jsp</result>
 		</action>
 		
 	</package>

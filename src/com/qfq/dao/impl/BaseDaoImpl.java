@@ -202,14 +202,24 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 		final int pStart = start;
 		final int pLimit = limit;
 		final String hql1 = hql;
+		System.out.println(hql1);
+		System.out.println(limit);
+		System.out.println(start);
+		
 		return getHibernateTemplate().executeFind(new HibernateCallback(){
 			public Object doInHibernate(Session session) throws HibernateException{
-				Query query = session.createQuery(hql1);
-				query.setMaxResults(pLimit);
-				query.setFirstResult(pStart);
-				List result = query.list();
-				if (!Hibernate.isInitialized(result))Hibernate.initialize(result);
-				return result;
+				try {
+					Query query = session.createQuery(hql1);
+					query.setMaxResults(pLimit);
+					query.setFirstResult(pStart);
+					List result = query.list();
+					if (!Hibernate.isInitialized(result))Hibernate.initialize(result);
+					return result;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return session;
 			}
 		});	
 	}

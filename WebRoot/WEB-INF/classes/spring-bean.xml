@@ -21,7 +21,7 @@
 	</bean>
 	
 	<!-- 前台订单模块 -->
-	<bean id="oderService" class="com.qfq.service.impl.OrderServiceImpl">
+	<bean id="orderService" class="com.qfq.service.impl.OrderServiceImpl">
 		<property name="baseDao" ref="baseDao"/>
 	</bean>
 	
@@ -43,7 +43,7 @@
 	
 	<!-- 前台订单模块 -->
 	<bean id="orderAction" class="com.qfq.action.OrderAction" >
-		<property name="orderService" ref="oderService"/>
+		<property name="orderService" ref="orderService"/>
 	</bean>
 	
 	<!-- 商品模块 -->

@@ -14,13 +14,16 @@ public class Goods implements java.io.Serializable {
 
 	private Integer id;
 	private Category category;
+	private String goodsId;
 	private String name;
 	private String brand;
 	private String descript;
 	private Date date;
+	private String picture;
 	private Set colors = new HashSet(0);
 	private Set monthprovides = new HashSet(0);
 	private Set goodstypes = new HashSet(0);
+	private Set installments = new HashSet(0);
 
 	// Constructors
 
@@ -29,17 +32,20 @@ public class Goods implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Goods(Category category, String name, String brand, Double price,
-			String descript, Integer colorId, Integer TId, Date date,
-			Set colors, Set monthprovides, Set goodstypes) {
+	public Goods(Category category, String goodsId, String name, String brand,
+			String descript, Date date, String picture, Set colors,
+			Set monthprovides, Set goodstypes, Set installments) {
 		this.category = category;
+		this.goodsId = goodsId;
 		this.name = name;
 		this.brand = brand;
 		this.descript = descript;
 		this.date = date;
+		this.picture = picture;
 		this.colors = colors;
 		this.monthprovides = monthprovides;
 		this.goodstypes = goodstypes;
+		this.installments = installments;
 	}
 
 	// Property accessors
@@ -58,6 +64,14 @@ public class Goods implements java.io.Serializable {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public String getGoodsId() {
+		return this.goodsId;
+	}
+
+	public void setGoodsId(String goodsId) {
+		this.goodsId = goodsId;
 	}
 
 	public String getName() {
@@ -92,6 +106,14 @@ public class Goods implements java.io.Serializable {
 		this.date = date;
 	}
 
+	public String getPicture() {
+		return this.picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
 	public Set getColors() {
 		return this.colors;
 	}
@@ -114,6 +136,14 @@ public class Goods implements java.io.Serializable {
 
 	public void setGoodstypes(Set goodstypes) {
 		this.goodstypes = goodstypes;
+	}
+
+	public Set getInstallments() {
+		return this.installments;
+	}
+
+	public void setInstallments(Set installments) {
+		this.installments = installments;
 	}
 
 }

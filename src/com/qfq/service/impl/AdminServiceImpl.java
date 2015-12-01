@@ -1,6 +1,7 @@
 package com.qfq.service.impl;
 
 import java.util.Iterator;
+
 import java.util.List;
 
 import java.util.Set;
@@ -12,7 +13,6 @@ import com.qfq.entity.AdminEntity;
 import com.qfq.po.Admin;
 import com.qfq.po.Rolemenu;
 import com.qfq.service.AdminService;
-import com.qfq.utils.Page;
 
 public class AdminServiceImpl implements AdminService{
 
@@ -46,10 +46,10 @@ public class AdminServiceImpl implements AdminService{
 		return null;
 	}
 
-	public void findPageUser(Page page) {
-		// TODO Auto-generated method stub
-		
-	}
+//	public void findPageUser(Page page) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 	public boolean saveOrUpdateUser(AdminEntity adminEntity) {
 		// TODO Auto-generated method stub
