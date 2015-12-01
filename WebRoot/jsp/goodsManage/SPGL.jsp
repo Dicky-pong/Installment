@@ -5,22 +5,36 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>商品管理</title>
-<link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+<link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/style.css" />
 <script>
 	function jump() {
 		alert("删除成功");
 		window.location.href = "SPGL.html";
 	}
+	function prePage(obj, page, type, brand, categoryId){
+		if(page == '0'){
+			alert("已经是第一页了");
+			return false;
+		}
+		obj.href = 'showAllGoods.do?currentPage='+page+'&equipType='+type+'&equipBrand='+brand+'&categoryId='+categoryId;
+	}
+	function nextPage(obj, page, max, type, brand, categoryId){
+		if(page > max){
+			alert("已经是最后一页了");
+			return false;
+		}
+		obj.href = 'showAllGoods.do?currentPage='+page+'&equipType='+type+'&equipBrand='+brand+'&categoryId='+categoryId;
+	}
 </script>
 
 </head>
 <body>
-	<script src="../../js/jquery.js"></script>
-	<script src="../../js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath }/js/jquery.js"></script>
+	<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 
 	<div id="gdou" class="inline_div">
-		<img src="../../image/qfq.png" width="300" height="80" />
+		<img src="${pageContext.request.contextPath }/image/qfq.png" width="300" height="80" />
 	</div>
 
 	<div id="" class="">
@@ -65,9 +79,7 @@
 					<th></th>
 				</tr>
 				<c:forEach var="goods" items="${requestScope.goodsList }" >
-				  
-				</c:forEach>
-				<tr>
+				  <tr>
 					<th><input type="checkbox" name="choose">
 					</th>
 					<th>${goods.goodsID }</th>
@@ -75,44 +87,40 @@
 					<th>${goods.brand }</th>
 					<th>${goods.date.year+1900}-${goods.date.month+1}-${goods.date.date}</th>
 					<th>${goods.category.category.name}/${goods.category.name }</th>
-					<th><a href="detail.html">详情</a>
+					<th><a href="showGoods.do?goodsId=${goods.id }">详情</a>
 					</th>
 				</tr>
+				</c:forEach>
 				
 			</table>
 			<center>
 				<nav>
 				<ul class="pagination">
-					<li><a href="#">&laquo;</a>
+					<li><a href="#" onclick="prePage(this, ${page.currentPage-1},'${requestScope.goods.name }','${requestScope.goods.brand }','${requestScope.categoryId }')">&laquo;</a>
 					</li>
-					<li><a href="#">1</a>
-					</li>
-					<li><a href="#">2</a>
-					</li>
-					<li><a href="#">3</a>
-					</li>
-					<li><a href="#">4</a>
-					</li>
-					<li><a href="#">5</a>
-					</li>
-					<li><a href="#">&raquo;</a>
+					<c:forEach begin="1" end="${requestScope.page.totalPage}" var="str" step="1">
+						<li>
+						<a href="showAllGoods.do?currentPage=${requestScope.str }&equipType=${requestScope.equipType }&equipBrand=${requestScope.equipBrand }">${str }</a>
+						</li>
+					</c:forEach>
+					<li><a href="#" onclick="nextPage(this, ${page.currentPage+1}, ${page.totalPage },'${requestScope.goods.name }','${requestScope.goods.brand }','${requestScope.categoryId }')">&raquo;</a>
 					</li>
 				</ul>
 				</nav>
 			</center>
 			<div id="" class="">
 				<div class="operationbutton">
-					<a href="goods-add.html"><img src="../../image/add.png">添加</a>
+					<a href="toCreateGoods.do"><img src="${pageContext.request.contextPath }/images/add.png">添加</a>
 				</div>
 				<div class="operationbutton">
 					<a href="SPGL.html" onclick="jump()"><img
-						src="../../image/delect.png">删除</a>
+						src="${pageContext.request.contextPath }/images/delect.png">删除</a>
 				</div>
 				<div class="operationbutton">
-					<a href="goods-update.html"><img src="../../image/update.png">更新</a>
+					<a href="goods-update.html"><img src="${pageContext.request.contextPath }/images/update.png">更新</a>
 				</div>
 				<div class="operationbutton">
-					<a href="goods-query.html"><img src="../../image/query.png">查询</a>
+					<a href="goods-query.html"><img src="${pageContext.request.contextPath }/images/query.png">查询</a>
 				</div>
 
 			</div>
