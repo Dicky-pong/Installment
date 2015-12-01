@@ -11,8 +11,17 @@ public class Goodstype implements java.io.Serializable {
 	private Integer id;
 	private Goods goods;
 	private String typename;
+	private Double price;
 
 	// Constructors
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 
 	/** default constructor */
 	public Goodstype() {

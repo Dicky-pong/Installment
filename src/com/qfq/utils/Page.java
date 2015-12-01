@@ -1,58 +1,84 @@
 package com.qfq.utils;
 
-import java.util.List;
-
-@SuppressWarnings("unchecked")
 public class Page {
-	/** 总记录数 */
-	private int total;
-	/** 分页结果 */
-	private List root;
-	/** 开始页码 */
-	private int start;
-	/** 每页多少 */
-	private int limit;
-	/** 查询条件 */
-	private String wheres;
-
-	public int getTotal() {
-		return total;
+	private int everyPage;
+	private int totalCount;
+	private int totalPage;
+	private int currentPage;
+	private int beginIndex;
+	private boolean hasPrePage;
+	private boolean hasNextPage;
+	private int startPage;
+	private int endPage;
+	public Page(int everyPage, int totalCount, int totalPage, int currentPage,
+			int beginIndex, boolean hasPrePage, boolean hasNextPage ,int startPage , int endPage) {
+		this.everyPage = everyPage;
+		this.totalCount = totalCount;
+		this.totalPage = totalPage;
+		this.currentPage = currentPage;
+		this.beginIndex = beginIndex;
+		this.hasPrePage = hasPrePage;
+		this.hasNextPage = hasNextPage;
+		this.startPage = startPage;
+		this.endPage = endPage;
+		
 	}
-
-	public void setTotal(int total) {
-		this.total = total;
+	public Page(){}
+	public int getEveryPage() {
+		return everyPage;
 	}
-
-	public List getRoot() {
-		return root;
+	public void setEveryPage(int everyPage) {
+		this.everyPage = everyPage;
 	}
-
-	public void setRoot(List root) {
-		this.root = root;
+	public int getTotalCount() {
+		return totalCount;
 	}
-
-	public int getStart() {
-		return start;
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
 	}
-
-	public void setStart(int start) {
-		this.start = start;
+	public int getTotalPage() {
+		return totalPage;
 	}
-
-	public int getLimit() {
-		return limit;
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
 	}
-
-	public void setLimit(int limit) {
-		this.limit = limit;
+	public int getCurrentPage() {
+		return currentPage;
 	}
-
-	public String getWheres() {
-		return wheres;
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
 	}
-
-	public void setWheres(String wheres) {
-		this.wheres = wheres;
+	public int getBeginIndex() {
+		return beginIndex;
 	}
+	public void setBeginIndex(int beginIndex) {
+		this.beginIndex = beginIndex;
+	}
+	public boolean isHasPrePage() {
+		return hasPrePage;
+	}
+	public void setHasPrePage(boolean hasPrePage) {
+		this.hasPrePage = hasPrePage;
+	}
+	public boolean isHasNextPage() {
+		return hasNextPage;
+	}
+	public void setHasNextPage(boolean hasNextPage) {
+		this.hasNextPage = hasNextPage;
+	}
+	public int getStartPage() {
+		return startPage;
+	}
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
+	}
+	public int getEndPage() {
+		return endPage;
+	}
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
+	
+
 
 }

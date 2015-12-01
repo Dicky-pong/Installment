@@ -1,15 +1,21 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>添加商品</title>
-  <link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
-  <link rel="stylesheet" type="text/css" href="../../css/style.css" />
-  <script src="../../js/jquery.js"></script>
-  <script src="../../js/bootstrap.min.js"></script>
+  <title>更新商品</title>
+  <link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/style.css" />
+  <script src="${pageContext.request.contextPath }/js/jquery.js"></script>
+  <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
   <script>
 function jump(){
- alert("添加成功");
+ alert("更新成功");
  window.location.href="SPGL.html";
 }
 </script>
@@ -17,7 +23,7 @@ function jump(){
 <body>
 
   <div id="gdou" class="inline_div" >
-    <img src="../../image/qfq.png"width="300" height="80" />
+    <img src="${pageContext.request.contextPath }/images/qfq.png"width="300" height="80" />
   </div>
 
   <div id="" class="">
@@ -56,13 +62,13 @@ function jump(){
         <li>
           <a href="SPGL.html">商品管理</a>
         </li>
-        <li class="active">添加商品</li>
+        <li class="active">更新商品</li>
       </ol>
       <center>
         <div id="" class="registration-form">
           <h3> <b>商品信息登记表</b>
           </h3>
-                  <form id="message">
+          <form id="message">
             <table>
               <tr>
                 <td>商品ID</td>
@@ -71,11 +77,11 @@ function jump(){
                 </td>
                 <td>商品名称</td>
                 <td>
-                  <input type="text" name="goodsName" value="苹果6S"/>
+                  <input type="text" name="goodsName" value=""/>
                 </td>
                 <td>品牌名称</td>
                 <td>
-                  <input type="text" name="brand" value="苹果"/>
+                  <input type="text" name="brand" value=""/>
                 </td>
                 <td>上市时间</td>
                 <td>
@@ -132,7 +138,7 @@ function jump(){
                   <input type="text" name="price" value=""/>
                 </td>
                 <td>
-                  <img src="../../image/add2.png" alt="" id='add'/>
+                  <img src="${pageContext.request.contextPath }/images/add2.png" alt="" id='add'/>
                 </td>
 
               </tr>
@@ -181,5 +187,5 @@ function jump(){
   </div>
 
 </body>
-  <script src="../../js/detail.js"></script>
+  <script src="${pageContext.request.contextPath }/js/goods-add.js"></script>
 </html>

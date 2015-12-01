@@ -10,9 +10,12 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="category" class="com.qfq.po.Category" fetch="select">
+        <many-to-one name="category" class="com.qfq.po.Category" fetch="select" lazy="false">
             <column name="c_id" />
         </many-to-one>
+        <property name="goodsID" type="java.lang.String">
+            <column name="goodsID" length="10" />
+        </property>
         <property name="name" type="java.lang.String">
             <column name="name" length="30" />
         </property>
@@ -23,7 +26,9 @@
         <property name="descript" type="java.lang.String">
             <column name="descript" />
         </property>
-        
+        <property name="picture" type="java.lang.String">
+            <column name="picture" />
+        </property>
         <property name="date" type="java.util.Date">
             <column name="date" length="10" />
         </property>

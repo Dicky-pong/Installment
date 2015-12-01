@@ -1,0 +1,46 @@
+@charset "utf-8";
+/* CSS Document */
+.inline_div{display:inline;}
+.inline_div2{display:inline;margin:80px}
+.inline_div2 select{width:150px; height:30px;}
+.table{width:1100px;}
+.table1{width:400px;}
+.table1 tr th{width:200px;}
+#navigation{position:absolute;width:202px;}
+#main{position:absolute;left:200px;top:80px;border:3px solid #428BCA;width:1130px; height:510px;}
+#yw{position:absolute;top:590px;width:1330px;color:#428BCA}
+.page{border:3px solid #428BCA}
+.page1{border:3px solid #428BCA; width:1200px;}
+.operationbutton{display:inline;margin:70px}
+.registration-form{border:1px  width:600px;height:430px;overflow:auto;}
+.registration-form form input{margin:15px}
+.registration-form form button{margin:20px}
+.query-form{border:1px solid #428BCA;width:600px;height:430px;}
+.query-form form select{margin:20px}
+.query-form form input{margin:20px}
+.query-form form button{margin:20px}
+.adregistration-form{width:600px;height:430px; }
+.adregistration-form form input{margin:5px}
+.adregistration-form form select{margin:5px}
+.adregistration-form form button{margin:10px}
+#lander{float:right;display:inline;font-size:4px;}
+.qc{position:absolute;top:150px;left:800px;font-size:22px;}
+.cd{position:absolute;top:250px;left:700px;font-size:22px}
+.ss{position:absolute;top:350px;left:600px;font-size:22px}
+.xs{position:absolute;top:450px;left:500px;font-size:22px}
+.clear{clear:both;}
+.row{margin:40px}
+.row1{margin:20px}
+.row input{width:200px}
+.button button{margin:20px}
+.information{width:800px;}
+.loginwindow {
+	position:absolute;
+	left:800px;
+	top:150px;
+	width:350px;
+	height:250px;
+	z-index:1;
+
+}
+

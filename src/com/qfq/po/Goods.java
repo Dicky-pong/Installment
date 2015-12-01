@@ -13,11 +13,14 @@ public class Goods implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
+	private String goodsID;
 	private Category category;
 	private String name;
 	private String brand;
 	private String descript;
 	private Date date;
+	private String picture;
+
 	private Set colors = new HashSet(0);
 	private Set monthprovides = new HashSet(0);
 	private Set goodstypes = new HashSet(0);
@@ -43,6 +46,22 @@ public class Goods implements java.io.Serializable {
 	}
 
 	// Property accessors
+
+	
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+	public String getGoodsID() {
+		return goodsID;
+	}
+
+	public void setGoodsID(String goodsID) {
+		this.goodsID = goodsID;
+	}
 
 	public Integer getId() {
 		return this.id;

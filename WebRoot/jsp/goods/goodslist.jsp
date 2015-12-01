@@ -1,6 +1,5 @@
 ﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="s" uri="/struts-tags"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -266,7 +265,7 @@
 					<ul>
 						<c:forEach var="goods" items="${requestScope.goodsList }">
 							<li>
-								<div class="good_img"><img src="${pageContext.request.contextPath }/img/Q5423EFZ41_CGR0_N01.JPG" alt=""></div>
+								<div class="good_img"><img src="${pageContext.request.contextPath }${goods.picture}" alt=""></div>
 								<a href="" class="name">${goods.name }</a>
 								<%-- 有一个mothprovide是空的就报异常 --%>
 								<c:if test="${goods.monthprovides.iterator().hasNext()}" >

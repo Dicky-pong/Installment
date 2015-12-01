@@ -20,6 +20,11 @@
 		<property name="baseDao" ref="baseDao"/>
 	</bean>
 	
+	<!-- 商品管理模块 -->
+	<bean id="goodsManageService" class="com.qfq.service.impl.GoodsManageServiceImpl">
+		<property name="baseDao" ref="baseDao"/>
+	</bean>
+	
 	<!--==========================================  action  ==========================================-->
 	<!-- 用户管理 -->
 	<bean id="userAction" class="com.qfq.action.UserInfoAction" >
@@ -29,5 +34,10 @@
 	<!-- 商品模块 -->
 	<bean id="goodsAction" class="com.qfq.action.GoodsAction" >
 		<property name="goodsService" ref="goodsService"/>
+	</bean>
+	
+	<!-- 商品管理模块 -->
+	<bean id="goodsManageAction" class="com.qfq.action.GoodsManageAction">
+		<property name="goodsManageService" ref="goodsManageService"/>
 	</bean>
 </beans>
