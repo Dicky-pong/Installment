@@ -15,6 +15,16 @@
 		<property name="baseDao" ref="baseDao"/>
 	</bean>
 	
+	<!-- 管理员模块 -->
+	<bean id="adminService" class="com.qfq.service.impl.AdminServiceImpl">
+		<property name="baseDao" ref="baseDao"/>
+	</bean>
+	
+	<!-- 前台订单模块 -->
+	<bean id="orderService" class="com.qfq.service.impl.OrderServiceImpl">
+		<property name="baseDao" ref="baseDao"/>
+	</bean>
+	
 	<!-- 商品模块 -->
 	<bean id="goodsService" class="com.qfq.service.impl.GoodsServiceImpl">
 		<property name="baseDao" ref="baseDao"/>
@@ -24,6 +34,16 @@
 	<!-- 用户管理 -->
 	<bean id="userAction" class="com.qfq.action.UserInfoAction" >
 		<property name="userInfoService" ref="userInfoService"/>
+	</bean>
+	
+	<!-- 管理员模块 -->
+	<bean id="adminAction" class="com.qfq.action.AdminAction" >
+		<property name="adminService" ref="adminService"/>
+	</bean>
+	
+	<!-- 前台订单模块 -->
+	<bean id="orderAction" class="com.qfq.action.OrderAction" >
+		<property name="orderService" ref="orderService"/>
 	</bean>
 	
 	<!-- 商品模块 -->

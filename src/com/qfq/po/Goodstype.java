@@ -15,22 +15,15 @@ public class Goodstype implements java.io.Serializable {
 
 	// Constructors
 
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-
 	/** default constructor */
 	public Goodstype() {
 	}
 
 	/** full constructor */
-	public Goodstype(Goods goods, String typename) {
+	public Goodstype(Goods goods, String typename, Double price) {
 		this.goods = goods;
 		this.typename = typename;
+		this.price = price;
 	}
 
 	// Property accessors
@@ -57,6 +50,14 @@ public class Goodstype implements java.io.Serializable {
 
 	public void setTypename(String typename) {
 		this.typename = typename;
+	}
+
+	public Double getPrice() {
+		return this.price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
 }

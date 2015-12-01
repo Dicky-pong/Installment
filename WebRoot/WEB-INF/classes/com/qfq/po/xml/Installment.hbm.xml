@@ -10,17 +10,41 @@
             <column name="id" />
             <generator class="native" />
         </id>
+        <many-to-one name="goods" class="com.qfq.po.Goods" fetch="select">
+            <column name="g_id" />
+        </many-to-one>
         <many-to-one name="userinfo" class="com.qfq.po.Userinfo" fetch="select">
             <column name="u_id" />
         </many-to-one>
-        <many-to-one name="monthprovide" class="com.qfq.po.Monthprovide" fetch="select">
-            <column name="m_id" />
+        <many-to-one name="color" class="com.qfq.po.Color" fetch="select">
+            <column name="color_id" />
         </many-to-one>
+        <property name="orderId" type="java.lang.String">
+            <column name="orderID" length="10" />
+        </property>
+        <property name="payMonth" type="java.lang.Integer">
+            <column name="payMonth" />
+        </property>
         <property name="paidMonth" type="java.lang.Integer">
             <column name="paidMonth" />
         </property>
-        <property name="unpaidPrice" type="java.lang.Double">
-            <column name="unpaidPrice" precision="22" scale="0" />
+        <property name="payPrice" type="java.lang.Double">
+            <column name="payPrice" precision="22" scale="0" />
+        </property>
+        <property name="goodsType" type="java.lang.String">
+            <column name="goodsType" length="50" />
+        </property>
+        <property name="date" type="java.lang.String">
+            <column name="date" length="19" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="address" length="11" />
+        </property>
+        <property name="tel" type="java.lang.Integer">
+            <column name="tel" />
         </property>
     </class>
 </hibernate-mapping>

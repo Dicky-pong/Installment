@@ -9,7 +9,6 @@
 	<title>农资联盟杯</title>
 
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/index.css">
-
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/reset.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/goodslist.css">
 	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -26,7 +25,7 @@
 		<nav class="top_nav">
 			<ul class="tn_left">
 				<li>快捷导航1</li><!--
-			 --><li>快捷导航2</li><!--
+			 --><li><a href="http://localhost/Installment/Order_myOrder.do">我的订单</a></li><!--
 			 --><li>快捷导航3</li>
 			</ul>
 		</nav>

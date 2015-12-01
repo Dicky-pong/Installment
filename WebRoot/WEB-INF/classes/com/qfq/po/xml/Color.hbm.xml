@@ -19,5 +19,11 @@
         <property name="picture" type="java.lang.String">
             <column name="picture" length="50" />
         </property>
+        <set name="installments" inverse="true">
+            <key>
+                <column name="color_id" />
+            </key>
+            <one-to-many class="com.qfq.po.Installment" />
+        </set>
     </class>
 </hibernate-mapping>

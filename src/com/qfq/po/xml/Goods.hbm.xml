@@ -13,37 +13,47 @@
         <many-to-one name="category" class="com.qfq.po.Category" fetch="select">
             <column name="c_id" />
         </many-to-one>
+        <property name="goodsId" type="java.lang.String">
+            <column name="goodsID" length="10" />
+        </property>
         <property name="name" type="java.lang.String">
             <column name="name" length="30" />
         </property>
         <property name="brand" type="java.lang.String">
             <column name="brand" length="30" />
         </property>
-        
         <property name="descript" type="java.lang.String">
             <column name="descript" />
         </property>
-        
         <property name="date" type="java.util.Date">
             <column name="date" length="10" />
         </property>
-        <set name="colors" inverse="true" lazy="false">
+        <property name="picture" type="java.lang.String">
+            <column name="picture" length="50" />
+        </property>
+        <set name="colors" inverse="true">
             <key>
                 <column name="g_id" />
             </key>
             <one-to-many class="com.qfq.po.Color" />
         </set>
-        <set name="monthprovides" inverse="true" lazy="false">
+        <set name="monthprovides" inverse="true">
             <key>
                 <column name="g_id" />
             </key>
             <one-to-many class="com.qfq.po.Monthprovide" />
         </set>
-        <set name="goodstypes" inverse="true" lazy="false">
+        <set name="goodstypes" inverse="true">
             <key>
                 <column name="g_id" />
             </key>
             <one-to-many class="com.qfq.po.Goodstype" />
+        </set>
+        <set name="installments" inverse="true">
+            <key>
+                <column name="g_id" />
+            </key>
+            <one-to-many class="com.qfq.po.Installment" />
         </set>
     </class>
 </hibernate-mapping>

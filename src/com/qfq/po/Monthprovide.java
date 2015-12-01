@@ -1,8 +1,5 @@
 package com.qfq.po;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Monthprovide entity. @author MyEclipse Persistence Tools
  */
@@ -15,7 +12,6 @@ public class Monthprovide implements java.io.Serializable {
 	private Goods goods;
 	private Integer months;
 	private Double unitPrice;
-	private Set installments = new HashSet(0);
 
 	// Constructors
 
@@ -24,12 +20,10 @@ public class Monthprovide implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Monthprovide(Goods goods, Integer months, Double unitPrice,
-			Set installments) {
+	public Monthprovide(Goods goods, Integer months, Double unitPrice) {
 		this.goods = goods;
 		this.months = months;
 		this.unitPrice = unitPrice;
-		this.installments = installments;
 	}
 
 	// Property accessors
@@ -64,14 +58,6 @@ public class Monthprovide implements java.io.Serializable {
 
 	public void setUnitPrice(Double unitPrice) {
 		this.unitPrice = unitPrice;
-	}
-
-	public Set getInstallments() {
-		return this.installments;
-	}
-
-	public void setInstallments(Set installments) {
-		this.installments = installments;
 	}
 
 }

@@ -6,8 +6,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>趣分期</title>
-	<link rel="stylesheet" href="css/index.css">
-	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/index.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/reset.css">
 	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script>
 		(function(){
@@ -273,7 +273,7 @@
 							<p id="loginnameerror" class="errorClass">${error.loginname }</p>
 						</div>
 						<div class="formInput">
-							<label for="password">密码:</label><input id="password" name="userInfoEntity.password" type="text" placeholder="请输入密码" value="${form.password }"required/>
+							<label for="password">密码:</label><input id="password" name="userInfoEntity.password" type="password" placeholder="请输入密码" value="${form.password }"required/>
 							<p id="passworderror" class="errorClass">${error.loginpass}</p>
 						</div>
 						<div class="formInput">
