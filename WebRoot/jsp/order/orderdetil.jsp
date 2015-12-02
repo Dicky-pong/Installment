@@ -1,14 +1,16 @@
 ﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>农资联盟杯</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/index.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/reset.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/personCenter.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/personCenter.css">
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>
         (function(){
@@ -25,6 +27,14 @@
         .container {
             width:960px;
             margin: 0 auto;
+        }
+
+        .container::after{
+            content: ' ';
+            display: block;
+            clear: both;
+            height: 0px;
+            width: 0px;
         }
         
         .personinfotable {
@@ -72,192 +82,176 @@
 <section class="main">
 
     <section class="container">
-        <div class="mod-main mod-comm lefta-box" id="order02">
-            <div class="mt">
-                <ul class="extra-l">
-                    <li class="fore1"><a href="<c:url value='/Order_myOrder.do?status=-1'/>" class="txt curr">全部订单</a></li>
-                    <li><a href="<c:url value='/Order_myOrder.do?status=1'/>" clstag="click|keycount|orderinfo|waitPay" class="txt">待付款</a></li>
-                    <li><a href="<c:url value='/Order_myOrder.do?status=3'/>" id="ordertoReceive" clstag="click|keycount|orderinfo|waitReceive" class="txt">待收货</a></li>
-                </ul>
-                <div class="extra-r">
-                    <div class="search">
-                        <input id="ip_keyword" type="text" class="itxt" value="商品名称/商品编号/订单号" style="color: rgb(204, 204, 204);">
-                        <a href="javascript:;" class="search-btn" clstag="click|keycount|orderinfo|search">搜索<b></b></a>
-                        <a href="#none" clstag="click|keycount|orderlist|gaoji" class="default-btn high-search">高级<b></b></a>
-                    </div>
+        <div id="main">
+            <div class="mod-main mod-comm">
+                <div class="mt">
+                <h3>
+				</h3>
+                </div>
+                <div class="mc">
+                    <table class="tb-void tb-none">
+                        <colgroup>
+                            <col width="100">
+                            <col width="320">
+                            <col width="90">
+                            <col width="90">
+                            <col width="90">
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>商品编号</th>
+                            <th>商品名称</th>
+                            <th>分期详情</th>
+                            <th>赠送积分</th>
+                            <th>商品数量</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>${order.goods.goodsId }</td>
+                            <td class="align_Left"><a href="http://item.jd.com/982045.html" target="_blank">${order.goods.name }</a></td>
+                            <td><strong class="ftx-01">¥${order.payPrice }X${order.payPrice/order.payMonth}</strong></td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td class="incart">
+                            <c:if test="${order.status eq 1 and btn eq 'pay'}">
+	<a href="Order_paymentPre.do?id=${order.orderId }" class="btn-5" >立即付款</a>
+</c:if>
+<c:if test="${order.status eq 1 and btn eq 'cancel'}">
+    <a href="Order_cancel.do?id=${order.orderId }" class="btn-5">取消订单</a><br/>
+</c:if>
+<c:if test="${order.status eq 3 and btn eq 'confirm'}">
+	<a href="Order_confirm.do?id=${order.orderId }" class="btn-5">确认收货</a><br/>	
+</c:if>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="mod-main mod-comm">
+                <div class="mt">
+                    <h3>订单信息</h3>
+                </div>
+                <div class="mc">
+                    <table class="tb-void tb-left">
+                        <colgroup>
+                            <col width="110px">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <td>订单编号</td>
+                            <td>${order.orderId }</td>
+                        </tr>
+                        <tr>
+                            <td>支付方式</td>
+                            <td>在线支付</td>
+                        </tr>
+                        <tr>
+                            <td>配送方式</td>
+                            <td>普通快递</td>
+                        </tr>
+                        <tr>
+                            <td>下单时间</td>
+                            <td>${order.date }
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <div class="mc">
-
-
-
-                <table class="td-void order-tb">
-                    <colgroup>
-                        <col class="number-col">
-                        <col class="consignee-col">
-                        <col class="amount-col">
-                        <col class="status-col">
-                        <col class="operate-col">
-                    </colgroup>
-                    <thead>
-                    <tr>
-                        <th>
-
-                            <div class="order-detail-txt ac">订单详情</div>
-                        </th>
-                        <th>收货人</th>
-                        <th>总计</th>
-                        <th>
-                            <div class="deal-state-cont" id="orderState">
-                                <div class="state-txt">全部状态<b></b><span class="blank"></span></div>
-                                <div class="state-list">
-                                    <ul>
-                                        <li value="4096">
-                                            <a href="#none" clstag="click|keycount|orderlist|quanbuzhuangtai" class="curr"><b></b>全部状态</a>
-                                        </li>
-                                        <li value="1">
-                                            <a href="#none" clstag="click|keycount|orderlist|dengdaifukuan"><b></b>等待付款</a>
-                                        </li>
-                                        <li value="128" clstag="click|keycount|orderlist|dengdaishouhuo">
-                                            <a href="#none"><b></b>等待收货</a>
-                                        </li>
-                                        <li value="1024">
-                                            <a href="#none" clstag="click|keycount|orderlist|yiwancheng"><b></b>已完成</a>
-                                        </li>
-                                        <li value="-1">
-                                            <a href="#none" clstag="click|keycount|orderlist|yiquxiao"><b></b>已取消</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </th>
-                        <th>操作</th>
-                    </tr>
-
-                    </thead>
-                    <c:forEach items="${pb.beanList}" var="order">
-                    <tbody id="tb-7768683403">
-                    <tr class="sep-row"><td colspan="5"></td></tr>
-
-                    <tr class="tr-th">
-                        <td colspan="5">
-                            <span class="gap"></span>
-                            <span class="dealtime" title="2014-12-22 23:57:07">${order.date}</span>
-                            <input type="hidden" id="datasubmit-7768683403" value="${order.date}">
-
-                <span class="number">订单号：<a name="orderIdLinks" id="idUrl7768683403" target="_blank" href="Order_load.do?id=${order.id }" clstag="click|keycount|orderinfo|order_num">${order.orderId }</a>
-
-
-
-                </span>
-
-                            <div class="tr-operate">
-                                            <span class="order-shop">
-                            <a href="#"  class="shop-txt venderName52150" clstag="click|keycount|orderlist|52150">趣分期旗舰店</a>
-                            <a class="btn-im venderChat52150" href="#"  title="联系卖家" clstag="click|keycount|orderinfo|chatim"></a>
-                        </span>
-
-                        <span class="tel">
-                            <i class="tel-icon venderTel52150"></i>400-610-1360
-                        </span>
-
-
-                                <a href="#none" clstag="click|keycount|orderlist|dingdanshanchu" class="order-del" _orderid="7768683403" _passkey="672F5AE5CF8E6F91341C6EE47358A872" title="删除" style="display: none;"></a>
-
-                            </div>
-                        </td>
-                    </tr>
-
-
-
-
-
-                    <tr class="tr-bd" id="track7768683403" oty="22,1,70">
-                        <td>
-                            <div class="goods-item p-1180323838">
-                                <div class="p-img">
-                                <!-- 这里填对应的商品详情 -->
-                                    <a href="#" clstag="click|keycount|orderinfo|order_product" target="_blank">
-                                        <img class="" src="<c:url value='/${order.goods.picture }'/>"  data-lazy-img="done" width="60" height="60"/>
-
-                                    </a>
-                                </div>
-                               
-                                <div class="p-msg">
-                                 <!-- 这里填对应的商品详情 -->
-                                    <div class="p-name"><a href="#" class="a-link" clstag="click|keycount|orderinfo|order_product" target="_blank" >${order.goods.name }</a></div>
-                                    
-                                    <div class="p-extra">
-                                        <ul class="o-info">
-                                            <li><span class="o-match J-o-match" data-sku="1180323838"><i></i><em>${order.color.colorname}</em></span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="goods-number">
-                                x1
-                            </div>
-
-                        </td>
-
-                        <td rowspan="1">
-                            <div class="consignee tooltip">
-                                <span class="txt">${order.userinfo.username }</span><b></b>
-                            </div>
-                        </td>
-                        <td rowspan="1">
-                            <div class="amount">
-                                <strong>¥${order.payPrice }</strong> <br>
-                                <span class="ftx-13">在线支付</span><br>
-                            </div>
-                        </td>
-                        <td rowspan="1">
-                            <div class="status">
-                    <span class="order-status ftx-03">
-
-            
-
-                    </span>
-
-                                <a href="Order_load.do?id=${order.orderId }" target="_blank">订单详情</a>
-                            </div>
-                        </td>
-                        <td rowspan="1" id="operate7768683403">
-                            <div class="operate">
-                                <div id="pay-button-7768683403" _baina="0"></div>
-		<c:if test="${order.status eq 1}">
-				 <a href="Order_paymentPre.do?&id=${order.orderId }&btn=pay" class="btn-again" target="_blank" clstag="click|keycount|orderlist|buy"><b></b>立即支付</a><br>
-				 <a href="Order_load.do?id=${order.orderId }&btn=cancel" class="btn-again" target="_blank" clstag="click|keycount|orderlist|buy"><b></b>取消订单</a><br>				
-		</c:if>
-		<c:if test="${order.status eq 2}">
-				 <span class="span-style"style="color: red;" >	
-				 等待发货	
-				 </span>		
-		</c:if>
-		<c:if test="${order.status eq 3}">
-				 <a href="Order_load.do?id=${order.orderId }&btn=confirm" class="btn-again" target="_blank" clstag="click|keycount|orderlist|buy"><b></b>确认收货</a><br>
-		</c:if>
-		<c:if test="${order.status eq 4}">
-				 <span class="span-style"style="color: red;" >	
-				 交易成功	
-				 </span>		
-		</c:if>
-		<c:if test="${order.status eq 5}">
-				 <span class="span-style"style="color: red;" >	
-				 已取消	
-				 </span>		
-		</c:if>
-			</td>
-		</tr>
-                            </div>
-                        </td>
-                    </tr>
-				</tbody>
-                    </c:forEach>
-               </table>
+            <div class="mod-main mod-comm">
+                <div class="mt">
+                    <h3>收货人信息</h3>
+                </div>
+                <div class="mc">
+                    <table class="tb-void tb-left">
+                        <colgroup>
+                            <col width="110px">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <td>收货人姓名</td>
+                            <td>${order.receiver }</td>
+                        </tr>
+                        <tr>
+                            <td>地址</td>
+                            <td>${order.address }</td>
+                        </tr>
+                        <tr>
+                            <td>联系方式</td>
+                            <td> 手机号码：${order.tel }</td>
+                        </tr>
+                        <tr>
+                            <td>电子邮件</td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <%@include file="/jsp/pager/pager.jsp" %>
+
+            <div class="mod-main mod-comm">
+                <div class="mt">
+                    <h3>发票信息</h3>
+                </div>
+                <div class="mc">
+                    <table class="tb-void tb-left">
+                        <colgroup>
+                            <col width="110px">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <td>发票类型</td>
+                            <td>普通发票</td>
+                        </tr>
+                        <tr>
+                            <td>发票抬头</td>
+                            <td>个人</td>
+                        </tr>
+                        <tr>
+                            <td>发票内容</td>
+                            <td>明细</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="mod-main mod-comm">
+                <div class="mt">
+                    <h3>订单备注</h3>
+                </div>
+                <div class="mc">
+                    无
+                </div>
+            </div>
+
+            <div class="mod-main mod-comm">
+                <div class="mt">
+                    <h3>结算信息</h3>
+                </div>
+                <div class="mc">
+                    <table class="tb-void tb-left">
+                        <colgroup>
+                            <col width="110px">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <td>商品金额</td>
+                            <td>订单总金额：<strong class="ftx-01">${order.payPrice }</strong>元</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <span class="clr"></span>
         </div>
 
 

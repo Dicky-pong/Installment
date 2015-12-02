@@ -21,7 +21,7 @@
   
 <body>
 	<div class="divOrder">
-		<span>订单号：${order.oid }
+		<span>订单号：${order.orderId }
 
 	<c:choose>
 		<c:when test="${order.status eq 1}">(等待付款)</c:when>
@@ -31,13 +31,17 @@
 		<c:when test="${order.status eq 5}">(已取消)</c:when>
 		
 	</c:choose>
-		　　　下单时间：${order.ordertime }</span>
+		　　　下单时间：${order.date }</span>
 	</div>
 	<div class="divContent">
 		<div class="div2">
 			<dl>
-				<dt>收货人信息</dt>
+				<dt>收货人地址</dt>
 				<dd>${order.address }</dd>
+				<dt>联系人</dt>
+				<dd>${order.receiver }</dd>
+				<dt>联系电话电话</dt>
+				<dd>${order.tel }</dd>
 			</dl>
 		</div>
 		<div class="div2">
@@ -47,45 +51,43 @@
 					<table cellpadding="0" cellspacing="0">
 						<tr>
 							<th class="tt">商品名称</th>
-							<th class="tt" align="left">单价</th>
-							<th class="tt" align="left">数量</th>
-							<th class="tt" align="left">小计</th>
+							<th class="tt" align="left">月供</th>
+							<th class="tt" align="left">分期</th>
+							<th class="tt" align="left">总价</th>
 						</tr>
 
-		<c:forEach items="${order.orderItemList}" var="orderItem">
 						<tr style="padding-top: 20px; padding-bottom: 20px;">
 							<td class="td" width="400px">
 								<div class="bookname">
-								  <img align="middle" width="70" src="<c:url value='/${orderItem.book.image_b }'/>"/>
-								  <a href="<c:url value='/BookServlet?method=load&bid=${orderItem.book.bid }'/>">${orderItem.book.bname }</a>
+								  <img align="middle" width="70" src="<c:url value='${order.goods.picture }'/>"/>
+								  <a href="<c:url value='/BookServlet?method=load&bid=${order.goods.goodsId }'/>">${order.goods.name }</a>
 								</div>
 							</td>
 							<td class="td" >
-								<span>&yen;${orderItem.book.currPrice }</span>
+								<span>&yen;${order.payPrice }</span>
 							</td>
 							<td class="td">
-								<span>${orderItem.quantity }</span>
+								<span>&yen;${order.payPrice/order.payMonth}</span>
 							</td>
 							<td class="td">
-								<span>&yen;${orderItem.subtotal }</span>
+								<span>&yen;${order.payPrice}</span>
 							</td>			
 						</tr>
-			</c:forEach>
 					</table>
 				</dd>
 			</dl>
 		</div>
 		<div style="margin: 10px 10px 10px 550px;">
 			<span style="font-weight: 900; font-size: 15px;">合计金额：</span>
-			<span class="price_t">&yen;${order.total }</span><br/>
+			<span class="price_t">&yen;${order.payPrice }</span><br/>
 <c:if test="${order.status eq 1}">
-	<a href="<c:url value='/OrderServlet?method=paymentPre&oid=${order.oid }'/>" class="pay"></a><br/>
+	<a href="<c:url value='/OrderServlet?method=paymentPre&oid='/>" class="pay"></a><br/>
 </c:if>
 <c:if test="${order.status eq 1 and btn eq 'cancel'}">
-    <a id="cancel" href="<c:url value='/OrderServlet?method=cancel&oid=${order.oid}'/>">取消订单</a><br/>
+    <a id="cancel" href="<c:url value='/OrderServlet?method=cancel&oid='/>">取消订单</a><br/>
 </c:if>
 <c:if test="${order.status eq 3 and btn eq 'confirm'}">
-	<a id="confirm" href="<c:url value='/OrderServlet?method=confirm&oid=${order.oid}'/>">确认收货</a><br/>	
+	<a id="confirm" href="<c:url value='/OrderServlet?method=confirm&oid='/>">确认收货</a><br/>	
 </c:if>
 		</div>
 	</div>

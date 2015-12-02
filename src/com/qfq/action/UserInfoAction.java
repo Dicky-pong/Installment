@@ -121,8 +121,8 @@ public class UserInfoAction extends BaseAction{
 		 * 4. 保存成功信息，转发到msg.jsp显示！
 		 */
 		this.getRequest().setAttribute("code", "success");
-		this.getRequest().setAttribute("msg", "注册功能，请马上到邮箱激活！");
-		return "success";
+		this.getRequest().setAttribute("msg", "注册成功，请马上到邮箱激活！");
+		return "msg";
 	}
 	
 	/**
