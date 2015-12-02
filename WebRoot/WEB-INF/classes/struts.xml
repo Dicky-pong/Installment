@@ -42,7 +42,9 @@
 			<result name="success" >/jsp/goods/goodslist.jsp</result>
 			<result name="failed" >/jsp/index.jsp</result>
 			<result name="order" >/jsp/order/order.jsp</result>
+			<result name="detil" >/jsp/order/orderdetil.jsp</result>
 			<result name="pay" >/jsp/order/pay.jsp</result>
+			<result name="msg" >/jsp/msg.jsp</result>
 		</action>
 		
 	</package>
