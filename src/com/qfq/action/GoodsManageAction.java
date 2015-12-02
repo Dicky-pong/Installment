@@ -10,6 +10,7 @@ import net.sf.json.JSONObject;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletResponseAware;
+import org.springframework.context.annotation.Scope;
 
 import com.opensymphony.xwork2.ModelDriven;
 import com.qfq.entity.CategoryEntity;
@@ -20,7 +21,7 @@ import com.qfq.service.GoodsManageService;
 import com.qfq.utils.Page;
 import com.qfq.utils.PageUtil;
 import com.qfq.utils.ResponseUtil;
-
+@Scope(value="prototype")
 public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,ServletResponseAware{
 	
 	private HttpServletResponse response;
@@ -31,13 +32,41 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 	private List<Goods> goodsList;
 	private Category category;
 	private List<Category> categoryList;
-	private String[] colorCheck;
-	private String[] periodCheck;
-	private String[] price;
-	private String[] style;
-	private String categoryId;//添加商品时的二级分类ID
-
 	
+	private String[] colorCheck;//添加商品时接受颜色值
+	private String[] periodCheck;//添加商品时接受分期值
+	private String[] price;//添加商品时接受商品类型对应的价钱
+	private String[] style;//添加商品时接受商品类型值
+	private String categoryId;//添加商品时的二级分类ID
+	
+	private String goodsName;
+	private String goodsBrand;//接受条件查询时的
+	private String categoryId4Search;
+	
+	public String getCategoryId4Search() {
+		return categoryId4Search;
+	}
+	public void setCategoryId4Search(String categoryId4Search) {
+		this.categoryId4Search = categoryId4Search;
+	}
+	public String getGoodsName() {
+		return goodsName;
+	}
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
+	public String getGoodsBrand() {
+		return goodsBrand;
+	}
+	public void setGoodsBrand(String goodsBrand) {
+		this.goodsBrand = goodsBrand;
+	}
+	public List<Goods> getGoodsList() {
+		return goodsList;
+	}
+	public void setGoodsList(List<Goods> goodsList) {
+		this.goodsList = goodsList;
+	}
 	public Page getPage() {
 		return page;
 	}
@@ -71,6 +100,9 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 	public String[] getPeriodCheck() {
 		return periodCheck;
 	}
+	
+	
+
 	public void setPeriodCheck(String[] periodCheck) {
 		this.periodCheck = periodCheck;
 	}
@@ -99,11 +131,12 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 	public void setGoods(Goods goods) {
 		this.goods = goods;
 	}
-	
+	//installment暂时不能在这里关联查询出来！会出错，注意！！1
 	public String showGoods(){
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String goodsId = request.getParameter("goodsId");
 		goods = goodsManageService.getGoods(Integer.valueOf(goodsId).intValue());
+		
 		for(Object o : goods.getGoodstypes()){
 			Goodstype gt = (Goodstype)o;
 			System.out.println("sghowgood:: "+gt.getTypename()+" - "+gt.getPrice());
@@ -114,27 +147,34 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 	public String showAllGoods(){
 		HttpServletRequest req = ServletActionContext.getRequest();
 		int currentPage = 1;
-		String goodsBrand = goods.getBrand();
-		String goodsName = goods.getName();
-		String categoryID = categoryId;
-		if (req.getParameter("currentPage") == null) {
+		String currentPageStr = req.getParameter("currentPage");
+//		String tempCategoryId = req.getParameter("categoryId4Search");
+//		String tempGoodsName = req.getParameter("goodsName");
+//		String tempGoodsBrand = req.getParameter("goodsBrand");
+		if (null == currentPageStr || "".equals(currentPageStr)) {
 			currentPage = 1;
 		} else {
-			currentPage = Integer.parseInt(req.getParameter("currentPage"));
+			currentPage = Integer.parseInt(currentPageStr);
 		}
-		if(goodsBrand == null||"不限".equals(goodsBrand.trim())){
-			goods.setBrand(goodsBrand="");
+		if(goodsBrand == null||"".equals(goodsBrand.trim())){
+			goodsBrand="";
 		}
 		if(goodsName == null||"不限".equals(goodsName.trim())){
-			goods.setName(goodsName="");
+			goodsName="";
 		}
+//		if(tempCategoryId == null || "".equals(categoryId4Search.trim())){
+//			categoryId4Search = "";
+//		}
 		int everyPage = 5;
-		int totalCount = goodsManageService.getGoodsCount(goods.getName(), goods.getBrand(), categoryID);
+		int totalCount = goodsManageService.getGoodsCount(goodsName, goodsBrand, categoryId4Search);
 		page = PageUtil.createPage(everyPage, totalCount, currentPage);
-		goodsList = goodsManageService.getPaperEquip(equip.getEquipType(), equip.getEquipBrand(), page.getBeginIndex(), everyPage);
-		types = equipService.getAllType();
-		brands = equipService.getAllBrand();
-		System.out.println("EquipAciton gettype:"+equip.getEquipType()+"\nadmin.getbrand: "+equip.getEquipBrand());
+		goodsList = goodsManageService.getPaperGoods(goodsName, goodsBrand, categoryId4Search, page.getBeginIndex(), everyPage);
+		categoryList = goodsManageService.getAllCatagory();
+		System.out.println("GoodsManageAction - goodsName:"+goodsName+"\ngoodsbrand: "+goodsBrand+"\ncategoryId4Search:"+categoryId4Search);
+		if(goodsList != null && goodsList.size() != 0)
+			System.out.println("the goodsList : "+goodsList.size());
+		else
+			System.out.println("goodsList is null!!");
 		return SUCCESS;
 	}
 	
@@ -157,8 +197,8 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 		return SUCCESS;
 	}
 	public String toCreateGoods(){
+		System.out.println("GoodsManageAction - toCreateGoods - categoryList: "+categoryList);
 		setCategoryList(goodsManageService.getAllCatagory());
-		
 		return SUCCESS;
 	}
 	/**
@@ -190,6 +230,29 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 			sendFailureMsg("系统尚未创建角色！");
 		}
 	}
+	/**
+	 * 根据选择的多选框数目和对应的商品ID删除商品的Action
+	 * @return 
+	 * @throws Exception
+	 */
+	public String deleteGoods() throws Exception {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String[] strs = request.getParameterValues("choose");
+		if(strs != null){
+			for(int i =0; i<strs.length; i++){
+				System.out.println("strs的第"+i+"个字符值： "+strs[i]);
+			}
+			System.out.println("deleteGoods: "+goodsManageService.deleteGoods(strs));
+		}
+		return SUCCESS;
+	}
+	
+	public String updateGoods(){
+		System.out.println("Action updateGoods: id:"+goods.getId()+" name"+goods.getName()+" brand:"+goods.getBrand());
+		goodsManageService.updateGoods(goods);
+		return SUCCESS;
+	}
+	
 	
 	public void setServletResponse(HttpServletResponse arg0) {
 		response = arg0;
