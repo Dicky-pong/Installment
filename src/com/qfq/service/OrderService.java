@@ -6,12 +6,8 @@ import com.qfq.po.Installment;
 
 public interface OrderService {
 
-	public PageBean<Installment> myOrders(int id, int pageCode,int status);
+	public PageBean<Installment> myOrders(int id, int pageCode);
 
 	public Installment load(String id);
-
-	public int findStatus(String id);
-
-	public void updateStatus(String id, int i);
 
 }

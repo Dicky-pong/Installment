@@ -41,14 +41,9 @@ $(function(){
 		$(".popWrap").show();
 	});
 	
-	
-	
-	$(".errorClass").each(function(index,element){
-		if($(this).html() != ""){
-			$(".popWrap").show();
-		};
-	});
-	
+	if($("#loginnameError").html() != "" || $("#msg").html() != "" || $("#passwordError").html() != "" || $("#verifyCodeError").html() != ""){
+		$(".popWrap").show();
+	}
 	
 	
 	
