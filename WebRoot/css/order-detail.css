@@ -1,0 +1,23 @@
+.order-bt{
+	text-align: left;
+	margin-left: 20px;
+	float: left;
+}
+.order-table{
+	float: left;
+	margin: 20px;
+	border: 1px solid #428BCA;
+
+}
+.order-table tr{
+}
+.order-table td{
+	border: 2px solid #428BCA;
+	width: 196px;
+    height: 28px;
+}
+
+
+.clr {
+	clear: both;
+}
