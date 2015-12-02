@@ -41,8 +41,8 @@
 		<nav class="main_nav">
 			<div class="first_class">
 				<ul>
-					<li>首页</li><div class="bd"></div><!--
-				 --><li>商品分类</li><div class="bd"></div>
+					<li>首页</li><!--
+				 --><li>商品分类</li>
 				</ul>
 			</div>
 			<div class="show_class">
