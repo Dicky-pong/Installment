@@ -1,8 +1,6 @@
 package com.qfq.action;
 
 import java.io.IOException;
-
-
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -73,7 +71,6 @@ public class BaseAction extends ActionSupport {
 		String jsonString = "{success:true,data:" + jsonArray.toString() + "}";
 		outString(jsonString);
 	}
-
 	
 	@SuppressWarnings("unchecked")
 	public void outTreeJsonList(List list){

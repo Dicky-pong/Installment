@@ -5,6 +5,7 @@
 
 <struts>
 	<include file="struts-goods.xml"></include>
+	<include file="struts-goodsManage.xml"></include>
 
 	<constant name="struts.action.extension" value="do" />
 	<!-- 设置Web应用的默认编码集为UTF-8 -->
@@ -39,7 +40,7 @@
 		<action name="*_*" class="com.qfq.action.{1}Action" method="{2}">
 			<result name="input" >/jsp/index.jsp</result>
 			<result name="regist" >/jsp/user/register.jsp</result>
-			<result name="success" >/jsp/goods/goodslist.jsp</result>
+			<result name="success" type="redirectAction">showGoods</result>
 			<result name="failed" >/jsp/index.jsp</result>
 			<result name="order" >/jsp/order/order.jsp</result>
 			<result name="detil" >/jsp/order/orderdetil.jsp</result>

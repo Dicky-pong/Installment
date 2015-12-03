@@ -1,8 +1,10 @@
-<!DOCTYPE html>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>农资联盟杯</title>
+	<title>趣分期</title>
 	<link rel="stylesheet" href="css/index.css">
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/goodinfo.css">

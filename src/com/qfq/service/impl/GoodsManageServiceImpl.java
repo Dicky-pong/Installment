@@ -8,7 +8,9 @@ import com.qfq.po.Category;
 import com.qfq.po.Color;
 import com.qfq.po.Goods;
 import com.qfq.po.Goodstype;
+import com.qfq.po.Installment;
 import com.qfq.po.Monthprovide;
+import com.qfq.service.GoodsManageService;
 
 public class GoodsManageServiceImpl implements GoodsManageService{
 
@@ -102,7 +104,10 @@ public class GoodsManageServiceImpl implements GoodsManageService{
 	public int getGoodsCount(String goodsName, String goodsBrand,
 			String categoryID) {
 		String hql = "select count(g.id) from Goods g " +
-				"where g.name LIKE '%"+goodsName+"%' and g.brand like'%"+goodsBrand+"%' and g.c_id = "+categoryID;
+				"where g.name LIKE '%"+goodsName+"%' and g.brand like'%"+goodsBrand+"%'";
+		if(categoryID != null && !"".equals(categoryID.trim())){
+			hql += " and g.category.id = "+categoryID.trim();
+		}
 		try{
 			return baseDao.countQuery(hql);
 		}catch (Exception e) {
@@ -111,13 +116,52 @@ public class GoodsManageServiceImpl implements GoodsManageService{
 		return 0;
 	}
 
-	public List<Goods> getPaperGoods(String goodsName, String goodsBrand, String categoryID, int beginIndex, int everyPage){
+	public List<Goods> getPaperGoods(String goodsName, String goodsBrand,
+			String categoryID, int beginIndex, int everyPage) {
 		String hql = "from Goods g " +
-				"where g.name LIKE '%"+goodsName+"%' and g.brand like'%"+goodsBrand+"%' and g.c_id = "+categoryID;
-		List<Goods> list = baseDao.findByHql("from Goods where c_id = "+categoryID, beginIndex, everyPage);
-		if(list != null && list.size() != 0){
-			return list;
+				"where g.name LIKE '%"+goodsName+"%' and g.brand like'%"+goodsBrand+"%'";
+		if(categoryID != null && !"".equals(categoryID.trim())){
+			hql += " and g.category.id = "+categoryID.trim();
 		}
-		return null;
+		System.out.println("getPagerGoods - hql: "+hql);
+		List<Goods> list = baseDao.findByHql(hql, beginIndex, everyPage);
+		if(list == null || list.size() == 0){
+			return null;
+		}
+		return list;
 	}
+	
+	
+	public int deleteGoods(String[] goodsIDs) {
+		try{
+			//String hql = "delete from Goods where id = ?";
+			Goods g = null;
+			for(String id : goodsIDs){
+				id = id.trim();
+				System.out.println("deleteGoods - id: "+id);
+				List<Installment> list = baseDao.findByHql("from Installment i where i.goods.id = "+id);
+				if(list != null && list.size() != 0){
+					return 1;
+				}
+				String hqlColor = "delete from color where g_id = "+id;
+				baseDao.callProcedure(hqlColor);
+				String hqlGoodstype = "delete from goodstype where g_id = "+id;
+				baseDao.callProcedure(hqlGoodstype);
+				String hqlMonthprovide = "delete from monthprovide where g_id = "+id;
+				baseDao.callProcedure(hqlMonthprovide);
+				g = new Goods();
+				g.setId(Integer.valueOf(id).intValue());
+				baseDao.delete(g);//在hbm.xml中配置cascade级联删除
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			return 2;
+		}
+		return 0;
+	}
+	public boolean updateGoods(Goods goods) {
+		baseDao.saveOrUpdate(goods);
+		return false;
+	}
+	
 }

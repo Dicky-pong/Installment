@@ -13,8 +13,8 @@ public class Goods implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
+	private String goodsID;
 	private Category category;
-	private String goodsId;
 	private String name;
 	private String brand;
 	private String descript;
@@ -36,7 +36,6 @@ public class Goods implements java.io.Serializable {
 			String descript, Date date, String picture, Set colors,
 			Set monthprovides, Set goodstypes, Set installments) {
 		this.category = category;
-		this.goodsId = goodsId;
 		this.name = name;
 		this.brand = brand;
 		this.descript = descript;
@@ -49,6 +48,13 @@ public class Goods implements java.io.Serializable {
 	}
 
 	// Property accessors
+	public String getGoodsID() {
+		return goodsID;
+	}
+
+	public void setGoodsID(String goodsID) {
+		this.goodsID = goodsID;
+	}
 
 	public Integer getId() {
 		return this.id;
@@ -64,14 +70,6 @@ public class Goods implements java.io.Serializable {
 
 	public void setCategory(Category category) {
 		this.category = category;
-	}
-
-	public String getGoodsId() {
-		return this.goodsId;
-	}
-
-	public void setGoodsId(String goodsId) {
-		this.goodsId = goodsId;
 	}
 
 	public String getName() {
