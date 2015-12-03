@@ -2,23 +2,17 @@ package com.qfq.action;
 
 
 import java.io.IOException;
-
+import java.util.List;
 import java.util.Properties;
 
-
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 
 import com.qfq.entity.InstallmentEntity;
-import com.qfq.entity.UserInfoEntity;
 import com.qfq.pager.PageBean;
 import com.qfq.po.Installment;
 import com.qfq.po.Userinfo;
 import com.qfq.service.OrderService;
 import com.qfq.utils.PaymentUtil;
-import com.qfq.utils.UserException;
 
 public class OrderAction extends BaseAction{
 	private OrderService orderService;
@@ -156,7 +150,7 @@ public class OrderAction extends BaseAction{
 	}
 	
 	/**
-	 * 加载订单
+	 * 加载前台订单
 	 * @return
 	 */
 	public String load() {
@@ -166,6 +160,29 @@ public class OrderAction extends BaseAction{
 			String btn = this.getRequest().getParameter("btn");//btn说明了用户点击哪个超链接来访问本方法的
 			this.getRequest().setAttribute("btn", btn);
 			return "detil";
+	}
+	
+	/**
+	 * 加载订单
+	 * @return
+	 */
+	public String loadOrder() {
+			String id = this.getRequest().getParameter("id");
+			Installment installment = orderService.load(id);
+			this.getRequest().setAttribute("order", installment);
+			return "orderdetail";
+	}
+	
+	/**
+	 * 查询所有订单
+	 * @return
+	 */
+	public String findAllOrder() {
+		System.out.println("进入方法");
+		int pageCode = Integer.parseInt(this.getRequest().getParameter("pageCode"));
+		List<Installment> order =  orderService.myOrder(pageCode);
+		this.getRequest().setAttribute("orders", order);
+		return "ordermag";
 	}
 	
 	/**

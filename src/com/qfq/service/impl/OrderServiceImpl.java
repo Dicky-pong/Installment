@@ -97,6 +97,29 @@ public class OrderServiceImpl implements OrderService{
 		System.out.println("保存成功");
 	}
 	
+
+	public List<Installment> myOrder(int pageCode) {
+		/*
+		 * 1.得到pageSize
+		 */
+		int pageSize = PageConstants.ORDER_PAGE_SIZE;//每页记录数
+		String hql = "select count(i.id) from Installment i";
+		/*
+		 * 3.获得总记录数
+		 */
+		Number number = baseDao.countQuery(hql);
+		System.out.println("输出的number是："+number);
+		int totalRecoder = number.intValue();//得到总记录数
+
+		hql= " from Installment i order by i.date desc";
+		int start = (pageCode-1) * pageSize;//当前页首行记录的下标
+		List<Installment> beanList = baseDao.findByHql(hql,start,pageSize);
+		System.out.println(beanList.get(0).getUserinfo());
+		System.out.println(beanList.get(0).getGoods());
+		System.out.println(beanList.get(0).getColor());
+		return beanList;
+	}
+	
 	
 	
 	
