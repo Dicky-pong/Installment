@@ -277,6 +277,14 @@
 					</ul>
 				</div>
 			</div>
+			<div class="page_wrap">
+				<a href="?page=1&amp;cate=161003" class="arrow_ll"></a>
+				<a href="?page=1&amp;cate=161003">1</a>
+				<a href="?page=2&amp;cate=161003" class="on">2</a>
+				<a href="?page=3&amp;cate=161003">3</a>
+				<a href="?page=3&amp;cate=161003" class="arrow_rr"></a>
+			</div>
+
 		</section>
 	</section>
 	<footer>

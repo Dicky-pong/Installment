@@ -303,4 +303,41 @@ header,nav,footer{
 	100% {
 		-webkit-transform: scale(1);
 	}
+
 }
+
+
+.page_wrap {
+	text-align: center;
+	margin: 70px 0;
+}
+
+.page_wrap a{
+	padding: 0 10px;
+	text-decoration: none;
+	color:#999;
+	background: url("../img/page_bar.png") no-repeat center right;
+	font-weight: 600;
+}
+
+.page_wrap a:hover {
+	
+	text-decoration: underline;
+	color: #CF211A;
+}
+
+.page_wrap a.on {
+
+	text-decoration: underline;
+	color: #CF211A;
+}
+
+.page_wrap .arrow_ll {
+	background: url("../img/page_arrow_ll.png") no-repeat center;
+}
+
+.page_wrap .arrow_rr {
+	background: url("../img/page_arrow_rr.png") no-repeat center;
+}
+
+
