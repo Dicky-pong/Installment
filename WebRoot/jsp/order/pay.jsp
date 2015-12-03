@@ -94,9 +94,9 @@
   <body>
 <div class="divContent">
 	<span class="spanPrice">支付金额：</span><span class="price_t">&yen;${order.payPrice }</span>
-	<span class="spanOid">编号：${order.orderId }</span>
+	<span class="spanOid">编号：${order.orderID }</span>
 </div>
-<form action="Order_payment.do?id=${order.orderId }" method="post" id="form1" target="_top">
+<form action="Order_payment.do?id=${order.orderID }" method="post" id="form1" target="_top">
 
 <div class="divBank">
 	<div class="divText">选择网上银行</div>

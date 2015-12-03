@@ -110,20 +110,20 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>${order.goods.goodsId }</td>
+                            <td>${order.goods.goodsID }</td>
                             <td class="align_Left"><a href="http://item.jd.com/982045.html" target="_blank">${order.goods.name }</a></td>
                             <td><strong class="ftx-01">¥${order.payPrice }X${order.payPrice/order.payMonth}</strong></td>
                             <td>0</td>
                             <td>1</td>
                             <td class="incart">
                             <c:if test="${order.status eq 1 and btn eq 'pay'}">
-	<a href="Order_paymentPre.do?id=${order.orderId }" class="btn-5" >立即付款</a>
+	<a href="Order_paymentPre.do?id=${order.orderID }" class="btn-5" >立即付款</a>
 </c:if>
 <c:if test="${order.status eq 1 and btn eq 'cancel'}">
-    <a href="Order_cancel.do?id=${order.orderId }" class="btn-5">取消订单</a><br/>
+    <a href="Order_cancel.do?id=${order.orderID }" class="btn-5">取消订单</a><br/>
 </c:if>
 <c:if test="${order.status eq 3 and btn eq 'confirm'}">
-	<a href="Order_confirm.do?id=${order.orderId }" class="btn-5">确认收货</a><br/>	
+	<a href="Order_confirm.do?id=${order.orderID }" class="btn-5">确认收货</a><br/>	
 </c:if>
                         </tr>
                         </tbody>
@@ -143,7 +143,7 @@
                         <tbody>
                         <tr>
                             <td>订单编号</td>
-                            <td>${order.orderId }</td>
+                            <td>${order.orderID }</td>
                         </tr>
                         <tr>
                             <td>支付方式</td>

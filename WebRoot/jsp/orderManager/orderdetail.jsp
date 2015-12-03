@@ -34,7 +34,7 @@ function jump(){
   <li role="presentation"><a href="../glygl/JSGL.html">角色管理</a></li>
   <li role="presentation"><a href="../spgl/SPGL.html">商品管理</a></li>
   <li role="presentation"><a href="../sjgl/SJFX.html">用户数据分析</a></li>
-  <li role="presentation" class="active"><a href="Order_findAllOrder.do?pageCode=1">订单管理</a></li>
+  <li role="presentation" class="active"><a href="<c:url value='Order_myBackOrder.do?status=-1'/>">订单管理</a></li>
   <li role="presentation"><a href="../Login.html">退出</a></li>
 </ul>   
 </div>
@@ -59,7 +59,7 @@ function jump(){
                         <tbody>
                         <tr>
                             <td>订单编号</td>
-                            <td>${order.orderId }</td>
+                            <td>${order.orderID }</td>
                         </tr>
                         <tr>
                             <td>支付方式</td>
@@ -89,7 +89,7 @@ function jump(){
                             <col width="110px">
                             <col>
                         </colgroup>
-                        <tbody>
+                        <tbody align="center">
                         <tr>
                             <td>收货人姓名</td>
                             <td>${order.receiver }</td>
@@ -101,10 +101,6 @@ function jump(){
                         <tr>
                             <td>联系方式</td>
                             <td> 手机号码：${order.tel }</td>
-                        </tr>
-                        <tr>
-                            <td>电子邮件</td>
-                            <td></td>
                         </tr>
                         </tbody>
                     </table>

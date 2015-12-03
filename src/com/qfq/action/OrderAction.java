@@ -42,9 +42,8 @@ public class OrderAction extends BaseAction{
 	 * @return
 	 */
 	private int getPageCode() {
-		System.out.println("pagecode获取");
 		int pageCode = 1;
-		String param = this.getRequest().getParameter("pc");
+		String param = this.getRequest().getParameter("pageCode");
 		if (param != null && !param.trim().isEmpty()) {
 			try {
 				pageCode = Integer.parseInt(param);
@@ -92,6 +91,30 @@ public class OrderAction extends BaseAction{
 		return "msg";
 	}
 	
+	
+	/**
+	 * 确认发货
+	 * @return
+	 */
+	public String confirmOrder() {
+		System.out.println("你好");
+		String id = this.getRequest().getParameter("id");
+		/*
+		 * 校验订单状态
+		 */
+		int status = orderService.findStatus(id);
+		if(status !=2){
+			this.getRequest().setAttribute("code", "error");
+			this.getRequest().setAttribute("msg", "状态不对，不能确认发货！");
+			return "msg";
+		}
+		orderService.updateStatus(id, 3);//设置状态为待收货！
+		this.getRequest().setAttribute("code", "success");
+		this.getRequest().setAttribute("msg", "商品已成功发货！");
+		return "msg";
+	}
+	
+	
 	/**
 	 * 取消订单
 	 * @return
@@ -115,13 +138,10 @@ public class OrderAction extends BaseAction{
 	}
 	
 	
+	
 	/**
-	 * 我的订单
-	 * @param req
-	 * @param resp
+	 * 按条件查询前台订单
 	 * @return
-	 * @throws ServletException
-	 * @throws IOException
 	 */
 	public String myOrder() {
 		/*
@@ -150,7 +170,28 @@ public class OrderAction extends BaseAction{
 	}
 	
 	/**
-	 * 加载前台订单
+	 * 按条件查询后台所有订单
+	 * @return
+	 */
+	public String myBackOrder() {
+		/*
+		 * 1.获取页码
+		 */
+		int pageCode = getPageCode();
+		/*
+		 * 2.获取当前订单状态
+		 */
+		int status = Integer.parseInt(this.getRequest().getParameter("status"));
+		/*
+		 * 3.将查询结果保存在order，并转发到‘ordermag’
+		 */
+		PageBean<Installment> pb =  orderService.myBackOrder(pageCode,status);
+		this.getRequest().setAttribute("pb", pb);
+		this.getRequest().setAttribute("sta", status);
+		return "ordermag";
+	}
+	/**
+	 * 加载前台订单详情
 	 * @return
 	 */
 	public String load() {
@@ -163,7 +204,67 @@ public class OrderAction extends BaseAction{
 	}
 	
 	/**
-	 * 加载订单
+	 * 前台单框多条件查询
+	 * @return
+	 */
+	public String Criteria(){
+		/*
+		 * 1.获取页码和查询数据
+		 */
+		int pageCode = getPageCode();
+		String criteria = this.getRequest().getParameter("criteria");
+		/*
+		 * 2.得到url:
+		 */
+		String url = getUrl();
+		/*
+		 * 3.从当前session中获取
+		 */
+		Userinfo user = (Userinfo)this.getSession().getAttribute("sessionUser");
+		/*
+		 * 4.从数据库获取符合条件的订单
+		 */
+		System.out.println("准备进入方法");
+		
+		PageBean<Installment> pb = orderService.findByCriteria(user.getId(),pageCode, criteria);
+		/*
+		 * 5.给PageBean设置url，保存PageBean,转发到/jsps/book/list.jsp
+		 */
+		pb.setUrl(url);
+		this.getRequest().setAttribute("pb", pb);
+		return "order";
+	}
+	
+	/**
+	 * 后台单框多条件查询
+	 * @return
+	 */
+	public String backCriteria(){
+		/*
+		 * 1.获取页码和查询数据
+		 */
+		int pageCode = getPageCode();
+		String criteria = this.getRequest().getParameter("criteria");
+		/*
+		 * 2.得到url:
+		 */
+		String url = getUrl();
+		/*
+		 * 4.从数据库获取符合条件的订单
+		 */
+		System.out.println("准备进入方法");
+		
+		PageBean<Installment> pb = orderService.findByCriteria(0,pageCode, criteria);
+		/*
+		 * 5.给PageBean设置url，保存PageBean,转发到/jsps/book/list.jsp
+		 */
+		pb.setUrl(url);
+		this.getRequest().setAttribute("pb", pb);
+		return "ordermag";
+	}
+	
+	/**
+	 * 加载后台订单详情
 	 * @return
 	 */
 	public String loadOrder() {
@@ -173,17 +274,7 @@ public class OrderAction extends BaseAction{
 			return "orderdetail";
 	}
 	
-	/**
-	 * 查询所有订单
-	 * @return
-	 */
-	public String findAllOrder() {
-		System.out.println("进入方法");
-		int pageCode = Integer.parseInt(this.getRequest().getParameter("pageCode"));
-		List<Installment> order =  orderService.myOrder(pageCode);
-		this.getRequest().setAttribute("orders", order);
-		return "ordermag";
-	}
+
 	
 	/**
 	 * 支付准备

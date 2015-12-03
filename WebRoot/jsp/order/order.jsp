@@ -16,6 +16,10 @@
                 document.write(unescape("%3Cscript src='js/jquery-2.1.4.min.js' type='text/javascript'%3E%3C/script%3E"));
             }
         })()
+        
+ 
+        
+        
     </script>
     <style>
         .main {
@@ -81,9 +85,11 @@
                 </ul>
                 <div class="extra-r">
                     <div class="search">
-                        <input id="ip_keyword" type="text" class="itxt" value="商品名称/商品编号/订单号" style="color: rgb(204, 204, 204);">
-                        <a href="javascript:;" class="search-btn" clstag="click|keycount|orderinfo|search">搜索<b></b></a>
-                        <a href="#none" clstag="click|keycount|orderlist|gaoji" class="default-btn high-search">高级<b></b></a>
+                    <form action ="<c:url value='/Order_Criteria.do'/>" id = "myform"  method="post">
+                        <input id="ip_keyword" type="text" class="itxt" value="" name="criteria" placeholder="商品名称/商品编号/订单号" style="color: rgb(204, 204, 204);">
+                        <a href="javascript:;" id="search_key" class="search-btn" >搜索<b></b></a>
+                        <a href="" clstag="click|keycount|orderlist|gaoji" class="default-btn high-search">高级<b></b></a>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -146,7 +152,7 @@
                             <span class="dealtime" title="2014-12-22 23:57:07">${order.date}</span>
                             <input type="hidden" id="datasubmit-7768683403" value="${order.date}">
 
-                <span class="number">订单号：<a name="orderIdLinks" id="idUrl7768683403" target="_blank" href="Order_load.do?id=${order.id }" clstag="click|keycount|orderinfo|order_num">${order.orderId }</a>
+                <span class="number">订单号：<a name="orderIdLinks" id="idUrl7768683403" target="_blank" href="Order_load.do?id=${order.id }" clstag="click|keycount|orderinfo|order_num">${order.orderID }</a>
 
 
 
@@ -220,15 +226,15 @@
 
                     </span>
 
-                                <a href="Order_load.do?id=${order.orderId }" target="_blank">订单详情</a>
+                                <a href="Order_load.do?id=${order.orderID }" target="_blank">订单详情</a>
                             </div>
                         </td>
                         <td rowspan="1" id="operate7768683403">
                             <div class="operate">
                                 <div id="pay-button-7768683403" _baina="0"></div>
 		<c:if test="${order.status eq 1}">
-				 <a href="Order_paymentPre.do?&id=${order.orderId }&btn=pay" class="btn-again" target="_blank" clstag="click|keycount|orderlist|buy"><b></b>立即支付</a><br>
-				 <a href="Order_load.do?id=${order.orderId }&btn=cancel" class="btn-again" target="_blank" clstag="click|keycount|orderlist|buy"><b></b>取消订单</a><br>				
+				 <a href="Order_paymentPre.do?&id=${order.orderID }&btn=pay" class="btn-again" target="_blank" clstag="click|keycount|orderlist|buy"><b></b>立即支付</a><br>
+				 <a href="Order_load.do?id=${order.orderID }&btn=cancel" class="btn-again" target="_blank" clstag="click|keycount|orderlist|buy"><b></b>取消订单</a><br>				
 		</c:if>
 		<c:if test="${order.status eq 2}">
 				 <span class="span-style"style="color: red;" >	
@@ -236,7 +242,7 @@
 				 </span>		
 		</c:if>
 		<c:if test="${order.status eq 3}">
-				 <a href="Order_load.do?id=${order.orderId }&btn=confirm" class="btn-again" target="_blank" clstag="click|keycount|orderlist|buy"><b></b>确认收货</a><br>
+				 <a href="Order_load.do?id=${order.orderID }&btn=confirm" class="btn-again" target="_blank" clstag="click|keycount|orderlist|buy"><b></b>确认收货</a><br>
 		</c:if>
 		<c:if test="${order.status eq 4}">
 				 <span class="span-style"style="color: red;" >	
@@ -270,4 +276,21 @@
 <script src="js/index.js"></script>
 <script src="js/goodslist.js"></script>
 </body>
+<script>
+console.log($("#search_key"));
+$("#search_key").bind("click",function(){
+	console.log($("#ip_keyword").val() == "");
+	if($("#ip_keyword").val() == ""){
+		alert("请输入查询关键字！")
+	}else{
+		$("#myform").submit();
+	}
+	
+	console.log("ninico")
+	
+
+});
+
+
+</script>	
 </html>

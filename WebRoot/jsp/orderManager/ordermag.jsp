@@ -19,24 +19,21 @@ function jump(){
  alert("删除成功");
  window.location.href="DDGL.html";
 }
-<script>
 	
-	
-	function prePage(obj, page, type, brand, categoryId4Search){
+	function prePage(obj, page, status){
 		if(page == '0'){
 			alert("已经是第一页了");
 			return false;
 		}
-		obj.href = 'showAllGoods.do?currentPage='+page+'&goodsName='+type+'&goodsBrand='+brand+'&categoryId4Search='+categoryId4Search;
+		obj.href = 'myBackOrder.do?pageCode='+page+'&status='+status;
 	}
-	function nextPage(obj, page, max, type, brand, categoryId4Search){
+	function nextPage(obj, page, max,status ){
 		if(page > max){
 			alert("已经是最后一页了");
 			return false;
 		}
-		obj.href = 'showAllGoods.do?currentPage='+page+'&goodsName='+type+'&goodsBrand='+brand+'&categoryId4Search='+categoryId4Search;
+		obj.href = 'myBackOrder.do?pageCode='+page+'&status='+status;
 	}
-</script>
 </script>
 
 <div id="gdou" class="inline_div" >
@@ -52,7 +49,7 @@ function jump(){
   <li role="presentation"><a href="../glygl/JSGL.html">角色管理</a></li>
   <li role="presentation"><a href="../spgl/SPGL.html">商品管理</a></li>
   <li role="presentation"><a href="../sjgl/SJFX.html">用户数据分析</a></li>
-  <li role="presentation" class="active"><a href="Order_findAllOrder.do?pageCode=1">订单管理</a></li>
+  <li role="presentation" class="active"><a href="Order_myBackOrder.do?status=-1">订单管理</a></li>
   <li role="presentation"><a href="../Login.html">退出</a></li>
 </ul>   
 </div>
@@ -63,9 +60,13 @@ function jump(){
   <li class="active">订单管理</li>
 </ol>
 <h3 align="center"><b>订单列表</b></h3>
- <span class='query-list'><u>全部订单</u>  </span><span class='query-list'><u>未付款</u></span>  <span class='query-list'><u>待发货</u></span>
-<input  class='query-window'type="text" name="" id="" /><a class='query-picture'
-href="equipment-query.html"><img src="${pageContext.request.contextPath }/images/query.png">查询</a>
+ <span><a href="<c:url value='Order_myBackOrder.do?status=-1'/>" class='query-list'><u>全部订单</u></a></span>
+ <span><a href="<c:url value='Order_myBackOrder.do?status=1'/>" class='query-list'><u>未付款</u></a> </span>  
+ <span><a href="<c:url value='Order_myBackOrder.do?status=2'/>" class='query-list'><u>待发货</u></a> </span>
+ <form action ="<c:url value='/Order_backCriteria.do'/>" id = "myform"  method="post">
+<input  class='query-window'type="text" name="criteria" id="ip_keyword" value="" placeholder="商品名称/商品编号/订单号" style="color: rgb(204, 204, 204);"/>
+<a class='query-picture'id="search_key" href="javascript:;"><img src="${pageContext.request.contextPath }/images/query.png"/>查询</a>
+</form>
 <table class="table table-hover">
 <tr>
     <th>订单号 </th>
@@ -77,48 +78,51 @@ href="equipment-query.html"><img src="${pageContext.request.contextPath }/images
     <th>状态</th>
     <th></th>
   </tr>
-  <c:forEach items="${orders}" var="order">
+  <c:forEach items="${pb.beanList}" var="order">
   <tr>
-    <th>${order.orderId}</th>
+    <th>${order.orderID}</th>
     <th>${order.goods.name }</th>
     <th>${order.color.colorname }</th>
     <th>${order.payPrice}</th>
     <th>${order.date}</th>
     <th>${order.userinfo.username}</th>
      <c:if test="${order.status eq 1 }">
-	<th><button class='state-button'>待付款</button></th>
+	<th><span class='state-button'>待付款</span></th>
 </c:if>
 <c:if test="${order.status eq 2 }">
-   <th><button class='state-button'>确认发货</button></th>
+   <th><button class='state-button' onclick="window.location='${pageContext.request.contextPath }/Order_confirmOrder.do?id=${order.orderID}'">确认发货</button></th>
 </c:if>
 <c:if test="${order.status eq 3 }">
-	<th><button class='state-button'>带收货</button></th>	
+	<th><span class='state-button'>待收货</span></th>	
 </c:if>
 <c:if test="${order.status eq 4 }">
-	<th><button class='state-button'>交易成功</button></th>	
+	<th><span class='state-button'>交易成功</span></th>	
 </c:if>
 <c:if test="${order.status eq 5 }">
-	<th><button class='state-button'>已取消</button></th>	
+	<th><span class='state-button'>已取消</span></th>	
 </c:if>
     
-    <th><a href="<c:url value='/Order_loadOrder.do?id=${order.orderId }'/>">详情</a></th>
+    <th><a href="<c:url value='/Order_loadOrder.do?id=${order.orderID }'/>">详情</a></th>
   </tr>
   </c:forEach>
   
 </table>
-<center>
+<div align="center">
 <nav>
   <ul class="pagination">
-    <li><a href="#">&laquo;</a></li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li><a href="#">&raquo;</a></li>
-  </ul>
+  	
+					<li><a href="#" onclick="prePage(this, ${pb.pageCode-1},${sta })">&laquo;</a>
+					</li>
+					<c:forEach begin="1" end="${pb.totalpage}" var="str" step="1">
+						<li>
+						<a href="myBackOrder.do?pageCode=${str }&status=${sta }">${str }</a>
+						</li>
+					</c:forEach>
+					<li><a href="#" onclick="nextPage(this, ${pb.pageCode+1}, '${pb.totalpage }','${sta }')">&raquo;</a>
+					</li>
+				</ul>
 </nav>
-</center>
+</div>
 
 </div>
 <div id="yw" class="">
@@ -126,8 +130,22 @@ href="equipment-query.html"><img src="${pageContext.request.contextPath }/images
 Copyright &copy; 2014安室工作室版权所有
 </center>
 </div>
-
-
-
 </body>
+<script>
+console.log($("#search_key"));
+$("#search_key").bind("click",function(){
+	console.log($("#ip_keyword").val() == "");
+	if($("#ip_keyword").val() == ""){
+		alert("请输入查询关键字！")
+	}else{
+		$("#myform").submit();
+	}
+	
+	console.log("ninico")
+	
+
+});
+
+
+</script>
 </html>
