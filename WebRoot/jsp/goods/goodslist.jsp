@@ -28,7 +28,7 @@
 			 --><li>快捷导航3</li>
 			</ul>
 		</nav>
-		<div class="logo"><h4>地球表面最好的农贸商城</h4><h1>农资联盟 <span>网上商城</span></h1></div>
+		<div class="logo"><h4>地球表面最好的分期商城</h4><h1>趣分期 <span>网上商城</span></h1></div>
 	</header>
 	<section class="main">
 		<nav class="main_nav">
@@ -265,7 +265,7 @@
 						<c:forEach var="goods" items="${requestScope.goodsList }">
 							<li>
 								<div class="good_img"><img src="${pageContext.request.contextPath }${goods.picture}" alt=""></div>
-								<a href="" class="name">${goods.name }</a>
+								<a href="showGoodsDetail?goodsId=${goods.id }" class="name">${goods.name }</a>
 								<%-- 有一个mothprovide是空的就报异常 --%>
 								<c:if test="${goods.monthprovides.iterator().hasNext()}" >
 									<c:set var="monthprovide" value="${goods.monthprovides.iterator().next()}" scope="page"/>

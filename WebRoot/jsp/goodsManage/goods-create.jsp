@@ -1,7 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -11,11 +10,47 @@
   <script src="${pageContext.request.contextPath }/js/jquery-1.5.1.js"></script>
   <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
   <script type="text/javascript">
-  $("#saveButton").click(function(){
-		alert("buton");
-		
-	});
+	
+  function $(id) {
+      return document.getElementById(id);
+  }
 
+  function showimg(src) {
+      var img = $('pic');
+      img.src = src;
+      img.width = 140;
+      img.height = 140;
+      img.style.display = 'block';
+  }
+
+  function filechange(file) {
+      if (file.files && file.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (evt) {
+              showimg(evt.target.result);
+          };
+          reader.readAsDataURL(file.files[0]);
+      } else {
+          file.select();
+          var src = document.selection.createRange().text;
+          showimg(src);
+      }
+  }
+
+	function checkform(){
+		var file=document.getElementById('file');
+		if(file.value==""){
+			alert("请上传图片");
+			return false;
+		}else if(!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG|BMP)$/.test(file.value)){
+				alert("类型必须是.gif,jpeg,jpg,png,bmp中的一种");
+				file.value="";
+				return false;
+		}else{	
+			return true;
+		}
+	}
+  
 function selectorChange(){
 	var firstSelector = document.getElementById("firstSelector");
 	var categoryId = firstSelector.options[firstSelector.selectedIndex].value;
@@ -92,7 +127,7 @@ function selectorChange(){
         <div id="" class="registration-form">
           <h3> <b>商品信息登记表</b>
           </h3>
-          <form id="message">
+          <form id="message"  enctype="multipart/form-data" method="post">
             <table>
               <tr>
                 <td>商品ID</td>
@@ -162,6 +197,10 @@ function selectorChange(){
                 <td>
                   <input class="price" type="text" name="price" value=""/>
                 </td>
+                <td>数量</td>
+                <td>
+                  <input class="count" type="text" name="count" value=""/>
+                </td>
                 <td>
                   <img src="${pageContext.request.contextPath }/images/add2.png" alt="" id='add'/>
                 </td>
@@ -170,7 +209,7 @@ function selectorChange(){
 
               <tr>
                 <td>颜色</td>
-                <td colspan="5">
+                <td colspan="6">
                   <input type="checkbox" name="colorCheck" id="inlineCheckbox1" value="黑色" style='width:15px'/>
                   黑色
                   <input type="checkbox" name="colorCheck" id="inlineCheckbox1" value="白色" style='width:15px'/>
@@ -188,8 +227,13 @@ function selectorChange(){
                   <input type="checkbox" name="colorCheck" id="inlineCheckbox1" value="粉红色" style='width:15px'/>
                   粉红色
                   <input type="checkbox" name="colorCheck" id="inlineCheckbox1" value="金色" style='width:15px'/>金色</td>
+              	
               </tr>
-
+              <tr>
+              	<td colspan="2"> <input id="file" type="file" name="file" onchange="filechange(this)" /></td>
+              	<td>图片预览：</td>
+              	<td><img src="" id="pic" style="display:none;" alt=""/></td>
+              </tr>
             </table>
             商品介绍信息
             <br />

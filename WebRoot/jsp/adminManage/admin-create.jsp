@@ -64,7 +64,7 @@ function jump(){
         <div id="" class="adregistration-form">
           <h3> <b>管理员信息登记表</b>
           </h3>
-          <form id="message" >
+          <form id="message" method="post">
           <table class="sj">
               <td>管理员ID</td>
               <td>

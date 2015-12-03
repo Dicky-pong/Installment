@@ -7,6 +7,9 @@
 	<include file="struts-goods.xml"></include>
 	<include file="struts-goodsManage.xml"></include>
 
+	<!--  -->
+	<constant name="struts.multipart.saveDir" value="/img"/>
+
 	<constant name="struts.action.extension" value="do" />
 	<!-- 设置Web应用的默认编码集为UTF-8 -->
 	<constant name="struts.i18n.encoding" value="UTF-8"/>

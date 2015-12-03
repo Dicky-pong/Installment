@@ -72,6 +72,7 @@ public class GoodsManageServiceImpl implements GoodsManageService{
 			gt = new Goodstype();
 			gt.setTypename(type$price[i][0]);
 			gt.setPrice(Double.valueOf(type$price[i][1]));
+			gt.setCount(Integer.valueOf(type$price[i][2]));
 			gt.setGoods(goods);
 			typeSet.add(gt);
 		}
@@ -80,7 +81,7 @@ public class GoodsManageServiceImpl implements GoodsManageService{
 		Category category = new Category();
 		category.setId(categoryId);
 		goods.setCategory(category);
-		System.out.println(colorSet.iterator().next().getColorname()+" - "+monthSet.iterator().next().getMonths()+" - "+typeSet.iterator().next().getTypename());
+		//System.out.println(colorSet.iterator().next().getColorname()+" - "+monthSet.iterator().next().getMonths()+" - "+typeSet.iterator().next().getTypename());
 		try{
 			baseDao.save(goods);
 			baseDao.saveOrUpdateAll(typeSet);
