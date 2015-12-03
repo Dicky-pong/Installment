@@ -38,6 +38,12 @@ body{
 	color: #fff;
 }
 
+.top_nav li a {
+	text-decoration: none;
+	color: #fff;
+	font-weight: 900;
+}
+
 .top_nav li:last-child{
 	border-right: 1px solid #4D4D4D;
 }
@@ -73,11 +79,7 @@ body{
 }
 
 .main_nav{
-	position: absolute;
-	z-index: 500;
-	width: 186px;
-	margin-left: 152px;
-	background: #ADADAD;
+	border-top: 1px solid #343333;
 }
 
 .first_class{
@@ -85,18 +87,16 @@ body{
 	max-width: 960px;
 	line-height: 50px;
 	margin: auto;
-	height: 377px;
-	background: #ADADAD;
 }
 
 .main .main_nav .first_class li{
-	width: 100%;
+	display: inline-block;
+	/*width: 8.54165%;*/
 	font-size: 15px;
-	color: #3C3C3C;
+	color: #737171;
 	font-weight: bolder;
 	padding: 0px 10px;
-	cursor: pointer;
-	border-bottom: 1px solid #E2E2E2;
+	cursor:pointer;
 }
 
 
@@ -117,11 +117,10 @@ body{
 }
 
 .main .main_nav .show_class {
+	margin-top: -1px;
 	position: absolute;
-	width: 500%;
+	width: 100%;
 	z-index: 111;
-	margin-top: -377px;
-	margin-left: 180px;
 }
 
 .main .main_nav .show_class .section{
@@ -134,9 +133,9 @@ body{
 
 .main .main_nav .show_class .title{
 	width: 71.59818%;
-	line-height: 40px;
+	line-height: 40px;	
 	margin: auto;
-	cursor: pointer;
+	cursor:pointer;
 }
 
 .main .main_nav .show_class .title img{
@@ -177,6 +176,7 @@ body{
 	border-left: 1px solid #444;
 	border-right: 1px solid #444;
 	color: #B3B3B3;
+	cursor:pointer;
 }
 
 .main .main_nav .show_class .other_bg li{
@@ -185,8 +185,9 @@ body{
 
 #wrap{
 	width: 100%;
+	/*border: 5px solid #abcdef;*/
 	position: relative;
-	height: 377px;
+	height: 575px;
 	overflow: hidden;
 }
 
@@ -210,7 +211,7 @@ body{
 
 #wrap ol li{
 	position: absolute;
-	margin-top: 173px;
+	margin-top: 264px;
 }
 
 
@@ -223,7 +224,7 @@ body{
 
 #wrap ol li:nth-child(1){
 	background: url(../img/main_btn_arrow_L.png);
-	margin-left: 338px;
+	margin-left: 80px;
 }
 
 #wrap ol li:nth-child(1):hover{
@@ -271,141 +272,5 @@ footer{
 	bottom: 0px;
 }
 
-.popWrap {
-	z-index: 5000;
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background: rgba(0, 0, 0, 0.8);
-    display: none;
-}
 
-
-.popWrap .popCont {
-	width: 450px;
-	display: block;
-	overflow-y: hidden;
-	left: 444px;
-	top: 86px;
-	margin: 0 auto;
-	margin-top: 177px;
-	background: #FFF;
-}
-
-
-.popWrap .popCont .popInner {
-    border-top: 10px solid #CF211A;
-    padding: 20px 50px 30px 50px;
-}
-
-.popWrap .popCont .popInner .formInput label{
-    display: inline-block;
-    width: 70px;
-    line-height: 40px;
-    color: #5E5D5D;
-    font-weight: 600;
-    font-size: 15px
-}
-
-.popWrap .popCont .popInner .titleWrap h1{
-    margin-top: 24px;
-    font-size: 38px;
-    color: #CF211A;
-    margin-bottom: 15px;
-}
-.popWrap .popCont .popInner input[type=text],input[type=password]{
-    border: none;
-    border-top: 1px solid #DEDEDE;
-    border-bottom: 1px solid #DEDEDE;
-    border-left: 1px solid #DEDEDE;
-    border-right: 1px solid #DEDEDE;
-    width: 192px;
-    height: 26px;
-    border-radius: 5px;
-}
-
-
-.popWrap .popCont .popInner input[type=submit]{
-    width: 89px;
-    height: 59px;
-    position: absolute;
-    margin-top: -150px;
-    margin-left: 289px;
-    border: 1px solid #B3B3B3;
-    background: #CF211A;
-    color: #FFF;
-    font-size: 16px;
-}
-
-.loginOpt {
-
-    margin-top: 20px;
-}
-
-.loginOpt a.btn {
-    display: inline-block;
-    background: #666;
-    color: #FFF;
-    text-decoration: none;
-    padding: 5px 15px;
-    float: right;
-    margin-right: 5px;
-
-}
-
-/*图标字体*/
-@font-face {
-	font-family: 'fontello';
-	src: url('../font/fontello.eot');
-	src: url('../font/fontello.eot#iefix') format('embedded-opentype'),
-	url('../font/fontello.woff') format('woff'),
-	url('../font/fontello.ttf') format('truetype'),
-	url('../font/fontello.svg#fontello') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-.ficon,[class^="ficon-"],[class^="ficon-"]:before,[class*=" ficon-"]:before {
-	font-family: "fontello";
-	font-style: normal;
-	font-weight: normal;
-	speak: none;
-	display: inline-block;
-	text-decoration: inherit;
-	width: 1em;
-	margin-right: .2em;
-	text-align: center;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1em;
-	margin-left: .2em;
-}
-
-
-.errorClass {
-	position: absolute;
-    border: 2px solid #CF211A;
-    padding: 5px;
-    border-radius: 5px;
-    color: #CF211A;
-    font-weight: 600;
-    margin-top: -51px;
-    margin-left: 179px;
-    background: #fff;
-    display:none;
-}
-
-.errorClass::after {
-    content: "";
-    height: 0px;
-    width: 0px;
-    display: block;
-    clear: both;
-    position: absolute;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-top: 7px solid #CF211A;
-    margin-top: 5px;
-}
 
