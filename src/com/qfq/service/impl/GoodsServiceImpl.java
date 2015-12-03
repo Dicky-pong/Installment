@@ -46,5 +46,13 @@ public class GoodsServiceImpl implements GoodsService{
 		}
 		return null;
 	}
+
+	public Goods getGoods(String goodsId) {
+		List<Goods> list = baseDao.findByHql("from Goods where id = "+goodsId);
+		if(list != null && list.size() != 0){
+			return list.get(0);
+		}
+		return null;
+	}
 	
 }

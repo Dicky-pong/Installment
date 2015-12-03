@@ -1,4 +1,7 @@
 (function() {
+    function aa(){
+    	alert('sd');
+    }
 	function validate(field, alerttxt) {
 		with(field) {
 			if (value == null || value == "") {
@@ -20,10 +23,6 @@
 				brand.focus();
 				return false
 			}
-//			if (validate(price, "请填写价格") == false) {
-//				price.focus();
-//				return false
-//			}
 			if (validate(date, "请填写上市时间") == false) {
 				date.focus();
 				return false
@@ -53,14 +52,19 @@
 				var str = document.getElementsByClassName("style")[0].outerHTML;
 				var type =document.getElementsByClassName('type')[0].value;
 				var price = document.getElementsByClassName('price')[0].value;
+				var count = document.getElementsByClassName('count')[0].value;
 				console.log(str);
-				str = str + "<tr class='style'><td>类型</td><td><input class='type' type='text' name='style'/></td><td>价格</td><td><input class='price' type='text' name='price'/></td></tr>";
+				str = str + "<tr class='style'><td>类型</td><td><input class='type' type='text' name='style'/></td>" +
+						"<td>价格</td><td><input class='price' type='text' name='price'/></td>" +
+						"<td>数量</td><td><input class='count' type='text' name='count'/></td></tr>";
 				document.getElementsByClassName("style")[0].outerHTML = str;
 				document.getElementsByClassName('type')[0].value = type;
 				document.getElementsByClassName('price')[0].value = price;
+				document.getElementsByClassName('count')[0].value = count;
 				document.getElementsByClassName('style')[0].className='no';
 				document.getElementsByClassName('type')[0].className='no';
 				document.getElementsByClassName('price')[0].className='no';
+				document.getElementsByClassName('count')[0].className='no';
 
 				// console.log(str);
 			}
@@ -68,4 +72,5 @@
 	}
 	add();
 
+	
 })();

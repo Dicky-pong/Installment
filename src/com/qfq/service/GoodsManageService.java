@@ -20,12 +20,12 @@ public interface GoodsManageService {
 	public List<Category> getSecondCategory(int categoryId);
 	
 	/**
-	 * 保存商品，和与之关联颜色、类型及其价格、分期及其单价
+	 * 保存商品，和与之关联颜色、分期及其单价、类型及其价格与数量
 	 * @param goods
 	 * @param categoryId
 	 * @param colors
 	 * @param periods
-	 * @param type$price
+	 * @param type$price 
 	 * @return
 	 */
 	public boolean saveGoods(Goods goods, Integer categoryId, String[] colors, String[] periods, String[][] type$price);

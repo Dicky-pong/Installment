@@ -19,4 +19,5 @@ public interface GoodsService {
 	
 	public List<Goods> getGoodsByCategory(int categoryId, int start, int limit);
 	
+	public Goods getGoods(String goodsId);
 }

@@ -1,5 +1,10 @@
 package com.qfq.action;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,12 +26,17 @@ import com.qfq.service.GoodsManageService;
 import com.qfq.utils.Page;
 import com.qfq.utils.PageUtil;
 import com.qfq.utils.ResponseUtil;
+
 @Scope(value="prototype")
 public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,ServletResponseAware{
 	
 	private HttpServletResponse response;
 	private GoodsManageService goodsManageService;
 	private Page page;
+	
+	private File file;
+	private String fileContentType; // 文件的内容类型  
+	private String fileFileName; // 上传文件名
 	
 	private Goods goods = new Goods();
 	private List<Goods> goodsList;
@@ -37,12 +47,38 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 	private String[] periodCheck;//添加商品时接受分期值
 	private String[] price;//添加商品时接受商品类型对应的价钱
 	private String[] style;//添加商品时接受商品类型值
+	private String[] count;//添加商品时接受商品类型对应的数量
 	private String categoryId;//添加商品时的二级分类ID
 	
 	private String goodsName;
 	private String goodsBrand;//接受条件查询时的
 	private String categoryId4Search;
 	
+	
+	public String getFileContentType() {
+		return fileContentType;
+	}
+	public void setFileContentType(String fileContentType) {
+		this.fileContentType = fileContentType;
+	}
+	public String getFileFileName() {
+		return fileFileName;
+	}
+	public void setFileFileName(String fileFileName) {
+		this.fileFileName = fileFileName;
+	}
+	public File getFile() {
+		return file;
+	}
+	public void setFile(File file) {
+		this.file = file;
+	}
+	public String[] getCount() {
+		return count;
+	}
+	public void setCount(String[] count) {
+		this.count = count;
+	}
 	public String getCategoryId4Search() {
 		return categoryId4Search;
 	}
@@ -101,8 +137,6 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 		return periodCheck;
 	}
 	
-	
-
 	public void setPeriodCheck(String[] periodCheck) {
 		this.periodCheck = periodCheck;
 	}
@@ -131,6 +165,7 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 	public void setGoods(Goods goods) {
 		this.goods = goods;
 	}
+	
 	//installment暂时不能在这里关联查询出来！会出错，注意！！1
 	public String showGoods(){
 		HttpServletRequest request = ServletActionContext.getRequest();
@@ -179,28 +214,44 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 	}
 	
 	public String createGoods(){
-		System.out.println("crateGoods");
-		if(price != null){
-			String[][] price$style = new String[price.length][2];
-			for(int i=0; i<price.length; i++){
-				price$style[i][0] = style[i];
-				price$style[i][1] = price[i];
-				System.out.println("style & price : "+style[i]+" - "+price[i]);
+		//HttpServletRequest req = ServletActionContext.getRequest();
+		try{
+			String root = ServletActionContext.getRequest().getRealPath("/img");
+			InputStream is = new FileInputStream(file);
+			File destFile = new File(root, fileFileName);
+			OutputStream os = new FileOutputStream(destFile);
+			byte[] buffer = new byte[400];
+			int length = 0;
+			while(-1 != (length = is.read(buffer))){
+				os.write(buffer, 0, length);
 			}
-//			System.out.println("perpare to create!!!");
-			try{
+			is.close();
+			os.close();
+			goods.setPicture("/img/"+fileFileName);
+			System.out.println("crateGoods - fileName: "+fileFileName+" fileResultPath "+destFile.getPath());
+			if(price != null){
+				String[][] price$style = new String[price.length][3];
+				for(int i=0; i<price.length; i++){
+					price$style[i][0] = style[i];
+					price$style[i][1] = price[i];
+					price$style[i][2] = count[i];
+					System.out.println("style & price : "+style[i]+" - "+price[i]+" - "+count[i]);
+				}
 				goodsManageService.saveGoods(goods, Integer.valueOf(categoryId), colorCheck, periodCheck, price$style);
-			}catch (Exception e) {
-				e.printStackTrace();
 			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			return ERROR;
 		}
 		return SUCCESS;
 	}
+	
 	public String toCreateGoods(){
 		System.out.println("GoodsManageAction - toCreateGoods - categoryList: "+categoryList);
 		setCategoryList(goodsManageService.getAllCatagory());
 		return SUCCESS;
 	}
+	
 	/**
 	 * ajax分类二级联动获取二级分类的接口
 	 */

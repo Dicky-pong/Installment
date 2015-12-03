@@ -31,13 +31,13 @@ public class Installment implements java.io.Serializable {
 
 	/** full constructor */
 	public Installment(Goods goods, Userinfo userinfo, Color color,
-			String orderId, Integer payMonth, Integer paidMonth,
+			String orderID, Integer payMonth, Integer paidMonth,
 			Double payPrice, String goodsType, String date, Integer status,
 			String address, String tel, String receiver) {
 		this.goods = goods;
 		this.userinfo = userinfo;
 		this.color = color;
-		this.orderID = orderId;
+		this.orderID = orderID;
 		this.payMonth = payMonth;
 		this.paidMonth = paidMonth;
 		this.payPrice = payPrice;
@@ -87,8 +87,12 @@ public class Installment implements java.io.Serializable {
 		return this.orderID;
 	}
 
-	public void setOrderID(String orderId) {
-		this.orderID = orderId;
+	public String getorderID() {
+		return this.orderID;
+	}
+
+	public void setorderID(String orderID) {
+		this.orderID = orderID;
 	}
 
 	public Integer getPayMonth() {

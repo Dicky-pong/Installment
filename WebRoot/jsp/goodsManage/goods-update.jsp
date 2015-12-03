@@ -68,7 +68,7 @@ function jump(){
         <div id="" class="registration-form">
           <h3> <b>商品信息登记表</b>
           </h3>
-          <form id="message" action="updateGoods.do">
+          <form id="message" action="updateGoods.do" method="post">
             <table>
               <tr>
                 <td>商品ID</td>
