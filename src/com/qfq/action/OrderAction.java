@@ -252,8 +252,6 @@ public class OrderAction extends BaseAction{
 		/*
 		 * 4.从数据库获取符合条件的订单
 		 */
-		System.out.println("准备进入方法");
-		
 		PageBean<Installment> pb = orderService.findByCriteria(0,pageCode, criteria);
 		/*
 		 * 5.给PageBean设置url，保存PageBean,转发到/jsps/book/list.jsp
