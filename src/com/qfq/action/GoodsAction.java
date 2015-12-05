@@ -10,18 +10,39 @@ import com.qfq.po.Category;
 import com.qfq.po.Goods;
 import com.qfq.po.Goodstype;
 import com.qfq.service.GoodsService;
+import com.qfq.utils.Page;
+import com.qfq.utils.PageUtil;
 
 public class GoodsAction extends BaseAction{
 
 	private GoodsService goodsService;
+	private Page page;
 	
 	private List<Category> categoryList;
 	private List<Goods> goodsList;
 	private Goods goods;
+	private String searchOption;//查询时的接受条件
+	private String categoryId4Search;//查询时需要接受的二级分类ID
 	
 	//setter,getter
 	public GoodsService getGoodsService() {
 		return goodsService;
+	}
+
+	public String getSearchOption() {
+		return searchOption;
+	}
+
+	public void setSearchOption(String searchOption) {
+		this.searchOption = searchOption;
+	}
+
+	public String getCategoryId4Search() {
+		return categoryId4Search;
+	}
+
+	public void setCategoryId4Search(String categoryId4Search) {
+		this.categoryId4Search = categoryId4Search;
 	}
 
 	public Goods getGoods() {
@@ -52,28 +73,37 @@ public class GoodsAction extends BaseAction{
 		this.goodsService = goodsService;
 	}
 
+	public Page getPage() {
+		return page;
+	}
+
+	public void setPage(Page page) {
+		this.page = page;
+	}
+
 	//Action的方法
 	public String showGoods(){
-		HttpServletRequest request = ServletActionContext.getRequest();
-		String categoryId = request.getParameter("categoryId");
-		if(categoryId != null && !"".equals(categoryId)){
-			setGoodsList(goodsService.getGoodsByCategory(Integer.valueOf(categoryId), 0, 20));
-		}else{
-			this.goodsList = goodsService.getAllGoods(0, 20);
+		HttpServletRequest req = ServletActionContext.getRequest();
+		int currentPage = 1;
+		String currentPageStr = req.getParameter("currentPage");
+		if (null == currentPageStr || "".equals(currentPageStr)) {
+			currentPage = 1;
+		} else {
+			currentPage = Integer.parseInt(currentPageStr);
 		}
-		
-		setCategoryList(goodsService.getAllCatagory());
-//		for(Category c : categoryList){
-//			if(null != c.getCategories()){
-//				for(Object o : c.getCategories()){
-//					System.out.println("zi: " + ((Category) o).getName());
-//				}
-//			}
-//			System.out.println("fu: " + c.getName());;
-//		}
-//		for(Goods g : goodsList){
-//			System.out.println("goods: " + g.getName());
-//		}
+		if(searchOption == null||"".equals(searchOption.trim())){
+			searchOption="";
+		}
+		int everyPage = 8;
+		int totalCount = goodsService.getGoodsCount(searchOption, categoryId4Search);
+		page = PageUtil.createPage(everyPage, totalCount, currentPage);
+		goodsList = goodsService.getPaperGoods(searchOption, categoryId4Search, page.getBeginIndex(), everyPage);
+		categoryList = goodsService.getAllCatagory();
+		System.out.println("GoodsAction "+totalCount+"- searchOption: "+searchOption+"\ncategoryId4Search:"+categoryId4Search);
+		if(goodsList != null && goodsList.size() != 0)
+			System.out.println("the goodsList : "+goodsList.size());
+		else
+			System.out.println("goodsList is null!!");
 		return SUCCESS;
 	}
 	

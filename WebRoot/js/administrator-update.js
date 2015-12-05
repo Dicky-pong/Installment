@@ -1,7 +1,7 @@
 (function() {
 	function validate(field, alerttxt) {
 		with(field) {
-			if (value == null || value == "") {
+			if (field == null || field == "") {
 				alert(alerttxt);
 				return false
 			} else {
@@ -20,7 +20,8 @@
 				password.focus();
 				return false
 			} else {
-				window.location.href = "GLYGL.html";
+				form.action = "updateAdmin.do";
+				form.submit();
 			}
 		}
 	}

@@ -5,10 +5,10 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>添加管理员用户</title>
-  <link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
-  <link rel="stylesheet" type="text/css" href="../../css/style.css" />
-  <script src="../../js/jquery.js"></script>
-  <script src="../../js/bootstrap.min.js"></script>
+  <link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/style.css" />
+  <script src="${pageContext.request.contextPath }/js/jquery.js"></script>
+  <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
   <script>
 function jump(){
  alert("添加管理员用户成功");
@@ -19,7 +19,7 @@ function jump(){
 <body>
 
   <div id="gdou" class="inline_div" >
-    <img src="../../image/qfq.png"width="300" height="80" />
+    <img src="${pageContext.request.contextPath }/image/qfq.pn${pageContext.request.contextPath }/h="300" height="80" />
   </div>
 
   <div id="" class="">
@@ -68,35 +68,29 @@ function jump(){
           <table class="sj">
               <td>管理员ID</td>
               <td>
-                <input type="text" name="administrator-number" value=""readonly/> 
+                <input type="text" name="name" value="" placeholder="必填"/> 
               </td>
-            <tr>
-              <td>姓名</td>
-              <td>
-                <input type="text" name="name"value="" placeholder="必填"/>
-                </td>
-            </tr>
             <tr>
               <td>密码</td>
               <td>
-                <input type="text" name="password"value="" placeholder="必填"/>
+                <input type="text" name="password" value="" placeholder="必填"/>
       
               </td>
             </tr>
             <tr>
               <td>角色</td>
               <td>
-                <select>
-                  <option>商品管理员</option>
-                  <option>订单管理员</option>
-                  <option>数据管理员</option>
+                <select name="roleId">
+                  <c:forEach items="${requestScope.roleList }" var="role">
+                  	<option value="${role.id }">${role.name }</option>
+                  </c:forEach>
                 </select>
               </td>
             </tr>
           </table>
 
             <br>
-            <button type="button" class="btn btn-default" onclick="jump()">提交</button>
+            <button type="button" class="btn btn-default" >提交</button>
             &nbsp&nbsp&nbsp
             <button type="reset" class="btn btn-default">重置</button>
           </form>
@@ -113,6 +107,6 @@ function jump(){
   </div>
 
 </body>
-  <script src="../../js/administrator-add.js"></script>
+  <script src="${pageContext.request.contextPath }/js/administrator-add.js"></script>
 
 </html>

@@ -10,7 +10,7 @@
 			<result name="success">/jsp/goods/goodslist.jsp</result>
 		</action>
 		<action name="showGoodsDetail" class="goodsAction" method="showGoodsDetail">
-			<result>/jsp/goods/goodsDetail.jsp</result>
+			<result name="success">/jsp/goods/goodsDetail.jsp</result>
 		</action>
 
 	</package>

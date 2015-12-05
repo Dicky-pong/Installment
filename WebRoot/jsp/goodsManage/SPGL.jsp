@@ -8,10 +8,6 @@
 <link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/style.css" />
 <script>
-	function jump() {
-		alert("删除成功");
-		window.location.href = "SPGL.html";
-	}
 	function selectorChange(){
 		var firstSelector = document.getElementById("firstSelector");
 		var categoryId = firstSelector.options[firstSelector.selectedIndex].value;

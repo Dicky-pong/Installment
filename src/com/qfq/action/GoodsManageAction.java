@@ -22,7 +22,7 @@ import com.qfq.entity.CategoryEntity;
 import com.qfq.po.Category;
 import com.qfq.po.Goods;
 import com.qfq.po.Goodstype;
-import com.qfq.service.GoodsManageService;
+import com.qfq.service.GoodsService;
 import com.qfq.utils.Page;
 import com.qfq.utils.PageUtil;
 import com.qfq.utils.ResponseUtil;
@@ -31,7 +31,7 @@ import com.qfq.utils.ResponseUtil;
 public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,ServletResponseAware{
 	
 	private HttpServletResponse response;
-	private GoodsManageService goodsManageService;
+	private GoodsService goodsService;
 	private Page page;
 	
 	private File file;
@@ -50,9 +50,9 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 	private String[] count;//添加商品时接受商品类型对应的数量
 	private String categoryId;//添加商品时的二级分类ID
 	
-	private String goodsName;
-	private String goodsBrand;//接受条件查询时的
-	private String categoryId4Search;
+	private String goodsName;//条件查询时的条件
+	private String goodsBrand;//条件查询时的条件
+	private String categoryId4Search;//查询时需要接受的二级分类ID
 	
 	
 	public String getFileContentType() {
@@ -140,11 +140,12 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 	public void setPeriodCheck(String[] periodCheck) {
 		this.periodCheck = periodCheck;
 	}
-	public GoodsManageService getGoodsManageService() {
-		return goodsManageService;
+	
+	public GoodsService getGoodsService() {
+		return goodsService;
 	}
-	public void setGoodsManageService(GoodsManageService goodsManageService) {
-		this.goodsManageService = goodsManageService;
+	public void setGoodsService(GoodsService goodsService) {
+		this.goodsService = goodsService;
 	}
 	public List<Category> getCategoryList() {
 		return categoryList;
@@ -170,7 +171,7 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 	public String showGoods(){
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String goodsId = request.getParameter("goodsId");
-		goods = goodsManageService.getGoods(Integer.valueOf(goodsId).intValue());
+		goods = goodsService.getGoods(goodsId.trim());
 		
 		for(Object o : goods.getGoodstypes()){
 			Goodstype gt = (Goodstype)o;
@@ -201,10 +202,10 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 //			categoryId4Search = "";
 //		}
 		int everyPage = 5;
-		int totalCount = goodsManageService.getGoodsCount(goodsName, goodsBrand, categoryId4Search);
+		int totalCount = goodsService.getGoodsCount(goodsName, goodsBrand, categoryId4Search);
 		page = PageUtil.createPage(everyPage, totalCount, currentPage);
-		goodsList = goodsManageService.getPaperGoods(goodsName, goodsBrand, categoryId4Search, page.getBeginIndex(), everyPage);
-		categoryList = goodsManageService.getAllCatagory();
+		goodsList = goodsService.getPaperGoods(goodsName, goodsBrand, categoryId4Search, page.getBeginIndex(), everyPage);
+		categoryList = goodsService.getAllCatagory();
 		System.out.println("GoodsManageAction - goodsName:"+goodsName+"\ngoodsbrand: "+goodsBrand+"\ncategoryId4Search:"+categoryId4Search);
 		if(goodsList != null && goodsList.size() != 0)
 			System.out.println("the goodsList : "+goodsList.size());
@@ -237,7 +238,7 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 					price$style[i][2] = count[i];
 					System.out.println("style & price : "+style[i]+" - "+price[i]+" - "+count[i]);
 				}
-				goodsManageService.saveGoods(goods, Integer.valueOf(categoryId), colorCheck, periodCheck, price$style);
+				goodsService.saveGoods(goods, Integer.valueOf(categoryId), colorCheck, periodCheck, price$style);
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -248,7 +249,7 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 	
 	public String toCreateGoods(){
 		System.out.println("GoodsManageAction - toCreateGoods - categoryList: "+categoryList);
-		setCategoryList(goodsManageService.getAllCatagory());
+		setCategoryList(goodsService.getAllCatagory());
 		return SUCCESS;
 	}
 	
@@ -260,9 +261,9 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 		String categoryId = request.getParameter("categoryId");//如何保证categoryId一定有效？
 		List<Category> list;
 		if(null == categoryId || "".equals(categoryId)){
-			list =  goodsManageService.getSecondCategory(0);
+			list =  goodsService.getSecondCategory(0);
 		}
-		list =  goodsManageService.getSecondCategory(Integer.valueOf(categoryId).intValue());
+		list =  goodsService.getSecondCategory(Integer.valueOf(categoryId).intValue());
 		JSONObject object = new JSONObject();
 		if(list != null){
 			JSONArray array = new JSONArray();
@@ -293,14 +294,14 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 			for(int i =0; i<strs.length; i++){
 				System.out.println("strs的第"+i+"个字符值： "+strs[i]);
 			}
-			System.out.println("deleteGoods: "+goodsManageService.deleteGoods(strs));
+			System.out.println("deleteGoods: "+goodsService.deleteGoods(strs));
 		}
 		return SUCCESS;
 	}
 	
 	public String updateGoods(){
 		System.out.println("Action updateGoods: id:"+goods.getId()+" name"+goods.getName()+" brand:"+goods.getBrand());
-		goodsManageService.updateGoods(goods);
+		goodsService.updateGoods(goods);
 		return SUCCESS;
 	}
 	

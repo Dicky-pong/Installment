@@ -17,6 +17,20 @@
  				document.write(unescape("%3Cscript src='js/jquery-2.1.4.min.js' type='text/javascript'%3E%3C/script%3E"));
 			}
 		})()
+		function prePage(obj, page, searchOption, categoryId4Search){
+		if(page == '0'){
+			alert("已经是第一页了");
+			return false;
+		}
+		obj.href = 'showGoods.do?currentPage='+page+'&searchOption='+searchOption+'&categoryId4Search='+categoryId4Search;
+	}
+	function nextPage(obj, page, max, searchOption, categoryId4Search){
+		if(page > max){
+			alert("已经是最后一页了");
+			return false;
+		}
+		obj.href = 'showGoods.do?currentPage='+page+'&searchOption='+searchOption+'&categoryId4Search='+categoryId4Search;
+	}
 	</script>
 </head>
 <body>
@@ -38,17 +52,7 @@
 						<li>${category.name }</li><div class="bd"></div>
 					</c:forEach>
 				</ul>
-				<%--<ul>
-					<li>一级菜单1</li><div class="bd"></div><!--
-				 --><li>一级菜单2</li><div class="bd"></div><!--
-				 --><li>一级菜单3</li><div class="bd"></div><!--
-				 --><li>一级菜单4</li><div class="bd"></div><!--
-				 --><li>一级菜单5</li><div class="bd"></div><!--
-				 --><li>一级菜单6</li><div class="bd"></div><!--
-				 --><li>一级菜单7</li><div class="bd"></div><!--
-			     --><li>一级菜单8</li>
-				</ul>
-			--%></div>
+				</div>
 			<div class="show_class">
 				<c:forEach items="${requestScope.categoryList }" var="category" varStatus="status">
 					
@@ -57,117 +61,13 @@
 						<div class="title"><img src="${pageContext.request.contextPath }/img/gnb_banner_line.gif" alt="">
 							<ul>
 								<c:forEach items="${category.categories }" var="category2">
-									<li><a href="http://localhost:8080/Installment/showGoods.do?categoryId=${category2.id }">${category2.name}</a></li>
+									<li><a href="http://localhost:8080/Installment/showGoods.do?categoryId4Search=${category2.id }">${category2.name}</a></li>
 								</c:forEach>
 							</ul>
 						</div>
 					</div>
-					<%--<div class="other_class">
-						<div class="other_bg">
-							<img src="${pageContext.request.contextPath }/img/GNB_BANNER_DST_150807.jpg" alt="">
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-							
-                        
-						</div>
 					</div>
-				--%></div>
 				</c:forEach>
-				
-				<div id="wrapper02" class="section">
-					<div class="title_bg">
-						<div class="title"><img src="${pageContext.request.contextPath }/img/gnb_banner_line.gif" alt="">
-							<ul><!--
-							--><li>二级菜单1</li><!--
-							--><li>二级菜单2</li><!--
-							--><li>二级菜单3</li><!--
-							--><li>二级菜单4</li><!--
-						    --><li>二级菜单5</li>
-							</ul>
-						</div>
-					</div>
-					<div class="other_class">
-						<div class="other_bg">
-							<img src="${pageContext.request.contextPath }/img/GNB_BANNER_DST_150807.jpg" alt="">
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-	                        <ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-                            <ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-                        
-						</div>
-					</div>
-				</div>
 				
 			</div>
 		</nav>
@@ -176,12 +76,9 @@
 				<div class="ad_img"></div>
 				<div class="class_selection">
 					<ul>
-						<li><a href="javascript:;">二级分类1</a></li><!--
-					 --><li><a href="javascript:;">二级分类2</a></li><!--
-					 --><li><a href="javascript:;">二级分类3</a></li><!--
-					 --><li><a href="javascript:;">二级分类4</a></li><!--
-					 --><li><a href="javascript:;">二级分类5</a></li><!--
-					 --><li><a href="javascript:;">二级分类6</a></li>
+						<c:forEach items="${requestScope.categoryList }" var="category"> 
+							<li><a href="javascript:;">${category.name }</a></li>
+						</c:forEach>
 					</ul>
 					<ol>
 						<li><a href="javascript:;">三级分类1</a></li><!--
@@ -194,59 +91,6 @@
 					 --><li><a href="javascript:;">三级分类8</a></li><!--
 				     --><li><a href="javascript:;">三级分类9</a></li>
 					</ol>
-				</div>
-			</div>
-
-			<div class="classification">
-				<div class="title">三级分类*共1333件商品</div>
-				<div class="classification_attr">
-					<div class="attrname">属性1</div>
-					<ul>
-						<li>选项1</li><!--
-					 --><li>选项2</li><!--
-					 --><li>选项3</li><!--
-					 --><li>选项4</li><!--
-					 --><li>选项5</li><!--
-					 --><li>选项6</li><!--
-					 --><li>选项7</li><!--
-					 --><li>选项8</li><!--
-					 --><li>选项9</li><!--
-					 --><li>选项10</li><!--
-					 --><li>选项11</li><!--
-					 --><li>选项12</li><!--
-					 --><li>选项13</li><!--
-					 --><li>选项14</li><!--
-					 --><li>选项15</li><!--
-				     --><li>选项16</li>
-					</ul>						
-				</div>
-				<div class="classification_attr">
-					<div class="attrname">属性1</div>
-					<ul>
-						<li>选项1</li><!--
-					 --><li>选项2</li><!--
-					 --><li>选项3</li><!--
-					 --><li>选项4</li><!--
-					 --><li>选项5</li><!--
-					 --><li>选项6</li>
-					</ul>						
-				</div>
-				<div class="classification_attr">
-					<div class="attrname">属性1</div>
-					<ul>
-						<li>选项1</li><!--
-					 --><li>选项2</li><!--
-					 --><li>选项3</li><!--
-					 --><li>选项4</li><!--
-					 --><li>选项5</li><!--
-					 --><li>选项6</li><!--
-					 --><li>选项7</li><!--
-					 --><li>选项8</li><!--
-					 --><li>选项9</li><!--
-					 --><li>选项10</li><!--
-					 --><li>选项11</li><!--
-					 --><li>选项12</li>
-					</ul>						
 				</div>
 			</div>
 
@@ -265,7 +109,7 @@
 						<c:forEach var="goods" items="${requestScope.goodsList }">
 							<li>
 								<div class="good_img"><img src="${pageContext.request.contextPath }${goods.picture}" alt=""></div>
-								<a href="showGoodsDetail?goodsId=${goods.id }" class="name">${goods.name }</a>
+								<a href="showGoodsDetail.do?goodsId=${goods.id }" class="name">${goods.name }</a>
 								<%-- 有一个mothprovide是空的就报异常 --%>
 								<c:if test="${goods.monthprovides.iterator().hasNext()}" >
 									<c:set var="monthprovide" value="${goods.monthprovides.iterator().next()}" scope="page"/>
@@ -276,10 +120,23 @@
 					</ul>
 				</div>
 			</div>
+			<div class="page_wrap">
+				<a href="#" onclick="prePage(this, ${page.currentPage-1},'${requestScope.searchOption }','${requestScope.categoryId4Search }')" class="arrow_ll"></a>
+				<c:forEach begin="1" end="${requestScope.page.totalPage}" var="str" step="1">
+					<c:if test="${page.currentPage == str }">
+						<a href="showGoods.do?currentPage=${str }&searchOption=${requestScope.searchOption }&categoryId4Search=${requestScope.categoryId4Search}" class="on"><b>${str }</b></a>
+					</c:if>
+					<c:if test="${page.currentPage != str }">
+						<a href="showGoods.do?currentPage=${str }&searchOption=${requestScope.searchOption }&categoryId4Search=${requestScope.categoryId4Search}">${str }</a>
+					</c:if>
+				</c:forEach>
+				<a href="#" onclick="nextPage(this, ${page.currentPage+1}, ${page.totalPage },'${requestScope.searchOption }','${requestScope.categoryId4Search }')" class="arrow_rr"></a>
+				
+			</div>
 		</section>
 	</section>
 	<footer>
-		<h4>农资联盟杯作品展示小demo</h4>
+		<h4>趣分期第六组工作室</h4>
 		<p>&copy;copyright EarlTechnology 2015 </p>
 	</footer>
 	<script src="${pageContext.request.contextPath }/js/index.js"></script>

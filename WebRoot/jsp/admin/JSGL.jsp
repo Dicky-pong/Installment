@@ -5,9 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>角色管理</title>
-<link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link rel="stylesheet" type="text/css" href="../../css/style.css" />
-<link rel="stylesheet" type="text/css" href="../../css/jsgl.css" />
+<link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/style.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/jsgl.css" />
 <script>
 	function jump() {
 		alert("删除成功");
@@ -17,11 +17,11 @@
 
 </head>
 <body>
-	<script src="../../js/jquery.js"></script>
-	<script src="../../js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath }/js/jquery.js"></script>
+	<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 
 	<div id="gdou" class="inline_div">
-		<img src="../../image/qfq.png" width="300" height="80" />
+		<img src="${pageContext.request.contextPath }/images/qfq.png" width="300" height="80" />
 	</div>
 
 	<div id="" class="">
@@ -93,11 +93,11 @@
 			<center>
 				<div id="" class="">
 					<div class="operationbutton">
-						<a href="role-add.html"><img src="../../image/add.png">添加</a>
+						<a href="role-add.html"><img src="${pageContext.request.contextPath }/images/add.png">添加</a>
 					</div>
 					<div class="operationbutton">
 						<a href="JSGL.html" onclick="jump()"><img
-							src="../../image/delect.png">删除</a>
+							src="${pageContext.request.contextPath }/images/delect.png">删除</a>
 					</div>
 
 				</div>
