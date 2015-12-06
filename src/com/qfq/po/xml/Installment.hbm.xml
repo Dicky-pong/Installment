@@ -43,11 +43,8 @@
         <property name="address" type="java.lang.String">
             <column name="address" length="11" />
         </property>
-        <property name="tel" type="java.lang.String">
-            <column name="tel" length="11" />
-        </property>
-        <property name="receiver" type="java.lang.String">
-            <column name="receiver" length="11" />
+        <property name="tel" type="java.lang.Integer">
+            <column name="tel" />
         </property>
     </class>
 </hibernate-mapping>

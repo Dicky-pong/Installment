@@ -20,8 +20,7 @@ public class Installment implements java.io.Serializable {
 	private String date;
 	private Integer status;
 	private String address;
-	private String tel;
-	private String receiver;
+	private Integer tel;
 
 	// Constructors
 
@@ -33,7 +32,7 @@ public class Installment implements java.io.Serializable {
 	public Installment(Goods goods, Userinfo userinfo, Color color,
 			String orderID, Integer payMonth, Integer paidMonth,
 			Double payPrice, String goodsType, String date, Integer status,
-			String address, String tel, String receiver) {
+			String address, Integer tel) {
 		this.goods = goods;
 		this.userinfo = userinfo;
 		this.color = color;
@@ -46,7 +45,6 @@ public class Installment implements java.io.Serializable {
 		this.status = status;
 		this.address = address;
 		this.tel = tel;
-		this.receiver = receiver;
 	}
 
 	// Property accessors
@@ -81,10 +79,6 @@ public class Installment implements java.io.Serializable {
 
 	public void setColor(Color color) {
 		this.color = color;
-	}
-
-	public String getOrderID() {
-		return this.orderID;
 	}
 
 	public String getorderID() {
@@ -151,20 +145,12 @@ public class Installment implements java.io.Serializable {
 		this.address = address;
 	}
 
-	public String getTel() {
+	public Integer getTel() {
 		return this.tel;
 	}
 
-	public void setTel(String tel) {
+	public void setTel(Integer tel) {
 		this.tel = tel;
-	}
-
-	public String getReceiver() {
-		return this.receiver;
-	}
-
-	public void setReceiver(String receiver) {
-		this.receiver = receiver;
 	}
 
 }

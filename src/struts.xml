@@ -47,11 +47,7 @@
 			<result name="success" type="redirectAction">showGoods</result>
 			<result name="failed" >/jsp/index.jsp</result>
 			<result name="order" >/jsp/order/order.jsp</result>
-			<result name="detil" >/jsp/order/orderdetil.jsp</result>
 			<result name="pay" >/jsp/order/pay.jsp</result>
-			<result name="msg" >/jsp/msg.jsp</result>
-			<result name="ordermag" >/jsp/orderManager/ordermag.jsp</result>
-			<result name="orderdetail" >/jsp/orderManager/orderdetail.jsp</result>
 		</action>
 		
 	</package>
