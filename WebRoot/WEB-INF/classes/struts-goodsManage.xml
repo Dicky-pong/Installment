@@ -11,7 +11,7 @@
 		</action>
 		
 		<action name="createGoods" class="goodsManageAction" method="createGoods" >
-			<result name="success">/jsp/goodsManage/goods-create.jsp</result>
+			<result name="success" type="redirectAction">showAllGoods</result>
 		</action>
 		
 		<action name="showAllGoods" class="goodsManageAction" method="showAllGoods" >

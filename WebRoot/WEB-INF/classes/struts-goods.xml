@@ -9,9 +9,9 @@
 		<action name="showGoods" class="goodsAction" method="showGoods" >
 			<result name="success">/jsp/goods/goodslist.jsp</result>
 		</action>
-		<!-- <action name="rent-update" class="com.gym.action.StudentAction" method="">
-			<result>/jsp/xsgl/student-rent-update.jsp</result>
-		</action> -->
+		<action name="showGoodsDetail" class="goodsAction" method="showGoodsDetail">
+			<result name="success">/jsp/goods/goodsDetail.jsp</result>
+		</action>
 
 	</package>
 </struts>
