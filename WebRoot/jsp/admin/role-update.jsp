@@ -1,10 +1,11 @@
+
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>更新j角色</title>
+<title>更新角色</title>
 <link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
 <script src="../../js/jquery.js"></script>
@@ -75,10 +76,6 @@
 				</div>
 			</center>
 
-
-
-
-
 		</div>
 
 	</div>
@@ -86,8 +83,6 @@
 	<div id="yw" class="">
 		<center>Copyright &copy; 2014安室工作室版权所有</center>
 	</div>
-
-
 
 </body>
 <script src="../../js/role-update.js"></script>

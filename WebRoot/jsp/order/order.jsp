@@ -16,6 +16,10 @@
                 document.write(unescape("%3Cscript src='js/jquery-2.1.4.min.js' type='text/javascript'%3E%3C/script%3E"));
             }
         })()
+        
+ 
+        
+        
     </script>
     <style>
         .main {
@@ -75,21 +79,17 @@
         <div class="mod-main mod-comm lefta-box" id="order02">
             <div class="mt">
                 <ul class="extra-l">
-                    <li class="fore1"><a href="//order.jd.com/center/list.action" class="txt curr">全部订单</a></li>
-                    <li><a href="//order.jd.com/center/list.action?s=1" id="ordertoPay" clstag="click|keycount|orderinfo|waitPay" class="txt">待付款</a></li>
-                    <li><a href="//order.jd.com/center/list.action?s=128" id="ordertoReceive" clstag="click|keycount|orderinfo|waitReceive" class="txt">待收货</a></li>
-                    <li><a href="http://club.jd.com/mycomments.aspx" id="ordertoComment" target="_blank" class="txt" clstag="click|keycount|orderinfo|daipingjia">待评价</a></li>
-                    <li class="fore2"><a href="//order.jd.com/center/alwaysbuy.action" id="ordertoBuy" clstag="click|keycount|orderinfo|changgoutab"><strong>我的常购商品</strong><span class="new"></span></a></li>
-
-                    <li class="fore2"><a href="//order.jd.com/center/tejiaqingcang.action" id="ordertoTejia" clstag="click|keycount|orderinfo|tjqc_2"><strong>特价·好货</strong><span class="new"></span></a></li>
-
-                    <li class="fore2"><a href="//order.jd.com/center/recycle.action?d=1" clstag="click|keycount|orderlist|dingdanhuishouzhan" class="ftx-03" id="ordertoRecycle">订单回收站</a></li>
+                    <li class="fore1"><a href="<c:url value='/Order_myOrder.do?status=-1'/>" class="txt curr">全部订单</a></li>
+                    <li><a href="<c:url value='/Order_myOrder.do?status=1'/>" clstag="click|keycount|orderinfo|waitPay" class="txt">待付款</a></li>
+                    <li><a href="<c:url value='/Order_myOrder.do?status=3'/>" id="ordertoReceive" clstag="click|keycount|orderinfo|waitReceive" class="txt">待收货</a></li>
                 </ul>
                 <div class="extra-r">
                     <div class="search">
-                        <input id="ip_keyword" type="text" class="itxt" value="商品名称/商品编号/订单号" style="color: rgb(204, 204, 204);">
-                        <a href="javascript:;" class="search-btn" clstag="click|keycount|orderinfo|search">搜索<b></b></a>
-                        <a href="#none" clstag="click|keycount|orderlist|gaoji" class="default-btn high-search">高级<b></b></a>
+                    <form action ="<c:url value='/Order_Criteria.do'/>" id = "myform"  method="post">
+                        <input id="ip_keyword" type="text" class="itxt" value="" name="criteria" placeholder="商品名称/商品编号/订单号" style="color: rgb(204, 204, 204);">
+                        <a href="javascript:;" id="search_key" class="search-btn" >搜索<b></b></a>
+                        <a href="" clstag="click|keycount|orderlist|gaoji" class="default-btn high-search">高级<b></b></a>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -97,12 +97,6 @@
             <div class="mc">
 
 
-                <div class="top-search hide">
-                    <div class="dl">
-                        <a href="#none" clstag="click|keycount|orderlist|fanhui" class="btn-9">返回</a>
-                    </div>
-                    <a href="#none" clstag="click|keycount|orderlist|closehighserach" class="ts-del"></a>
-                </div>
 
                 <table class="td-void order-tb">
                     <colgroup>
@@ -158,7 +152,7 @@
                             <span class="dealtime" title="2014-12-22 23:57:07">${order.date}</span>
                             <input type="hidden" id="datasubmit-7768683403" value="${order.date}">
 
-                <span class="number">订单号：<a name="orderIdLinks" id="idUrl7768683403" target="_blank" href="//order.jd.com/normal/item.action?orderid=7768683403&amp;PassKey=DD510EC2C560A64CC0C251545D9519F7" clstag="click|keycount|orderinfo|order_num">${order.orderId }</a>
+                <span class="number">订单号：<a name="orderIdLinks" id="idUrl7768683403" target="_blank" href="Order_load.do?id=${order.id }" clstag="click|keycount|orderinfo|order_num">${order.orderID }</a>
 
 
 
@@ -166,8 +160,8 @@
 
                             <div class="tr-operate">
                                             <span class="order-shop">
-                            <a href="http://zhtshop.jd.com" target="_blank" class="shop-txt venderName52150" clstag="click|keycount|orderlist|52150">趣分期旗舰店</a>
-                            <a class="btn-im venderChat52150" href="//chat.jd.com/index.action?venderId=52150" target="_blank" title="联系卖家" clstag="click|keycount|orderinfo|chatim"></a>
+                            <a href="#"  class="shop-txt venderName52150" clstag="click|keycount|orderlist|52150">趣分期旗舰店</a>
+                            <a class="btn-im venderChat52150" href="#"  title="联系卖家" clstag="click|keycount|orderinfo|chatim"></a>
                         </span>
 
                         <span class="tel">
@@ -189,15 +183,16 @@
                         <td>
                             <div class="goods-item p-1180323838">
                                 <div class="p-img">
-                                    <a href="http://item.jd.com/1180323838.html" clstag="click|keycount|orderinfo|order_product" target="_blank">
-                                        <img class="" src="<c:url value='/${order.goods.picture }'/>" title="保益康洗鼻器洗鼻盐鼻腔清洗剂 洗鼻壶+洗鼻盐" data-lazy-img="done" width="60" height="60"/>
+                                <!-- 这里填对应的商品详情 -->
+                                    <a href="#" clstag="click|keycount|orderinfo|order_product" target="_blank">
+                                        <img class="" src="<c:url value='/${order.goods.picture }'/>"  data-lazy-img="done" width="60" height="60"/>
 
                                     </a>
                                 </div>
                                
                                 <div class="p-msg">
-                                 
-                                    <div class="p-name"><a href="http://item.jd.com/1180323838.html" class="a-link" clstag="click|keycount|orderinfo|order_product" target="_blank" >${order.goods.name }</a></div>
+                                 <!-- 这里填对应的商品详情 -->
+                                    <div class="p-name"><a href="#" class="a-link" clstag="click|keycount|orderinfo|order_product" target="_blank" >${order.goods.name }</a></div>
                                     
                                     <div class="p-extra">
                                         <ul class="o-info">
@@ -210,10 +205,6 @@
                                 x1
                             </div>
 
-                            <div class="goods-repair">
-                                <a href="http://myjd.jd.com/repair/ordersearchlist.action?searchString=7768683403" target="_blank" clstag="click|keycount|orderinfo|order_repair">返修/退换货</a>
-                            </div>
-                            <div class="clr"></div>
                         </td>
 
                         <td rowspan="1">
@@ -231,26 +222,40 @@
                             <div class="status">
                     <span class="order-status ftx-03">
 
-            	<c:choose>
-		<c:when test="${order.status eq 1}">(等待付款)</c:when>
-		<c:when test="${order.status eq 2}">(准备发货)</c:when>
-		<c:when test="${order.status eq 3}">(等待确认)</c:when>
-		<c:when test="${order.status eq 4}">(交易成功)</c:when>
-		<c:when test="${order.status eq 5}">(已取消)</c:when>
-		
-	</c:choose>
+            
 
                     </span>
-                                <br>
 
-                                <a href="//order.jd.com/normal/item.action?orderid=7768683403&amp;PassKey=DD510EC2C560A64CC0C251545D9519F7" clstag="click|keycount|orderlist|dingdanxiangqing" target="_blank">订单详情</a>
+                                <a href="Order_load.do?id=${order.orderID }" target="_blank">订单详情</a>
                             </div>
                         </td>
                         <td rowspan="1" id="operate7768683403">
                             <div class="operate">
                                 <div id="pay-button-7768683403" _baina="0"></div>
-                                <a href="Order_load.do?id=${order.id }&btn=confirm" class="btn-again" target="_blank" clstag="click|keycount|orderlist|buy"><b></b>立即购买</a><br>
-
+		<c:if test="${order.status eq 1}">
+				 <a href="Order_paymentPre.do?&id=${order.orderID }&btn=pay" class="btn-again" target="_blank" clstag="click|keycount|orderlist|buy"><b></b>立即支付</a><br>
+				 <a href="Order_load.do?id=${order.orderID }&btn=cancel" class="btn-again" target="_blank" clstag="click|keycount|orderlist|buy"><b></b>取消订单</a><br>				
+		</c:if>
+		<c:if test="${order.status eq 2}">
+				 <span class="span-style"style="color: red;" >	
+				 等待发货	
+				 </span>		
+		</c:if>
+		<c:if test="${order.status eq 3}">
+				 <a href="Order_load.do?id=${order.orderID }&btn=confirm" class="btn-again" target="_blank" clstag="click|keycount|orderlist|buy"><b></b>确认收货</a><br>
+		</c:if>
+		<c:if test="${order.status eq 4}">
+				 <span class="span-style"style="color: red;" >	
+				 交易成功	
+				 </span>		
+		</c:if>
+		<c:if test="${order.status eq 5}">
+				 <span class="span-style"style="color: red;" >	
+				 已取消	
+				 </span>		
+		</c:if>
+			</td>
+		</tr>
                             </div>
                         </td>
                     </tr>
@@ -265,10 +270,27 @@
     </section>
 </section>
 <footer>
-    <h4>农资联盟杯作品展示小demo</h4>
+    <h4>趣分期网上购物商城</h4>
     <p>&copy;copyright EarlTechnology 2015 </p>
 </footer>
 <script src="js/index.js"></script>
 <script src="js/goodslist.js"></script>
 </body>
+<script>
+console.log($("#search_key"));
+$("#search_key").bind("click",function(){
+	console.log($("#ip_keyword").val() == "");
+	if($("#ip_keyword").val() == ""){
+		alert("请输入查询关键字！")
+	}else{
+		$("#myform").submit();
+	}
+	
+	console.log("ninico")
+	
+
+});
+
+
+</script>	
 </html>

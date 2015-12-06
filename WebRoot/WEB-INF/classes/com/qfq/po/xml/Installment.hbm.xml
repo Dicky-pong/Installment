@@ -19,7 +19,7 @@
         <many-to-one name="color" class="com.qfq.po.Color" fetch="select">
             <column name="color_id" />
         </many-to-one>
-        <property name="orderId" type="java.lang.String">
+        <property name="orderID" type="java.lang.String">
             <column name="orderID" length="10" />
         </property>
         <property name="payMonth" type="java.lang.Integer">
@@ -43,8 +43,11 @@
         <property name="address" type="java.lang.String">
             <column name="address" length="11" />
         </property>
-        <property name="tel" type="java.lang.Integer">
-            <column name="tel" />
+        <property name="tel" type="java.lang.String">
+            <column name="tel" length="11" />
+        </property>
+        <property name="receiver" type="java.lang.String">
+            <column name="receiver" length="11" />
         </property>
     </class>
 </hibernate-mapping>

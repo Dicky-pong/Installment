@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="popBody">
-                        <form name="frmLgn" id="frmLgn" action="UserInfo_regist.do" method="post" class="loginCont" onsubmit="return true;">
+                        <form name="frmLgn" id="frmLgn" action="UserInfo_regist.do" method="post" class="loginCont" onsubmit="return checkout();">
                             <div class="formInput">
                                 <label for="username">用户名:</label><input id="username" name="userInfoEntity.username" type="text" placeholder="用户名/邮箱/电话号码" required="required" value="${form.username }"/>
                                 <p class="errorClass" id="loginnameError">${errors.loginname }</p>
@@ -88,6 +88,19 @@
 <footer>
     <p>&copy;copyright  2015 </p>
 </footer>
+
+<script type="text/javascript">
+	
+	var checkout = function(){
+		if($(".errorClass") != ""){
+			return true;
+		}else{
+			return false;
+		}
+	}
+		
+	
+</script>
 
 <script src="../../js/index.js"></script>
 <script src="../../js/silder.js"></script>
