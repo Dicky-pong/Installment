@@ -6,6 +6,10 @@
 <struts>
 	<include file="struts-goods.xml"></include>
 	<include file="struts-goodsManage.xml"></include>
+	<include file="struts-admin.xml" ></include>
+
+	<!--  -->
+	<constant name="struts.multipart.saveDir" value="/img"/>
 
 	<constant name="struts.action.extension" value="do" />
 	<!-- 设置Web应用的默认编码集为UTF-8 -->
@@ -43,7 +47,11 @@
 			<result name="success" type="redirectAction">showGoods</result>
 			<result name="failed" >/jsp/index.jsp</result>
 			<result name="order" >/jsp/order/order.jsp</result>
+			<result name="detil" >/jsp/order/orderdetil.jsp</result>
 			<result name="pay" >/jsp/order/pay.jsp</result>
+			<result name="msg" >/jsp/msg.jsp</result>
+			<result name="ordermag" >/jsp/orderManager/ordermag.jsp</result>
+			<result name="orderdetail" >/jsp/orderManager/orderdetail.jsp</result>
 		</action>
 		
 	</package>

@@ -1,30 +1,21 @@
 package com.qfq.service.impl;
 
 
+
 import java.io.IOException;
-
-
-
-import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.Properties;
-
 import javax.mail.MessagingException;
 import javax.mail.Session;
-
-
 import cn.itcast.commons.CommonUtils;
 import cn.itcast.mail.Mail;
 import cn.itcast.mail.MailUtils;
-
 import com.qfq.dao.BaseDao;
 import com.qfq.entity.UserInfoEntity;
-
 import com.qfq.po.Userinfo;
 import com.qfq.service.UserInfoService;
 import com.qfq.utils.UserException;
-import com.sun.xml.internal.ws.wsdl.writer.UsingAddressing;
 
 public class UserInfoServiceImpl implements UserInfoService{
 	private BaseDao baseDao;
@@ -84,9 +75,7 @@ public class UserInfoServiceImpl implements UserInfoService{
 		userinfo.setEmail(formUser.getEmail());
 		userinfo.setStatus((short) 0);
 		userinfo.setActivationCode(CommonUtils.uuid() + CommonUtils.uuid());
-		System.out.println("准备执行！");
 		baseDao.save(userinfo);
-		System.out.println("执行成功！");
 		/*
 		 * 3. 发邮件
 		 */
@@ -142,7 +131,6 @@ public class UserInfoServiceImpl implements UserInfoService{
 		String hql = " from Userinfo u where u.activationCode='"+code+"'";
 		user=  (Userinfo) baseDao.loadObject(hql);
 		if(user==null)throw new UserException("无效的激活码！");
-		System.out.println(user.getStatus());
 		if(user.getStatus()!=0)throw new UserException("您已经激活过了，请不要二次激活！");
 		user.setStatus((short) 1);
 		baseDao.saveOrUpdate(Userinfo.class);//修改状态

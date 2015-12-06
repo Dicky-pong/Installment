@@ -38,7 +38,7 @@
 		<nav class="top_nav">
 			<ul class="tn_left">
 				<li>快捷导航1</li><!--
-			 --><li><a href="http://localhost/Installment/Order_myOrder.do">我的订单</a></li><!--
+			 --><li><a href="Order_myOrder.do?status=-1">我的订单</a></li><!--
 			 --><li>快捷导航3</li>
 			</ul>
 		</nav>
