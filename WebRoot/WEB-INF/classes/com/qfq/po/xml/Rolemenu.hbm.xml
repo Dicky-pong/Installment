@@ -7,12 +7,12 @@
 <hibernate-mapping>
     <class name="com.qfq.po.Rolemenu" table="rolemenu" catalog="installment">
         <composite-id name="id" class="com.qfq.po.RolemenuId">
-            <key-property name="MId" type="java.lang.Integer">
+            <key-many-to-one name="menu" class="com.qfq.po.Menu">
                 <column name="m_id" />
-            </key-property>
-            <key-property name="RId" type="java.lang.Integer">
+            </key-many-to-one>
+            <key-many-to-one name="roleinfo" class="com.qfq.po.Roleinfo">
                 <column name="r_id" />
-            </key-property>
+            </key-many-to-one>
         </composite-id>
         <many-to-one name="roleinfo" class="com.qfq.po.Roleinfo" update="false" insert="false" fetch="select">
             <column name="r_id" />

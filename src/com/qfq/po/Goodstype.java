@@ -12,6 +12,7 @@ public class Goodstype implements java.io.Serializable {
 	private Goods goods;
 	private String typename;
 	private Double price;
+	private Integer count;
 
 	// Constructors
 
@@ -20,10 +21,11 @@ public class Goodstype implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Goodstype(Goods goods, String typename, Double price) {
+	public Goodstype(Goods goods, String typename, Double price, Integer count) {
 		this.goods = goods;
 		this.typename = typename;
 		this.price = price;
+		this.count = count;
 	}
 
 	// Property accessors
@@ -58,6 +60,14 @@ public class Goodstype implements java.io.Serializable {
 
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+
+	public Integer getCount() {
+		return this.count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 
 }

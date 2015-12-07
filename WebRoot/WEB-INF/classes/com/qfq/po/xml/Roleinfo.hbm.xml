@@ -19,7 +19,7 @@
             </key>
             <one-to-many class="com.qfq.po.Admin" />
         </set>
-        <set name="rolemenus" inverse="true">
+        <set name="rolemenus" inverse="true" lazy="false">
             <key>
                 <column name="r_id" />
             </key>

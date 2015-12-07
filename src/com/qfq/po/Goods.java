@@ -14,7 +14,7 @@ public class Goods implements java.io.Serializable {
 
 	private Integer id;
 	private Category category;
-	private String goodsId;
+	private String goodsID;
 	private String name;
 	private String brand;
 	private String descript;
@@ -32,11 +32,11 @@ public class Goods implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Goods(Category category, String goodsId, String name, String brand,
+	public Goods(Category category, String goodsID, String name, String brand,
 			String descript, Date date, String picture, Set colors,
 			Set monthprovides, Set goodstypes, Set installments) {
 		this.category = category;
-		this.goodsId = goodsId;
+		this.goodsID = goodsID;
 		this.name = name;
 		this.brand = brand;
 		this.descript = descript;
@@ -66,12 +66,12 @@ public class Goods implements java.io.Serializable {
 		this.category = category;
 	}
 
-	public String getGoodsId() {
-		return this.goodsId;
+	public String getGoodsID() {
+		return this.goodsID;
 	}
 
-	public void setGoodsId(String goodsId) {
-		this.goodsId = goodsId;
+	public void setGoodsID(String goodsID) {
+		this.goodsID = goodsID;
 	}
 
 	public String getName() {
