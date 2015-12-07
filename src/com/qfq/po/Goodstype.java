@@ -12,7 +12,6 @@ public class Goodstype implements java.io.Serializable {
 	private Goods goods;
 	private String typename;
 	private Double price;
-	private Integer count;
 
 	// Constructors
 
@@ -31,14 +30,6 @@ public class Goodstype implements java.io.Serializable {
 
 	public Integer getId() {
 		return this.id;
-	}
-
-	public Integer getCount() {
-		return count;
-	}
-
-	public void setCount(Integer count) {
-		this.count = count;
 	}
 
 	public void setId(Integer id) {

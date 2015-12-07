@@ -10,10 +10,10 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="category" class="com.qfq.po.Category" fetch="select" lazy="false">
+        <many-to-one name="category" class="com.qfq.po.Category" fetch="select">
             <column name="c_id" />
         </many-to-one>
-        <property name="goodsID" type="java.lang.String">
+        <property name="goodsId" type="java.lang.String">
             <column name="goodsID" length="10" />
         </property>
         <property name="name" type="java.lang.String">
@@ -31,25 +31,25 @@
         <property name="picture" type="java.lang.String">
             <column name="picture" length="50" />
         </property>
-        <set name="colors" inverse="true" lazy="false" cascade="all">
+        <set name="colors" inverse="true">
             <key>
                 <column name="g_id" />
             </key>
             <one-to-many class="com.qfq.po.Color" />
         </set>
-        <set name="monthprovides" inverse="true" lazy="false" cascade="all">
+        <set name="monthprovides" inverse="true">
             <key>
                 <column name="g_id" />
             </key>
             <one-to-many class="com.qfq.po.Monthprovide" />
         </set>
-        <set name="goodstypes" inverse="true" lazy="false" cascade="all">
+        <set name="goodstypes" inverse="true">
             <key>
                 <column name="g_id" />
             </key>
             <one-to-many class="com.qfq.po.Goodstype" />
         </set>
-        <set name="installments" inverse="true" cascade="all">
+        <set name="installments" inverse="true">
             <key>
                 <column name="g_id" />
             </key>
