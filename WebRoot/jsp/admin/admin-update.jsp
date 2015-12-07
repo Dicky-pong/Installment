@@ -5,21 +5,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>更新管理员用户</title>
-<link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link rel="stylesheet" type="text/css" href="../../css/style.css" />
-<script src="../../js/jquery.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
+<link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/style.css" />
+<script src="${pageContext.request.contextPath }/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 <script>
-	function jump() {
-		alert("更新成功");
-		window.location.href = "GLYGL.html";
-	}
+
 </script>
 </head>
 <body>
 
 	<div id="gdou" class="inline_div">
-		<img src="../../image/qfq.png" width="300" height="80" />
+		<img src="${pageContext.request.contextPath }/images/qfq.png" width="300" height="80" />
 	</div>
 
 	<div id="" class="">
@@ -57,31 +54,26 @@
 					<h3>
 						<b>管理员信息表</b>
 					</h3>
-					<form id="message">
+					<form id="message" method="post">
 						<table class="sj">
 							<td>管理员ID</td>
-							<td><input type="text" name="administrator-number"
-								value="10010" readonly />
+							<td><input type="text" name="name"
+								value="${requestScope.admin.name }" readonly />
 							</td>
 							<tr>
-								<td>姓名</td>
-								<td><input type="text" name="name" value="陈本杰"
-									placeholder="必填" />
-								</td>
-							</tr>
-							<tr>
 								<td>密码</td>
-								<td><input type="text" name="password" value="12239892"
+								<td><input type="text" name="password" value="${requestScope.admin.password }"
 									placeholder="必填" />
 								</td>
 							</tr>
 							<tr>
 								<td>角色</td>
-								<td><select>
-										<option>商品管理员</option>
-										<option>订单管理员</option>
-										<option>数据管理员</option>
-								</select>
+								<td>
+									<select name="roleId">
+					                  <c:forEach items="${requestScope.roleList }" var="role">
+					                  	<option value="${role.id }">${role.name }</option>
+					                  </c:forEach>
+					                </select>原角色：${requestScope.admin.roleinfo.name }
 								</td>
 							</tr>
 						</table>
@@ -104,5 +96,5 @@
 	</div>
 
 </body>
-<script src="../../js/administrator-update.js"></script>
+<script src="${pageContext.request.contextPath }/js/administrator-update.js"></script>
 </html>

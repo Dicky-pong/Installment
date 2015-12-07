@@ -295,16 +295,18 @@
 					<span class="great"><i class="ficon">&#xe806;</i><i class="ficon">&#xe806;</i><i class="ficon">&#xe806;</i><i class="ficon">&#xe806;</i><i class="ficon">&#xe806;</i>5.0</span>
 					<table class="goodmoreinfo">
 						<tr>
-							<th>品名</th>
+							<th>品牌</th>
 							<td> ${goods.brand }</td>
 						</tr>
 						<tr>
 							<th>价格</th>
-							<td> ${goods.goodstypes }</td>
+							<td> ${goods.goodstypes.iterator().next().price }</td>
 						</tr>
 						<tr>
 							<th>类型</th>
-							<td> ${goods.goodstypes }</td>
+							<c:forEach items="${goods.goodstypes }" var="goodstype">
+								<td> ${goodstype.typename }</td>
+							</c:forEach>
 						</tr>
 						<tr class="imgShow">
 							<th>颜色分类</th>
@@ -321,7 +323,7 @@
 						</tr>
 						<tr>
 							<th>购买数量</th>
-							<td><input type="number" value="0"/>/64</td>
+							<td><input type="number" value="0"/>/${goods.goodstypes.iterator().next().count }</td>
 						</tr>
 						<tr>
 							<th></th>
@@ -346,7 +348,7 @@
 						</ul>
 
 
-						<div class="active info">javascript介绍。。。</div>
+						<div class="active info">${goods.descript }</div>
 						<div class="info">jQurey简介...</div>
 						<div class="info">php 介绍。。。</div>
 					</div>

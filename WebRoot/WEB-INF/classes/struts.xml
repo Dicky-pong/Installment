@@ -6,6 +6,7 @@
 <struts>
 	<include file="struts-goods.xml"></include>
 	<include file="struts-goodsManage.xml"></include>
+	<include file="struts-admin.xml" ></include>
 
 	<!--  -->
 	<constant name="struts.multipart.saveDir" value="/img"/>

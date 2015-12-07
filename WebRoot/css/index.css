@@ -74,11 +74,6 @@ body{
 
 .main_nav{
 	border-top: 1px solid #343333;
-	position: absolute;
-	z-index: 500;
-	width: 186px;
-	margin-left: 152px;
-	background: #ADADAD;
 }
 
 .first_class{
@@ -86,18 +81,15 @@ body{
 	max-width: 960px;
 	line-height: 50px;
 	margin: auto;
-	height: 377px;
-	background: #ADADAD;
 }
 
 .main .main_nav .first_class li{
-	width: 100%;
+	display: inline-block;
+	/*width: 8.54165%;*/
 	font-size: 15px;
-	color: #3C3C3C;
+	color: #737171;
 	font-weight: bolder;
 	padding: 0px 10px;
-	cursor: pointer;
-	border-bottom: 1px solid #E2E2E2;
 }
 
 
@@ -118,11 +110,10 @@ body{
 }
 
 .main .main_nav .show_class {
+	margin-top: -1px;
 	position: absolute;
-	width: 500%;
+	width: 100%;
 	z-index: 111;
-	margin-top: -377px;
-	margin-left: 180px;
 }
 
 .main .main_nav .show_class .section{
@@ -135,9 +126,8 @@ body{
 
 .main .main_nav .show_class .title{
 	width: 71.59818%;
-	line-height: 40px;
+	line-height: 40px;	
 	margin: auto;
-	cursor: pointer;
 }
 
 .main .main_nav .show_class .title img{
@@ -355,33 +345,6 @@ footer{
     float: right;
     margin-right: 5px;
 
-}
-
-/*图标字体*/
-@font-face {
-	font-family: 'fontello';
-	src: url('../font/fontello.eot');
-	src: url('../font/fontello.eot#iefix') format('embedded-opentype'),
-	url('../font/fontello.woff') format('woff'),
-	url('../font/fontello.ttf') format('truetype'),
-	url('../font/fontello.svg#fontello') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-.ficon,[class^="ficon-"],[class^="ficon-"]:before,[class*=" ficon-"]:before {
-	font-family: "fontello";
-	font-style: normal;
-	font-weight: normal;
-	speak: none;
-	display: inline-block;
-	text-decoration: inherit;
-	width: 1em;
-	margin-right: .2em;
-	text-align: center;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1em;
-	margin-left: .2em;
 }
 
 
