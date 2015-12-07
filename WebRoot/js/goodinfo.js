@@ -88,4 +88,16 @@ $(function(){
         $(this).addClass('active').siblings().removeClass('active');
         $('.gooddetails .info').eq($(this).index()).addClass('active').siblings().removeClass('active');
     })
+    
+    $(".select").bind("click",function(){
+    	$this = $(this);
+    	$this.addClass("active").siblings().removeClass("active");
+    });
+    
+    $(".type").bind("click",function(){
+    	$this = $(this);
+    	var price = $this.attr("data-price");
+    	
+    	$("#price").html(price);
+    })
 })

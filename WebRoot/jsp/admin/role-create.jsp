@@ -76,13 +76,8 @@
 						<button type="reset" class="btn btn-default">重置</button>
 					</form>
 
-
 				</div>
 			</center>
-
-
-
-
 
 		</div>
 
@@ -91,8 +86,6 @@
 	<div id="yw" class="">
 		<center>Copyright &copy; 2014安室工作室版权所有</center>
 	</div>
-
-
 
 </body>
 <script src="${pageContext.request.contextPath }/js/role-add.js"></script>

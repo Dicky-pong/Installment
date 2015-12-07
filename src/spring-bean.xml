@@ -30,6 +30,11 @@
 		<property name="baseDao" ref="baseDao"/>
 	</bean>
 	
+	<!-- 角色 -->
+	<bean id="roleService" class="com.qfq.service.impl.RoleServiceImpl">
+		<property name="baseDao" ref="baseDao"/>
+	</bean>
+	
 	<!--==========================================  action  ==========================================-->
 	<!-- 用户管理 -->
 	<bean id="userAction" class="com.qfq.action.UserInfoAction" >
@@ -54,5 +59,10 @@
 	<!-- 商品管理模块 -->
 	<bean id="goodsManageAction" class="com.qfq.action.GoodsManageAction">
 		<property name="goodsService" ref="goodsService"/>
+	</bean>
+	
+	<!--  -->
+	<bean id="roleAction" class="com.qfq.action.RoleAction">
+		<property name="roleService" ref="roleService"></property>
 	</bean>
 </beans>

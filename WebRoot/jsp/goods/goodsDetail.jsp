@@ -300,18 +300,26 @@
 						</tr>
 						<tr>
 							<th>价格</th>
-							<td> ${goods.goodstypes.iterator().next().price }</td>
+							<td id="price"> ${goods.goodstypes.iterator().next().price }</td>
 						</tr>
 						<tr>
 							<th>类型</th>
+							<td>
 							<c:forEach items="${goods.goodstypes }" var="goodstype">
-								<td> ${goodstype.typename }</td>
+								<span class="select type" data-price="200"> ${goodstype.typename }</span>
 							</c:forEach>
+							</td>
+							
 						</tr>
 						<tr class="imgShow">
 							<th>颜色分类</th>
-							<td><img src="${pageContext.request.contextPath }/img/1m.jpg" alt="" class="goodimg active"/>
-								<img src="${pageContext.request.contextPath }/img/2m.jpg" alt="" class="goodimg"/></td>
+							<td>
+							<%--<img src="${pageContext.request.contextPath }/img/1m.jpg" alt="" class="goodimg active"/>
+								<img src="${pageContext.request.contextPath }/img/2m.jpg" alt="" class="goodimg"/>--%>
+								<span class="select active">红色</span>
+								<span class="select">黑色</span>
+								
+								</td>
 						</tr>
 						<tr>
 							<th>分期选择</th>

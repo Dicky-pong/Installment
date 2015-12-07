@@ -84,9 +84,9 @@
 			<ul class="nav nav-pills nav-stacked" role="tablist">
 				<li role="presentation"><a href="../index.html">主页</a>
 				</li>
-				<li role="presentation"><a href="../glygl/GLYGL.html">管理员管理</a>
+				<li role="presentation"><a href="showAllAdmin.do">管理员管理</a>
 				</li>
-				<li role="presentation"><a href="../glygl/JSGL.html">角色管理</a>
+				<li role="presentation"><a href="showAllRole.do">角色管理</a>
 				</li>
 				<li role="presentation" class="active"><a
 					href="showAllGoods.do">商品管理</a>

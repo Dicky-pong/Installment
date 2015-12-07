@@ -30,12 +30,12 @@
 			<ul class="nav nav-pills nav-stacked" role="tablist">
 				<li role="presentation"><a href="../index.html">主页</a>
 				</li>
-				<li role="presentation"><a href="../glygl/GLYGL.html">管理员管理</a>
+				<li role="presentation"><a href="showAllAdmin.do">管理员管理</a>
 				</li>
 				<li role="presentation" class="active"><a
-					href="../glygl/JSGL.html">角色管理</a>
+					href="showAllRole.do">角色管理</a>
 				</li>
-				<li role="presentation"><a href="../spgl/SPGL.html">商品管理</a>
+				<li role="presentation"><a href="showAllGoods.do">商品管理</a>
 				</li>
 				<li role="presentation"><a href="../sjgl/SJFX.html">用户数据分析</a>
 				</li>

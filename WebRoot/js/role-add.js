@@ -1,7 +1,7 @@
 (function() {
 	function validate(field, alerttxt) {
 		with(field) {
-			if (value == null || value == "") {
+			if (field == null || field == "") {
 				alert(alerttxt);
 				return false
 			} else {
@@ -16,7 +16,8 @@
 				name.focus();
 				return false
 			}else {
-				window.location.href = "JSGL.html";
+				form.action = "createRole.do";
+				form.submit();
 			}
 		}
 	}
