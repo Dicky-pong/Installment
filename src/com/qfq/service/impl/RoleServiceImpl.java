@@ -20,7 +20,6 @@ public class RoleServiceImpl implements RoleService{
 	}
 	
 	public boolean saveRole(Roleinfo roleinfo) {
-		//System.out.println(colorSet.iterator().next().getColorname()+" - "+monthSet.iterator().next().getMonths()+" - "+typeSet.iterator().next().getTypename());
 		try{
 			baseDao.save(roleinfo);
 		}catch (Exception e) {
@@ -31,13 +30,23 @@ public class RoleServiceImpl implements RoleService{
 	}
 
 	public int deleteRole(String[] roleIds) {
-		// TODO Auto-generated method stub
+		try{
+//			Roleinfo r = null;
+			for(String id : roleIds){
+				id = id.trim();
+//				r = new Roleinfo();
+//				r.setId(Integer.valueOf(id).intValue());
+				baseDao.callProcedure("delete from Roleinfo where id = "+id);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			return 1;
+		}
 		return 0;
 	}
 
 	public List<Roleinfo> getPaperRole(int beginIndex, int everyPage) {
 		String hql = "from Roleinfo";
-		System.out.println("getPagerRoles - hql: "+hql);
 		List<Roleinfo> list = baseDao.findByHql(hql, beginIndex, everyPage);
 		if(list == null || list.size() == 0){
 			return null;
@@ -46,7 +55,12 @@ public class RoleServiceImpl implements RoleService{
 	}
 
 	public int getRoleCount() {
-		// TODO Auto-generated method stub
+		String hql = "select count(r.id) from Roleinfo r";
+		try{
+			return baseDao.countQuery(hql);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 

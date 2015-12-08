@@ -17,6 +17,8 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.context.annotation.Scope;
 
+import cn.itcast.commons.CommonUtils;
+
 import com.opensymphony.xwork2.ModelDriven;
 import com.qfq.entity.CategoryEntity;
 import com.qfq.po.Category;
@@ -172,7 +174,7 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String goodsId = request.getParameter("goodsId");
 		goods = goodsService.getGoods(goodsId.trim());
-		
+		System.out.println("goods: "+goods.getCategory().getName()+" - "+goods.getColors().iterator().next());
 		for(Object o : goods.getGoodstypes()){
 			Goodstype gt = (Goodstype)o;
 			System.out.println("sghowgood:: "+gt.getTypename()+" - "+gt.getPrice());
@@ -206,7 +208,6 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 		page = PageUtil.createPage(everyPage, totalCount, currentPage);
 		goodsList = goodsService.getPaperGoods(goodsName, goodsBrand, categoryId4Search, page.getBeginIndex(), everyPage);
 		categoryList = goodsService.getAllCatagory();
-		System.out.println("GoodsManageAction - goodsName:"+goodsName+"\ngoodsbrand: "+goodsBrand+"\ncategoryId4Search:"+categoryId4Search);
 		if(goodsList != null && goodsList.size() != 0)
 			System.out.println("the goodsList : "+goodsList.size());
 		else
@@ -242,13 +243,13 @@ public class GoodsManageAction extends BaseAction implements ModelDriven<Goods>,
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
-			return ERROR;
 		}
 		return SUCCESS;
 	}
 	
 	public String toCreateGoods(){
-		System.out.println("GoodsManageAction - toCreateGoods - categoryList: "+categoryList);
+		goods = new Goods();
+		goods.setGoodsID(CommonUtils.uuid());
 		setCategoryList(goodsService.getAllCatagory());
 		return SUCCESS;
 	}

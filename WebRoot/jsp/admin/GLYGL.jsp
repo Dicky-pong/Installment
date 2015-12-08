@@ -54,7 +54,7 @@
 
 		<div id="navigation" class="inline_div">
 			<ul class="nav nav-pills nav-stacked" role="tablist">
-				<li role="presentation"><a href="../index.html">主页</a>
+				<li role="presentation"><a href="backIndex.do">主页</a>
 				</li>
 				<li role="presentation" class="active"><a
 					href="showAllAdmin.do">管理员管理</a>
@@ -65,7 +65,7 @@
 				</li>
 				<li role="presentation"><a href="../sjgl/SJFX.html">用户数据分析</a>
 				</li>
-				<li role="presentation"><a href="../ddgl/DDGL.html">订单管理</a>
+				<li role="presentation"><a href="Order_myBackOrder.do?status=-1">订单管理</a>
 				</li>
 				<li role="presentation"><a href="../Login.html">退出</a>
 				</li>
@@ -74,7 +74,7 @@
 
 		<div id="main" class="inline_div">
 			<ol class="breadcrumb">
-				<li><a href="../index.html">趣分期后台管理</a>
+				<li><a href="backIndex.do">趣分期后台管理</a>
 				</li>
 				<li class="active">管理员管理</li>
 			</ol>
@@ -118,7 +118,7 @@
 							src="${pageContext.request.contextPath }/images/add.png">添加</a>
 					</div>
 					<div class="operationbutton">
-						<a href="#" onclick="if(deleteConfirm()){document.getElementById('adminForm').submit()}""> 
+						<a href="#" onclick="if(deleteConfirm()){document.getElementById('adminForm').submit()}"> 
 						<img src="${pageContext.request.contextPath }/images/delect.png">删除</a>
 					</div>
 

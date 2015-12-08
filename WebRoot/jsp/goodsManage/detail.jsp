@@ -27,13 +27,13 @@ function jump(){
     <div id="navigation" class="inline_div">
       <ul class="nav nav-pills nav-stacked" role="tablist">
         <li role="presentation" >
-          <a href="../index.html">主页</a>
+          <a href="backIndex.do">主页</a>
         </li>
         <li role="presentation" >
-          <a href="../glygl/GLYGL.html">管理员管理</a>
+          <a href="showAllAdmin.do">管理员管理</a>
         </li>
         <li role="presentation">
-          <a href="../glygl/JSGL.html">角色管理</a>
+          <a href="showAllRole.do">角色管理</a>
         </li>
         <li role="presentation" class="active">
           <a href="showAllGoods.do">商品管理</a>
@@ -42,7 +42,7 @@ function jump(){
           <a href="../sjgl/SJFX.html">用户数据分析</a>
         </li>
         <li role="presentation">
-          <a href="../ddgl/DDGL.html">订单管理</a>
+          <a href="Order_myBackOrder.do?status=-1">订单管理</a>
         </li>
         <li role="presentation">
           <a href="../Login.html">退出</a>
@@ -53,7 +53,7 @@ function jump(){
     <div id="main" class="inline_div">
       <ol class="breadcrumb">
         <li>
-          <a href="../index.html">趣分期后台管理系统</a>
+          <a href="backIndex.do">趣分期后台管理系统</a>
         </li>
         <li>
           <a href="showAllGoods.do">商品管理</a>

@@ -97,7 +97,30 @@ $(function(){
     $(".type").bind("click",function(){
     	$this = $(this);
     	var price = $this.attr("data-price");
+    	var num = $this.attr("data-num")
     	
     	$("#price").html(price);
+    	$("#num").html(num);
+    });
+    
+    $("#buy").bind("click",function(){
+    	var goodstypeId = $(".active.type").attr("value");
+    	var colorId = $(".active.color").attr("value");
+    	var monthId = $(".active.monthp").attr("value");
+    	var goodsId = $("#goodsId").attr("value");
+    	if(goodstypeId == null){
+    		alert("必须选择一种类型");
+    		return;
+    	}
+    	if(colorId == null){
+    		alert("必须选择一种颜色");
+    		return ;
+    	}
+    	if(monthId == null){
+    		alert("必须选择一种分期方式");
+    		return;
+    	}
+    	window.location.href = "jsp/goods/selectSite.jsp?goodstypeId="+goodstypeId+"&colorId="+colorId+"&monthId="+monthId+"&goodsId="+goodsId;//跳转页面
+    	
     })
 })

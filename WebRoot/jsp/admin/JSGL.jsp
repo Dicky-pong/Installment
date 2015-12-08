@@ -9,10 +9,30 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/style.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/jsgl.css" />
 <script>
-	function jump() {
-		alert("删除成功");
-		window.location.href = "JSGL.html";
+function prePage(obj, page){
+	if(page == '0'){
+		alert("已经是第一页了");
+		return false;
 	}
+	obj.href = 'showAllRole.do?currentPage='+page;
+}
+function nextPage(obj, page, max){
+	if(page > max){
+		alert("已经是最后一页了");
+		return false;
+	}
+	obj.href = 'showAllRole.do?currentPage='+page;
+}
+function deleteConfirm() {
+	var options = document.getElementsByName("choose");
+	for(i = 0; i < options.length; i++){
+		if(options[i].checked == true){
+			return confirm("确定删除？");
+		}
+	}
+	alert("未曾发现您的蹄印！");
+	return false;
+}
 </script>
 
 </head>
@@ -28,7 +48,7 @@
 
 		<div id="navigation" class="inline_div">
 			<ul class="nav nav-pills nav-stacked" role="tablist">
-				<li role="presentation"><a href="../index.html">主页</a>
+				<li role="presentation"><a href="backIndex.do">主页</a>
 				</li>
 				<li role="presentation"><a href="showAllAdmin.do">管理员管理</a>
 				</li>
@@ -39,7 +59,7 @@
 				</li>
 				<li role="presentation"><a href="../sjgl/SJFX.html">用户数据分析</a>
 				</li>
-				<li role="presentation"><a href="../ddgl/DDGL.html">订单管理</a>
+				<li role="presentation"><a href="Order_myBackOrder.do?status=-1">订单管理</a>
 				</li>
 				<li role="presentation"><a href="../Login.html">退出</a>
 				</li>
@@ -48,13 +68,14 @@
 
 		<div id="main" class="inline_div">
 			<ol class="breadcrumb">
-				<li><a href="../index.html">趣分期后台管理</a>
+				<li><a href="backIndex.do">趣分期后台管理</a>
 				</li>
 				<li class="active">角色管理</li>
 			</ol>
 			<h3 align="center">
 				<b>角色表</b>
 			</h3>
+			<form method="post" id="roleForm" action="deleteRole.do">
 			<table class="table table-hover">
 				<tr>
 					<th>&nbsp</th>
@@ -62,60 +83,39 @@
 					<th>角色名</th>
 					<th></th>
 				</tr>
+				<c:forEach var="role" items="${requestScope.roleList }" >
 				<tr>
-					<th><input type="checkbox" name="choose">
+					<th><input type="checkbox" name="choose"  value="${role.id }">
 					</th>
-					<th>100001</th>
-					<th>商品管理员</th>
-					<th><a href="role-update.html">更新</a></th>
-
-
-				</tr>
-				<tr>
-					<th><input type="checkbox" name="choose">
-					</th>
-					<th>100002</th>
-					<th>数据管理员</th>
-					<th><a href="role-update.html">更新</a></th>
+					<th>${role.id }</th>
+					<th>${role.name }</th>
+					<th><a href="toUpdate.do">更新</a></th>
 
 				</tr>
-				<tr>
-					<th><input type="checkbox" name="choose">
-					</th>
-					<th>100003</th>
-					<th>订单管理员</th>
-					<th><a href="role-update.html">更新</a></th>
-
-
-				</tr>
-				</tr>
+				</c:forEach>
 			</table>
+			</form>
 			<center>
 				<div id="" class="">
 					<div class="operationbutton">
-						<a href="role-add.html"><img src="${pageContext.request.contextPath }/images/add.png">添加</a>
+						<a href="toCreateRole.do"><img src="${pageContext.request.contextPath }/images/add.png">添加</a>
 					</div>
 					<div class="operationbutton">
-						<a href="JSGL.html" onclick="jump()"><img
+						<a href="#" onclick="if(deleteConfirm()){document.getElementById('roleForm').submit()}"><img
 							src="${pageContext.request.contextPath }/images/delect.png">删除</a>
 					</div>
 
 				</div>
 				<nav>
 				<ul class="pagination">
-					<li><a href="#">&laquo;</a>
+					<li><a href="#" onclick="prePage(this, ${page.currentPage-1})">&laquo;</a>
 					</li>
-					<li><a href="#">1</a>
-					</li>
-					<li><a href="#">2</a>
-					</li>
-					<li><a href="#">3</a>
-					</li>
-					<li><a href="#">4</a>
-					</li>
-					<li><a href="#">5</a>
-					</li>
-					<li><a href="#">&raquo;</a>
+					<c:forEach begin="1" end="${requestScope.page.totalPage}" var="str" step="1">
+						<li>
+						<a href="showAllAdmin.do?currentPage=${str }">${str }</a>
+						</li>
+					</c:forEach>
+					<li><a href="#" onclick="nextPage(this, ${page.currentPage+1}, ${page.totalPage })">&raquo;</a>
 					</li>
 				</ul>
 				</nav>

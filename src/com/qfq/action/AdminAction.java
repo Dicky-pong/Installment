@@ -239,13 +239,10 @@ public class AdminAction extends BaseAction implements ModelDriven<Admin>{
 		adminList = adminService.getPaperAdmin(roleId4Search, page.getBeginIndex(), everyPage);
 		roleList = adminService.getAllRole();
 		System.out.println("AdminAction - roleId4Search:"+roleId4Search);
-		if(adminList != null && adminList.size() != 0){
-			System.out.println("the adminList : "+adminList.size());
-			return SUCCESS;
-		}
-		else{
-			System.out.println("adminList is null!!");
-			return ERROR;
-		}
+		return SUCCESS;
+	}
+	
+	public String backIndex(){
+		return SUCCESS;
 	}
 }

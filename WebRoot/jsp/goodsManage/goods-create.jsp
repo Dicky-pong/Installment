@@ -7,16 +7,17 @@
   <title>添加商品</title>
   <link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet" media="screen">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/style.css" />
-  <script src="${pageContext.request.contextPath }/js/jquery-1.5.1.js"></script>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
   <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
   <script type="text/javascript">
 	
-  function $(id) {
+  function getEById(id) {
       return document.getElementById(id);
   }
 
   function showimg(src) {
-      var img = $('pic');
+      var img = getEById('pic');
       img.src = src;
       img.width = 140;
       img.height = 140;
@@ -90,13 +91,13 @@ function selectorChange(){
     <div id="navigation" class="inline_div">
       <ul class="nav nav-pills nav-stacked" role="tablist">
         <li role="presentation" >
-          <a href="../index.html">主页</a>
+          <a href="backIndex.do">主页</a>
         </li>
         <li role="presentation" >
-          <a href="../glygl/GLYGL.html">管理员管理</a>
+          <a href="showAllAdmin.do">管理员管理</a>
         </li>
         <li role="presentation">
-          <a href="../glygl/JSGL.html">角色管理</a>
+          <a href="showAllRole.do">角色管理</a>
         </li>
         <li role="presentation" class="active">
           <a href="showAllGoods.do">商品管理</a>
@@ -105,7 +106,7 @@ function selectorChange(){
           <a href="../sjgl/SJFX.html">用户数据分析</a>
         </li>
         <li role="presentation">
-          <a href="../ddgl/DDGL.html">订单管理</a>
+          <a href="Order_myBackOrder.do?status=-1">订单管理</a>
         </li>
         <li role="presentation">
           <a href="../Login.html">退出</a>
@@ -116,7 +117,7 @@ function selectorChange(){
     <div id="main" class="inline_div">
       <ol class="breadcrumb">
         <li>
-          <a href="../index.html">趣分期后台管理系统</a>
+          <a href="backIndex.do">趣分期后台管理系统</a>
         </li>
         <li>
           <a href="showAllGoods.do">商品管理</a>
@@ -132,7 +133,7 @@ function selectorChange(){
               <tr>
                 <td>商品ID</td>
                 <td>
-                  <input type="text" name="goodsID" value='10010'/>
+                  <input type="text" name="goodsID" value='${goods.goodsID }' readonly="readonly"/>
                 </td>
                 <td>商品名称</td>
                 <td>

@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +32,13 @@
 		}
 		obj.href = 'showGoods.do?currentPage='+page+'&searchOption='+searchOption+'&categoryId4Search='+categoryId4Search;
 	}
+	function searchFun(obj) {
+		var searchOption = document.getElementById("key").value;
+		var searchForm = document.getElementById("searchForm");
+		//searchForm.action = 'showGoods.do';
+		searchForm.submit();
+		//obj.href = 'showAllGoods.do?searchOption='+searchOption;
+	}
 	</script>
 </head>
 <body>
@@ -45,6 +53,15 @@
 		<div class="logo"><h4>地球表面最好的分期商城</h4><h1>趣分期 <span>网上商城</span></h1></div>
 	</header>
 	<section class="main">
+	<div class="form">
+		<form action="showGoods.do" id="searchForm" method="post">
+			<input type="hidden" value="" name="categoryId4Search">
+			<input type="text" class="text" accesskey="s" name="searchOption" id="key" autocomplete="off" value="" placeholder="搜索商品名称或商品品牌名">
+			<i><input class="button cw-icon" onclick="searchFun(this)">
+				</i>
+		</form>	
+	</div>
+	
 		<nav class="main_nav">
 			<div class="first_class">
 				<ul>
@@ -61,9 +78,14 @@
 						<div class="title"><img src="${pageContext.request.contextPath }/img/gnb_banner_line.gif" alt="">
 							<ul>
 								<c:forEach items="${category.categories }" var="category2">
-									<li><a href="http://localhost:8080/Installment/showGoods.do?categoryId4Search=${category2.id }">${category2.name}</a></li>
+									<li><a href="showGoods.do?searchOption=&categoryId4Search=${category2.id }">${category2.name}</a></li>
 								</c:forEach>
 							</ul>
+						</div>
+					</div>
+					<div class="other_class">
+						<div class="other_bg">
+							<img src="${pageContext.request.contextPath }/img/GNB_BANNER_DST_150807.jpg" alt="">
 						</div>
 					</div>
 					</div>
@@ -95,14 +117,6 @@
 			</div>
 
 			<div class="goods_list">
-				<div class="sort">
-					<ul>
-						<li class="focus">排序方式1</li><!--
-					 --><li>排序方式2</li><!--
-					 --><li>排序方式3</li><!--
-				     --><li>排序方式4</li>
-					</ul>
-				</div>
 				
 				<div class="goods_show">
 					<ul>
@@ -113,7 +127,7 @@
 								<%-- 有一个mothprovide是空的就报异常 --%>
 								<c:if test="${goods.monthprovides.iterator().hasNext()}" >
 									<c:set var="monthprovide" value="${goods.monthprovides.iterator().next()}" scope="page"/>
-									<span class="price">￥${monthprovide.unitPrice }*${monthprovide.months }期</span>
+									<span class="price">￥<fmt:formatNumber type="number" value="${monthprovide.unitPrice } " maxFractionDigits="2"/>*${monthprovide.months }期</span>
 								</c:if>
 							</li>
 						</c:forEach>

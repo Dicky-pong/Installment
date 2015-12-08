@@ -16,14 +16,14 @@ public interface RoleService {
 	public boolean saveRole(Roleinfo roleinfo);
 	
 	/**
-	 * 通过多个ID批量删除管理员
-	 * @param roleIds 要删除的管理员ID组成的数组
+	 * 通过多个ID批量删除角色
+	 * @param roleIds 要删除的角色ID组成的数组
 	 * @return 0删除成功；1出现异常
 	 */
 	public int deleteRole(String[] roleIds);
 	
 	/**
-	 * 通过角色ID获取管理员分页列表
+	 * 通过角色ID获取角色分页列表
 	 * @param roleId 可为null或空字符，表示不起限制作用
 	 * @param beginIndex 从哪一项开始获取，必须是有效int
 	 * @param everyPage 每页显示数量，必须是有效int
@@ -38,7 +38,7 @@ public interface RoleService {
 	public int getRoleCount();
 	
 	/**
-	 * 通过管理员ID获取管理员对象
+	 * 通过角色ID获取角色对象
 	 * @param roleId
 	 * @return
 	 */

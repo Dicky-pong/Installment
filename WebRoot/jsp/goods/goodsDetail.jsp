@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 
 <html lang="en">
 <head>
@@ -15,6 +16,7 @@
  				document.write(unescape("%3Cscript src='js/jquery-2.1.4.min.js' type='text/javascript'%3E%3C/script%3E"));
 			}
 		})()
+		
 	</script>
 </head>
 <body>
@@ -32,267 +34,57 @@
 		<nav class="main_nav">
 			<div class="first_class">
 				<ul>
-					<li>一级菜单1</li><div class="bd"></div><!--
-				 --><li>一级菜单2</li><div class="bd"></div><!--
-				 --><li>一级菜单3</li><div class="bd"></div><!--
-				 --><li>一级菜单4</li><div class="bd"></div><!--
-				 --><li>一级菜单5</li><div class="bd"></div><!--
-				 --><li>一级菜单6</li><div class="bd"></div><!--
-				 --><li>一级菜单7</li><div class="bd"></div><!--
-			     --><li>一级菜单8</li>
+					<c:forEach items="${requestScope.categoryList }" var="category">
+						<li>${category.name }</li><div class="bd"></div>
+					</c:forEach>
 				</ul>
 			</div>
 			<div class="show_class">
-				<div id="wrapper01" class="section">
+				<c:forEach items="${requestScope.categoryList }" var="category" varStatus="status">
+					
+					<div id="wrapper0${status.count }" class="section">
 					<div class="title_bg">
 						<div class="title"><img src="${pageContext.request.contextPath }/img/gnb_banner_line.gif" alt="">
-							<ul><!--
-							--><li>二级菜单1</li><!--
-							--><li>二级菜单2</li><!--
-							--><li>二级菜单3</li><!--
-							--><li>二级菜单4</li><!--
-						    --><li>二级菜单5</li>
+							<ul>
+								<c:forEach items="${category.categories }" var="category2">
+									<li><a href="showGoods.do?searchOption=&categoryId4Search=${category2.id }">${category2.name}</a></li>
+								</c:forEach>
 							</ul>
 						</div>
 					</div>
 					<div class="other_class">
 						<div class="other_bg">
 							<img src="${pageContext.request.contextPath }/img/GNB_BANNER_DST_150807.jpg" alt="">
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-	                        <ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-                            <ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-                        
 						</div>
 					</div>
-				</div>
-				<div id="wrapper02" class="section">
-					<div class="title_bg">
-						<div class="title"><img src="${pageContext.request.contextPath }/img/gnb_banner_line.gif" alt="">
-							<ul><!--
-							--><li>二级菜单1</li><!--
-							--><li>二级菜单2</li><!--
-							--><li>二级菜单3</li><!--
-							--><li>二级菜单4</li><!--
-						    --><li>二级菜单5</li>
-							</ul>
-						</div>
 					</div>
-					<div class="other_class">
-						<div class="other_bg">
-							<img src="${pageContext.request.contextPath }/img/GNB_BANNER_DST_150807.jpg" alt="">
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-	                        <ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-                            <ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-                        
-						</div>
-					</div>
-				</div>
-				<div id="wrapper03" class="section">
-					<div class="title_bg">
-						<div class="title"><img src="${pageContext.request.contextPath }/img/gnb_banner_line.gif" alt="">
-							<ul><!--
-							--><li>二级菜单1</li><!--
-							--><li>二级菜单2</li><!--
-							--><li>二级菜单3</li><!--
-							--><li>二级菜单4</li><!--
-						    --><li>二级菜单5</li>
-							</ul>
-						</div>
-					</div>
-					<div class="other_class">
-						<div class="other_bg">
-							<img src="${pageContext.request.contextPath }/img/GNB_BANNER_DST_150807.jpg" alt="">
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-	                        <ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-                            <ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-                        
-						</div>
-					</div>
-				</div>
+				</c:forEach>
+				
 			</div>
 		</nav>
 		<section class="container">
 			<div id="goodinfomain">
 
 				<div id="zoom">
-					<div id="zoomMiddle"><img src="${pageContext.request.contextPath }/img/1m.jpg" alt=""><div id="make"></div></div>
+					<div id="zoomMiddle"><img src="${pageContext.request.contextPath }${goods.picture}" alt=""><div id="make"></div></div>
 
 					<div id="zoomSmall">
 						<span class='left'>&lt;</span>
 
 						<div id="zoomSmallImg">
 							<ul>
-								<li class="curr" ><img src="${pageContext.request.contextPath }/img/1m.jpg" alt=""></li>
-								<li><img src="${pageContext.request.contextPath }/img/2m.jpg" alt=""></li>
-								<li><img src="${pageContext.request.contextPath }/img/3m.jpg" alt=""></li>
-								<li><img src="${pageContext.request.contextPath }/img/4m.jpg" alt=""></li>
-								<li><img src="${pageContext.request.contextPath }/img/5m.jpg" alt=""></li>
-								<li><img src="${pageContext.request.contextPath }/img/6m.jpg" alt=""></li>
+								<li class="curr" ><img src="${pageContext.request.contextPath }${goods.picture}" alt=""></li>
+							
 							</ul>
 						</div>
 						<span class='right'>&gt;</span>
 					</div>
-					<div id="zoomLa"><img src="${pageContext.request.contextPath }/img/1m.jpg" alt=""></div>
+					<div id="zoomLa"><img src="${pageContext.request.contextPath }${goods.picture}" alt=""></div>
 				</div>
 				<div class="goodinfo">
+					<input type="hidden" value="${goods.id }" id="goodsId">
 					<h1>${goods.name }</h1>
-					<span class="great"><i class="ficon">&#xe806;</i><i class="ficon">&#xe806;</i><i class="ficon">&#xe806;</i><i class="ficon">&#xe806;</i><i class="ficon">&#xe806;</i>5.0</span>
+					<hr/>
 					<table class="goodmoreinfo">
 						<tr>
 							<th>品牌</th>
@@ -306,7 +98,7 @@
 							<th>类型</th>
 							<td>
 							<c:forEach items="${goods.goodstypes }" var="goodstype">
-								<span class="select type" data-price="200"> ${goodstype.typename }</span>
+								<span value="${goodstype.id }" name="goodstypeSpans" class="select type" data-price="${goodstype.price }" data-num="${goodstype.count }"> ${goodstype.typename }</span>
 							</c:forEach>
 							</td>
 							
@@ -316,22 +108,24 @@
 							<td>
 							<%--<img src="${pageContext.request.contextPath }/img/1m.jpg" alt="" class="goodimg active"/>
 								<img src="${pageContext.request.contextPath }/img/2m.jpg" alt="" class="goodimg"/>--%>
-								<span class="select active">红色</span>
-								<span class="select">黑色</span>
-								
+								<c:forEach items="${goods.colors }" var="color">
+								  <span name="colorSpans" class="select color" value="${color.id }">${color.colorname }</span>
+								</c:forEach>
 								</td>
 						</tr>
 						<tr>
 							<th>分期选择</th>
 							<td>
 							  <c:forEach items="${requestScope.goods.monthprovides }" var="month">
-							    <span class="select">${month.months }*${month.unitPrice }</span>
+							    <span name="monthSpans" class="select monthp" value="${month.id }">${month.months }*<fmt:formatNumber type="number" value="${month.unitPrice } " maxFractionDigits="2"/></span>
 							  </c:forEach>
 							</td>
 						</tr>
 						<tr>
-							<th>购买数量</th>
-							<td><input type="number" value="0"/>/${goods.goodstypes.iterator().next().count }</td>
+							<th>剩余数量</th>
+							<td><%--<input type="number" value="0"/>--%>
+							<span id="num">${goods.goodstypes.iterator().next().count }</span>
+							</td>
 						</tr>
 						<tr>
 							<th></th>
@@ -340,10 +134,10 @@
 					</table>
 
 					<div class="btns">
-						<input type="button" value="直接购买" id="buy"/>
-						<input type="button" value="加入购物车" id="add"/>
+						<input type="button" value="直接购买" id="buy" />
+						<%--<input type="button" value="加入购物车" id="add"/>
 						<input type="button" value="收藏" id="sc"/>
-					</div>
+					--%></div>
 				</div>
 				<div class="clr"></div>
 				<div class="gooddetails">
@@ -351,8 +145,8 @@
 					<div class="content">
 						<ul>
 							<li class="active">商品详情</li>
-							<li>评价</li>
-							<li>交易记录</li>
+							<%--<li>评价</li>
+							--%><li>交易记录</li>
 						</ul>
 
 

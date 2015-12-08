@@ -66,7 +66,7 @@ public class RoleAction extends BaseAction implements ModelDriven<Roleinfo>{
 				System.out.println("delete strs的第"+i+"个字符值： "+strs[i]);
 			}
 			try{
-//				System.out.println("deleteRole: "+roleService.deleteRole(strs));
+				System.out.println("deleteRole's result: "+roleService.deleteRole(strs));
 			}catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -104,15 +104,8 @@ public class RoleAction extends BaseAction implements ModelDriven<Roleinfo>{
 		int totalCount = roleService.getRoleCount();
 		page = PageUtil.createPage(everyPage, totalCount, currentPage);
 		roleList = roleService.getPaperRole(page.getBeginIndex(), everyPage);
-		roleList = roleService.getAllRole();
+//		roleList = roleService.getAllRole();
 		System.out.println("RoleAction - ");
-		if(roleList != null && roleList.size() != 0){
-			System.out.println("the roleList : "+roleList.size());
-			return SUCCESS;
-		}
-		else{
-			System.out.println("roleList is null!!");
-			return ERROR;
-		}
+		return SUCCESS;
 	}
 }

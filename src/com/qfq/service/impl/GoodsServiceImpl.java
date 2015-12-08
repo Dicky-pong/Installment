@@ -1,7 +1,11 @@
 package com.qfq.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+
+import cn.itcast.commons.CommonUtils;
 
 import com.qfq.dao.BaseDao;
 import com.qfq.po.Category;
@@ -10,6 +14,7 @@ import com.qfq.po.Goods;
 import com.qfq.po.Goodstype;
 import com.qfq.po.Installment;
 import com.qfq.po.Monthprovide;
+import com.qfq.po.Userinfo;
 import com.qfq.service.GoodsService;
 
 public class GoodsServiceImpl implements GoodsService{
@@ -197,6 +202,56 @@ public class GoodsServiceImpl implements GoodsService{
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public int saveOrder(String goodsId, String goodstypeId, String colorId,
+			String monthId, String address, String receiver, String tel) {
+		try{
+			Goods goods = new Goods();
+			goods.setId(Integer.valueOf(goodsId));
+			
+			Userinfo user = new Userinfo();
+			user.setId(1);
+			
+			Color color = new Color();
+			color.setId(Integer.valueOf(colorId));
+			
+			List<Monthprovide> list = baseDao.findByHql("from Monthprovide where id = "+monthId);
+			if(list == null || list.size() == 0){
+				return 1;
+			}
+			
+			List<Goodstype> list2 = baseDao.findByHql("from Goodstype where id = "+goodstypeId);
+			if(list2 == null || list2.size() == 0){
+				return 1;
+			}
+			if(list2.get(0).getCount() < 1){
+				return 2;
+			}
+			
+			Installment in = new Installment();
+			in.setOrderID(CommonUtils.uuid());
+			in.setPayMonth(list.get(0).getMonths());
+			in.setPayPrice(list2.get(0).getPrice());
+			in.setGoodsType(list2.get(0).getTypename());
+			Date date = new Date();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			
+			in.setDate(format.format(date));
+			in.setStatus(0);
+			in.setAddress(address);
+			in.setTel(tel);
+			in.setReceiver(receiver);
+			in.setUserinfo(user);
+			in.setColor(color);
+			in.setGoods(goods);
+			baseDao.save(in);
+			baseDao.callProcedure("update Goodstype g set g.count=g.count-1 where g.id = "+goodstypeId);
+		}catch (Exception e) {
+			e.printStackTrace();
+			return 1;
+		}
+		return 0;
 	}
 	
 }
