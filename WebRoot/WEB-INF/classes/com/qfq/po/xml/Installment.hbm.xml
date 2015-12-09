@@ -20,7 +20,7 @@
             <column name="color_id" />
         </many-to-one>
         <property name="orderID" type="java.lang.String">
-            <column name="orderID" length="10" />
+            <column name="orderID" length="32" />
         </property>
         <property name="payMonth" type="java.lang.Integer">
             <column name="payMonth" />
@@ -29,7 +29,7 @@
             <column name="paidMonth" />
         </property>
         <property name="payPrice" type="java.lang.Double">
-            <column name="payPrice" precision="22" scale="0" />
+            <column name="payPrice" precision="14" scale="2" />
         </property>
         <property name="goodsType" type="java.lang.String">
             <column name="goodsType" length="50" />

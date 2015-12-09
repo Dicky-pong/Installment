@@ -1,5 +1,6 @@
 WebRoot/img/2.jpg
 *.class
-*.xml
 .settings/org.eclipse.core.resources.prefs
 .settings/org.eclipse.core.resources.prefs
+src/spring-basic.xml
+WebRoot/WEB-INF/classes/struts.xml

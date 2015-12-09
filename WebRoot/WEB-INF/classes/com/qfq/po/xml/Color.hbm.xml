@@ -10,7 +10,7 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="goods" class="com.qfq.po.Goods" fetch="select">
+        <many-to-one name="goods" class="com.qfq.po.Goods" fetch="select" lazy="false">
             <column name="g_id" />
         </many-to-one>
         <property name="colorname" type="java.lang.String">
@@ -19,7 +19,7 @@
         <property name="picture" type="java.lang.String">
             <column name="picture" length="50" />
         </property>
-        <set name="installments" inverse="true">
+        <set name="installments" inverse="true" >
             <key>
                 <column name="color_id" />
             </key>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+	
+<struts>
+	<package name="admin" extends="struts-default" >
+
+		<action name="toUpdateAdmin" class="adminAction" method="showAdmin" >
+			<result name="success">/jsp/admin/admin-update.jsp</result>
+		</action>
+		<action name="updateAdmin" class="adminAction" method="updateAdmin">
+			<result name="success" type="redirectAction">showAllAdmin</result>
+			<result name="error" >/jsp/error.html</result>
+		</action>
+		
+		
+		<action name="toCreateAdmin" class="adminAction" method="toCreateAdmin">
+			<result name="success">/jsp/admin/admin-create.jsp</result>
+		</action>
+		<action name="createAdmin" class="adminAction" method="createAdmin">
+			<result name="success" type="redirectAction">showAllAdmin</result>
+			<result name="error" >/jsp/error.html</result>
+		</action>
+
+		<action name="showAllAdmin" class="adminAction" method="showAllAdmin">
+			<result name="success">/jsp/admin/GLYGL.jsp</result>
+		</action>
+		
+		<action name="deleteAdmin" class="adminAction" method="deleteAdmin">
+			<result name="success" type="redirectAction">showAllAdmin</result>
+			<result name="error" >/jsp/error.html</result>
+		</action>
+		
+		<action name="backIndex" class="adminAction" method="backIndex" >
+			<result name="success">/jsp/index-back.jsp</result>
+		</action>
+
+	</package>
+</struts>

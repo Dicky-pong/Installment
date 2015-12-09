@@ -7,6 +7,8 @@
 	<include file="struts-goods.xml"></include>
 	<include file="struts-goodsManage.xml"></include>
 	<include file="struts-admin.xml" ></include>
+	<include file="struts-role.xml" ></include>
+	<include file="struts-data.xml" ></include>
 
 	<!--  -->
 	<constant name="struts.multipart.saveDir" value="/img"/>
@@ -41,6 +43,12 @@
     </package>
     
      <package name="main" extends="qfq">
+     	<interceptors>
+			<interceptor name="LoginInterceptor" class="com.qfq.utils.interceptor.LoginInterceptor">
+				<param name=""></param>
+			</interceptor>
+		</interceptors>
+		
 		<action name="*_*" class="com.qfq.action.{1}Action" method="{2}">
 			<result name="input" >/jsp/index.jsp</result>
 			<result name="regist" >/jsp/user/register.jsp</result>
