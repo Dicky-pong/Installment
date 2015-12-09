@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+	
+<struts>
+	<package name="role" extends="struts-default" >
+
+		<!-- <action name="toUpdateRole" class="roleAction" method="showRole" >
+			<result name="success">/jsp/admin/admin-update.jsp</result>
+		</action>
+		<action name="updateRole" class="roleAction" method="updateRole">
+			<result name="success" type="redirectAction">showAllRole</result>
+			<result name="error" >/jsp/index.jsp</result>
+		</action> -->
+		
+		
+		<action name="toCreateRole" class="roleAction" method="toCreateRole">
+			<result name="success">/jsp/admin/role-create.jsp</result>
+		</action>
+		<action name="createRole" class="roleAction" method="createRole">
+			<result name="success" type="redirectAction">showAllRole</result>
+			<result name="error" >/jsp/error.html</result>
+		</action>
+
+		<action name="showAllRole" class="roleAction" method="showAllRole">
+			<result name="success">/jsp/admin/JSGL.jsp</result>
+		</action>
+		
+		<action name="deleteRole" class="roleAction" method="deleteRole">
+			<result name="success" type="redirectAction">showAllRole</result>
+			<result name="error" >/jsp/error.html</result>
+		</action>
+
+	</package>
+</struts>

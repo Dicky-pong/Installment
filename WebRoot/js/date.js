@@ -375,10 +375,10 @@
                 }
 
 
-                XMLHttpReq.open('post', 'db1.txt', true);
+                XMLHttpReq.open('post', 'getSalesByGoods.do', true);
                 XMLHttpReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                 XMLHttpReq.onreadystatechange = processResponse;
-                XMLHttpReq.send('select1=' + select1 + '&select2=' + select2);
+                XMLHttpReq.send(null);
 
             }
 
@@ -387,6 +387,7 @@
                     // if(XMLHttpReq.status == 200)
                     // {
                     var txt = XMLHttpReq.responseText;
+                    console.log(txt);
                     var data1 = eval("(" + txt + ")");
                     console.log(data1);
                     draw1(data1);

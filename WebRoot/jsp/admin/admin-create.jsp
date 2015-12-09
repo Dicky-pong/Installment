@@ -39,7 +39,7 @@ function jump(){
           <a href="showAllGoods.do">商品管理</a>
         </li>
         <li role="presentation">
-          <a href="../sjgl/SJFX.html">用户数据分析</a>
+          <a href="../dataAnalyse/SJFX.html">用户数据分析</a>
         </li>
         <li role="presentation">
           <a href="Order_myBackOrder.do?status=-1">订单管理</a>
