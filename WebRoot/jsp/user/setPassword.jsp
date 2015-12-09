@@ -89,17 +89,6 @@
 </head>
 <body>
  <header>
-		<nav class="top_nav">
-			<ul class="tn_left">
-			<c:choose>
-			<c:when test="${sessionUser.username eq null }"><li id="login">登录/注册</li></c:when>
-			<c:otherwise><li>您好，${sessionUser.username }</li></c:otherwise>
-	</c:choose>
-			 <li><a href="<c:url value='/Order_myOrder.do?status=-1'/>">我的订单</a></li>
-			 <li><a href="<c:url value='/jsp/user/personinfo.jsp'/>">个人中心</a></li>
-			 <c:if test="${sessionUser.username ne null }"><li class="lilast"><a href="<c:url value='/UserInfo_quit.do'/>">退出登录</a></li></c:if>
-			</ul>
-		</nav>
 		<div class="logo"><h4>地球表面最好的分期商城</h4><h1>趣分期 <span>网上商城</span></h1></div>
 	</header>
     <section class="main">
