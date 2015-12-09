@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+	
+<struts>
+	<package name="goodsManage" extends="struts-default" >
+
+		<action name="toCreateGoods" class="goodsManageAction" method="toCreateGoods" >
+			<result name="success">/jsp/goodsManage/goods-create.jsp</result>
+		</action>
+		
+		<action name="createGoods" class="goodsManageAction" method="createGoods" >
+			<result name="success">/jsp/goodsManage/goods-create.jsp</result>
+		</action>
+		
+		<action name="showAllGoods" class="goodsManageAction" method="showAllGoods" >
+			<result name="success">/jsp/goodsManage/SPGL.jsp</result>
+		</action>
+		
+		<action name="deleteGoods" class="goodsManageAction" method="deleteGoods" >
+			<result name="success" type="redirectAction" >showAllGoods</result>
+		</action>
+		
+		<action name="updateGoods" class="goodsManageAction" method="updateGoods" >
+			<result name="success" type="redirectAction">showAllGoods</result>
+		</action>
+		
+		<action name="toUpdateGoods" class="goodsManageAction" method="showGoods" >
+			<result name="success">/jsp/goodsManage/goods-update.jsp</result>
+		</action>
+		
+		<action name="getSecondCategory" class="goodsManageAction" method="getSecondCategory"/>
+
+	</package>
+</struts>

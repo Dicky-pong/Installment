@@ -50,7 +50,9 @@
 			<result name="order" >/jsp/order/order.jsp</result>
 			<result name="detil" >/jsp/order/orderdetil.jsp</result>
 			<result name="pay" >/jsp/order/pay.jsp</result>
+			<result name="adminLogin" >/jsp/admin/login-back.jsp</result>
 			<result name="msg" >/jsp/msg.jsp</result>
+			<result name="goto" >/jsp/index-back.jsp</result>
 			<result name="forget" >/jsp/user/forgetPass.jsp</result>
 			<result name="setPass" >/jsp/user/setPassword.jsp</result>
 			<result name="resetPass" >/jsp/user/resetPassword.jsp</result>

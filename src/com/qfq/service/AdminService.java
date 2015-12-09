@@ -10,7 +10,7 @@ import com.qfq.po.Roleinfo;
 
 public interface AdminService {
 
-	AdminEntity login(String code, String pass);
+	public boolean login(String code, String pass);
 
 //	public void findPageUser(Page page);
 
