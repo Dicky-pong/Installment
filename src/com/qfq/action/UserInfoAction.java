@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
 
 import com.qfq.entity.UserInfoEntity;
@@ -35,7 +36,6 @@ public class UserInfoAction extends BaseAction{
 	public void setUserInfoService(UserInfoService userInfoService) {
 		this.userInfoService = userInfoService;
 	}
-
 
 	/**
 	 * 登录功能
@@ -246,7 +246,20 @@ public class UserInfoAction extends BaseAction{
 		
 		return errors;
 	}
-	
+	/**
+	 * 退出功能
+	 * @return 
+	 */
+	public String quit(){
+		/*
+		 * 1.销毁session
+		 */
+		this.getRequest().getSession().invalidate();
+		/*
+		 * 2.重定向到login.jsp
+		 */
+		return "tologin";
+	}
 	
 	/**
 	 * 激活功能
@@ -269,6 +282,68 @@ public class UserInfoAction extends BaseAction{
 			this.getRequest().setAttribute("msg", e.getMessage());
 		}
 		return "failed";
+	}
+	
+	/**
+	 * 找回密码
+	 * @return
+	 */
+	public String forgetPass(){
+		String username = userInfoEntity.getUsername();
+		String email = userInfoEntity.getEmail();
+		if(userInfoService.findByNameAndEmail(username,email)){
+			this.getRequest().setAttribute("code", "success");
+			this.getRequest().setAttribute("msg", "请登录邮箱进行密码重置！");
+			this.getSession().setAttribute("name", username);
+			return "msg";
+		}
+		this.getRequest().setAttribute("code", "error");
+		this.getRequest().setAttribute("msg", "用户名与Email不匹配！");
+		return "forget";
+		
+	}
+	/**
+	 * 修改密码
+	 * @return
+	 */
+	public String updatePass(){
+		String pass = userInfoEntity.getPassword();
+		String newpass = this.getRequest().getParameter("newpass");
+		String renewpass = this.getRequest().getParameter("renewpass");
+		String username = this.getRequest().getParameter("username");
+		Userinfo user = userInfoService.validatePass(username);
+		if(!newpass.equals(renewpass)){
+			this.getRequest().setAttribute("m", "两次密码输入不一样！");
+			return "resetPass";
+		}
+		if(!user.getPassword().equals(pass)){
+			this.getRequest().setAttribute("s", "原密码不正确！");
+			return "resetPass";
+		}
+		userInfoService.updatePass(username,newpass);
+		this.getRequest().setAttribute("code", "success");
+		this.getRequest().setAttribute("msg", "密码修改成功！");
+		return "msg";
+	}
+	
+	/**
+	 * 设置密码
+	 * @return
+	 */
+	public String SetPass(){
+		System.out.println("过来了");
+		String newpass = this.getRequest().getParameter("newpass");
+		String renewpass = this.getRequest().getParameter("renewpass");
+		String username = this.getRequest().getParameter("username");
+		Userinfo user = userInfoService.validatePass(username);
+		if(!newpass.equals(renewpass)){
+			this.getRequest().setAttribute("m", "两次密码输入不一样！");
+			return "setPass";
+		}
+		userInfoService.updatePass(username,newpass);
+		this.getRequest().setAttribute("code", "success");
+		this.getRequest().setAttribute("msg", "密码修改成功！");
+		return "msg";
 	}
 }
 

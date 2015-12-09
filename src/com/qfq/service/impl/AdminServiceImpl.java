@@ -23,24 +23,12 @@ public class AdminServiceImpl implements AdminService{
 		this.baseDao = baseDao;
 	}
 
-	public AdminEntity login(String code, String pass) {
+	public boolean login(String code, String pass) {
 		String hql="from Admin as t where t.name='"+code+"' and t.password='"+pass+"'";
 		Admin admin = (Admin)baseDao.loadObject(hql);
-		Set<Rolemenu>rolemenu=admin.getRoleinfo().getRolemenus();
-		Iterator<Rolemenu>it = rolemenu.iterator();
-		while(it.hasNext()){
-			System.out.println(it.next().getMenu().getName());
-		}
-//		if(admin!=null){
-//			AdminEntity dto = AdminEntity.createDto(user);
-//			hql = "from Vusermenu as t where t.userid="+user.getUserid();
-//			List list = baseDao.findByHql(hql);
-//			JSONArray jsong = JSONArray.fromObject(new UserMenuDTO().getTree(0,list));
-//			dto.setUsermenu(jsong.toString());
-//			return dto;
-//		}
-//		return null;
-		return null;
+		if(admin!=null)
+		return true;
+		return false;
 	}
 
 //	public void findPageUser(Page page) {

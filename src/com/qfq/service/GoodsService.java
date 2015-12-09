@@ -132,6 +132,6 @@ public interface GoodsService {
 	 *            订单中商品的月供的id
 	 * @return 0插入成功，1失败
 	 */
-	public int saveOrder(String goodsId, String goodstypeId, String colorId,
+	public String saveOrder(int userId, String goodsId, String goodstypeId, String colorId,
 			String monthId, String address, String receiver, String tel);
 }

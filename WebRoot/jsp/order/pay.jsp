@@ -8,9 +8,9 @@
 <head>
     <meta charset="UTF-8">
     <title>农资联盟杯</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/personCenter.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/personCenter.css">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/pay.css'/>">
 	
 	<script type="text/javascript" src="<c:url value='/jquery/jquery-1.5.1.js'/>"></script>
@@ -78,15 +78,19 @@
 </head>
 <body>
 <header>
-    <nav class="top_nav">
-        <ul class="tn_left">
-            <li>快捷导航1</li><!--
-			 --><li>快捷导航2</li><!--
-			 --><li>快捷导航3</li>
-        </ul>
-    </nav>
-    <div class="logo"><h4>地球表面最好的农贸商城</h4><h1>农资联盟 <span>网上商城</span></h1></div>
-</header>
+		<nav class="top_nav">
+			<ul class="tn_left">
+			<c:choose>
+			<c:when test="${sessionUser.username eq null }"><li id="login">登录/注册</li></c:when>
+			<c:otherwise><li>您好，${sessionUser.username }</li></c:otherwise>
+	</c:choose>
+			 <li><a href="<c:url value='/Order_myOrder.do?status=-1'/>">我的订单</a></li>
+			 <li><a href="<c:url value='/jsp/user/personinfo.jsp'/>">个人中心</a></li>
+			 <c:if test="${sessionUser.username ne null }"><li class="lilast"><a href="<c:url value='/UserInfo_quit.do'/>">退出登录</a></li></c:if>
+			</ul>
+		</nav>
+		<div class="logo"><h4>地球表面最好的分期商城</h4><h1>趣分期 <span>网上商城</span></h1></div>
+	</header>
 <section class="main">
 
     <section class="container">

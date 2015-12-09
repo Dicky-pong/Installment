@@ -4,3 +4,13 @@ WebRoot/img/2.jpg
 .settings/org.eclipse.core.resources.prefs
 src/spring-basic.xml
 WebRoot/WEB-INF/classes/struts.xml
+*.class
+*.class
+*.class
+WebRoot/WEB-INF/classes/com/qfq/action/AdminAction.class
+action/*
+.settings/com.genuitec.eclipse.core.prefs
+WebRoot/WEB-INF/classes/com/qfq/action/AdminAction.class
+WebRoot/WEB-INF/classes/com/qfq/action/UserInfoAction.class
+WebRoot/WEB-INF/classes/com/qfq/service/GoodsService.class
+WebRoot/WEB-INF/classes/spring-bean.xml

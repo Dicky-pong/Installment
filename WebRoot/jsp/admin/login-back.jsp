@@ -36,6 +36,8 @@
 		<hr>
 		<br>
 		<center>
+		<label>${error }</label>
+		<br>
         <label>用户名：&nbsp  </label><input type="username" name="adminEntity.name" class="username"  >
 		<br>
 		<br>

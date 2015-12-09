@@ -13,8 +13,11 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import com.qfq.po.Category;
 import com.qfq.po.Goods;
 import com.qfq.po.Goodstype;
+import com.qfq.po.Installment;
 import com.qfq.po.Monthprovide;
+import com.qfq.po.Userinfo;
 import com.qfq.service.GoodsService;
+import com.qfq.service.OrderService;
 import com.qfq.utils.Page;
 import com.qfq.utils.PageUtil;
 import com.qfq.utils.ResponseUtil;
@@ -28,9 +31,19 @@ public class GoodsAction extends BaseAction implements ServletResponseAware{
 	private List<Category> categoryList;
 	private List<Goods> goodsList;
 	private Goods goods;
+	private OrderService orderService;
 	private String searchOption;//查询时的接受条件
 	private String categoryId4Search;//查询时需要接受的二级分类ID
 	
+	
+	public OrderService getOrderService() {
+		return orderService;
+	}
+
+	public void setOrderService(OrderService orderService) {
+		this.orderService = orderService;
+	}
+
 	//setter,getter
 	public GoodsService getGoodsService() {
 		return goodsService;
@@ -139,10 +152,12 @@ public class GoodsAction extends BaseAction implements ServletResponseAware{
 		String detailAddress = request.getParameter("detailAddress");
 		String receiver = request.getParameter("receiver");
 		String tel = request.getParameter("tel");
+		Userinfo user = (Userinfo) this.getSession().getAttribute("sessionUser");
 		
-		
-		int result = goodsService.saveOrder(goodsId, goodstypeId, colorId, monthId, 
+		String result = goodsService.saveOrder(user.getId(), goodsId, goodstypeId, colorId, monthId, 
 				cityAddress+detailAddress, receiver, tel);
+			Installment installment = orderService.load(result);
+			this.getRequest().setAttribute("order", installment);
 		System.out.println("make order!! - type:"+goodstypeId+" - "+colorId+" - "+monthId+" - "+goodsId+
 				" \n "+cityAddress+ " - " +detailAddress+" - "+receiver+" - "+tel);
 //		if(0 == result){

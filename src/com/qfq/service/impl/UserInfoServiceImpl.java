@@ -8,11 +8,15 @@ import java.util.List;
 import java.util.Properties;
 import javax.mail.MessagingException;
 import javax.mail.Session;
+
+import org.apache.struts2.components.Password;
+
 import cn.itcast.commons.CommonUtils;
 import cn.itcast.mail.Mail;
 import cn.itcast.mail.MailUtils;
 import com.qfq.dao.BaseDao;
 import com.qfq.entity.UserInfoEntity;
+import com.qfq.po.Installment;
 import com.qfq.po.Userinfo;
 import com.qfq.service.UserInfoService;
 import com.qfq.utils.UserException;
@@ -134,5 +138,80 @@ public class UserInfoServiceImpl implements UserInfoService{
 		if(user.getStatus()!=0)throw new UserException("您已经激活过了，请不要二次激活！");
 		user.setStatus((short) 1);
 		baseDao.saveOrUpdate(Userinfo.class);//修改状态
+	}
+
+	/**
+	 * 匹配用户名和密码，发送邮件
+	 */
+	public boolean findByNameAndEmail(String username,String email) {
+		/*
+		 * 1.验证用户名和Email
+		 */
+		String hql = "from Userinfo u where u.email ='"+email+"' and u.username='"+username+"'";
+		List list =   baseDao.findByHql(hql);
+		if(list.size()>0){
+		/*
+		 * 3. 发邮件
+		 */
+		/*
+		 * 把配置文件内容加载到prop中
+		 */
+		Properties prop = new Properties();
+		try {
+			prop.load(this.getClass().getClassLoader().getResourceAsStream("email_template.properties"));
+		} catch (IOException e1) {
+			throw new RuntimeException(e1);
+		}
+		/*
+		 * 登录邮件服务器，得到session
+		 */
+		String host = prop.getProperty("host");//服务器主机名
+		String name = prop.getProperty("username");//登录名
+		String pass = prop.getProperty("password");//登录密码
+		Session session = MailUtils.createSession(host, name, pass);
+		
+		/*
+		 * 创建Mail对象
+		 */
+		String from = prop.getProperty("from");
+		String to = email;
+		String subject = prop.getProperty("passSubject");
+		// MessageForm.format方法会把第一个参数中的{0},使用第二个参数来替换。
+		// 例如MessageFormat.format("你好{0}, 你{1}!", "张三", "去死吧"); 返回“你好张三，你去死吧！”
+		String content = MessageFormat.format(prop.getProperty("contentPass"),null);
+		Mail mail = new Mail(from, to, subject, content);
+		/*
+		 * 发送邮件
+		 */
+		try {
+			MailUtils.send(session, mail);
+			return true;
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		}
+		return false;
+	}
+
+	/**
+	 * 验证原密码
+	 */
+	public Userinfo validatePass(String username) {
+		String hql = "from Userinfo u where u.username='"+username+"'";
+		Userinfo user=  (Userinfo) baseDao.loadObject(hql);
+		return user;
+	}
+
+	/**
+	 * 修改密码
+	 */
+	public void updatePass(String username,String newpass) {
+		String hql = " from Userinfo u where u.username ='"+username+"'";
+		Userinfo userinfo= (Userinfo) baseDao.loadObject(hql);
+		userinfo.setPassword(newpass);
+		baseDao.saveOrUpdate(userinfo);
+		System.out.println("保存成功");
 	}
 }

@@ -41,7 +41,7 @@
             <column name="status" />
         </property>
         <property name="address" type="java.lang.String">
-            <column name="address" length="11" />
+            <column name="address" length="50" />
         </property>
         <property name="tel" type="java.lang.String">
             <column name="tel" length="11" />

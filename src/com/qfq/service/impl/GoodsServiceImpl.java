@@ -204,33 +204,35 @@ public class GoodsServiceImpl implements GoodsService{
 		}
 	}
 	
-	public int saveOrder(String goodsId, String goodstypeId, String colorId,
+	public String saveOrder(int userId, String goodsId, String goodstypeId, String colorId,
 			String monthId, String address, String receiver, String tel) {
+		String orderID = null;
 		try{
 			Goods goods = new Goods();
 			goods.setId(Integer.valueOf(goodsId));
 			
 			Userinfo user = new Userinfo();
-			user.setId(1);
+			user.setId(userId);
 			
 			Color color = new Color();
 			color.setId(Integer.valueOf(colorId));
 			
 			List<Monthprovide> list = baseDao.findByHql("from Monthprovide where id = "+monthId);
 			if(list == null || list.size() == 0){
-				return 1;
+				return null;
 			}
 			
 			List<Goodstype> list2 = baseDao.findByHql("from Goodstype where id = "+goodstypeId);
 			if(list2 == null || list2.size() == 0){
-				return 1;
+				return null;
 			}
 			if(list2.get(0).getCount() < 1){
-				return 2;
+				return null;
 			}
-			
+
+			orderID = CommonUtils.uuid();
 			Installment in = new Installment();
-			in.setOrderID(CommonUtils.uuid());
+			in.setOrderID(orderID);
 			in.setPayMonth(list.get(0).getMonths());
 			in.setPayPrice(list2.get(0).getPrice());
 			in.setGoodsType(list2.get(0).getTypename());
@@ -249,9 +251,9 @@ public class GoodsServiceImpl implements GoodsService{
 			baseDao.callProcedure("update Goodstype g set g.count=g.count-1 where g.id = "+goodstypeId);
 		}catch (Exception e) {
 			e.printStackTrace();
-			return 1;
+			return null;
 		}
-		return 0;
+		return orderID;
 	}
 	
 }

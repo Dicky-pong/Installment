@@ -103,20 +103,18 @@ public class AdminAction extends BaseAction implements ModelDriven<Admin>{
 		try{
 			String code = adminEntity.getName().trim().toLowerCase();
 			String pass = adminEntity.getPassword().trim().toLowerCase();
-			AdminEntity adminEntity = adminService.login(code, pass);
-//			if (adminEntity != null) {
-//				this.getSession().setAttribute(Constants.USERINFO, adminEntity);
-//				return "success";
-//			} else{
-//				this.getRequest().setAttribute("error", "用户名或密码错误");
-//				return "input";
-//			}
+			if (adminService.login(code, pass)) {
+				this.getSession().setAttribute("sessionAdmin", adminEntity);
+				return "goto";
+			} else{
+				this.getRequest().setAttribute("error", "用户名或密码错误");
+				return "adminLogin";
+			}
 		}catch (Exception e) {
 			e.printStackTrace();
 			this.getRequest().setAttribute("error", "连接失败");
-			return "login";
+			return "adminLogin";
 		}
-		return null;
 	}
 	
 	/** 用户权限菜单 */
