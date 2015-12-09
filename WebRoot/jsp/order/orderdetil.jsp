@@ -8,9 +8,9 @@
 <head>
     <meta charset="UTF-8">
     <title>农资联盟杯</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/personCenter.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/personCenter.css">
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>
         (function(){

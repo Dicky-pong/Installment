@@ -54,6 +54,7 @@
 	<!-- 商品模块 -->
 	<bean id="goodsAction" class="com.qfq.action.GoodsAction" >
 		<property name="goodsService" ref="goodsService"/>
+		<property name="orderService" ref="orderService"/>
 	</bean>
 	
 	<!-- 商品管理模块 -->

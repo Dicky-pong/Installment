@@ -14,7 +14,7 @@
 		</action>
 		
 		<action name="makeOrder" class="goodsAction" method="makeOrder">
-			<result name="success" type="redirectAction">showGoods</result>
+			<result name="success">/jsp/order/pay.jsp</result>
 		</action>
 
 	</package>

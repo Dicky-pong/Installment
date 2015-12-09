@@ -10,7 +10,7 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="category" class="com.qfq.po.Category" fetch="select">
+        <many-to-one name="category" class="com.qfq.po.Category" fetch="select" lazy="false">
             <column name="pid" />
         </many-to-one>
         <property name="name" type="java.lang.String">
@@ -22,7 +22,7 @@
             </key>
             <one-to-many class="com.qfq.po.Category" />
         </set>
-        <set name="goodses" inverse="true">
+        <set name="goodses" inverse="true" lazy="false">
             <key>
                 <column name="c_id" />
             </key>
