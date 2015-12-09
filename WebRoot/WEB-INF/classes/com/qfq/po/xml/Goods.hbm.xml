@@ -14,7 +14,7 @@
             <column name="c_id" />
         </many-to-one>
         <property name="goodsID" type="java.lang.String">
-            <column name="goodsID" length="10" />
+            <column name="goodsID" length="32" />
         </property>
         <property name="name" type="java.lang.String">
             <column name="name" length="30" />

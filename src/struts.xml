@@ -31,7 +31,7 @@
 		<global-results>
 			<!-- 定义名为exception的全局result -->
 		    <result name="exception">/exception.jsp</result>
-		    <result name="tologin">/index.jsp</result>
+		    <result name="tologin">/jsp/index.jsp</result>
 		</global-results>
 
 		<!-- 定义全局异常映射 -->
@@ -51,6 +51,9 @@
 			<result name="detil" >/jsp/order/orderdetil.jsp</result>
 			<result name="pay" >/jsp/order/pay.jsp</result>
 			<result name="msg" >/jsp/msg.jsp</result>
+			<result name="forget" >/jsp/user/forgetPass.jsp</result>
+			<result name="setPass" >/jsp/user/setPassword.jsp</result>
+			<result name="resetPass" >/jsp/user/resetPassword.jsp</result>
 			<result name="ordermag" >/jsp/orderManager/ordermag.jsp</result>
 			<result name="orderdetail" >/jsp/orderManager/orderdetail.jsp</result>
 		</action>

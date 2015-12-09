@@ -20,7 +20,7 @@
             <column name="color_id" />
         </many-to-one>
         <property name="orderID" type="java.lang.String">
-            <column name="orderID" length="10" />
+            <column name="orderID" length="32" />
         </property>
         <property name="payMonth" type="java.lang.Integer">
             <column name="payMonth" />
