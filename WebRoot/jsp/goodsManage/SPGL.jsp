@@ -53,19 +53,25 @@
 		alert("未曾发现您的蹄印！");
 		return false;
 	}
-	function prePage(obj, page, type, brand, categoryId4Search){
+	function prePage(page){
 		if(page == '0'){
 			alert("已经是第一页了");
 			return false;
 		}
-		obj.href = 'showAllGoods.do?currentPage='+page+'&goodsName='+type+'&goodsBrand='+brand+'&categoryId4Search='+categoryId4Search;
+		var pageForm = document.getElementById("pageForm");
+		document.getElementById("currentPage").value = page;
+		pageForm.submit();
 	}
-	function nextPage(obj, page, max, type, brand, categoryId4Search){
+	function nextPage(page, max){
 		if(page > max){
 			alert("已经是最后一页了");
 			return false;
 		}
-		obj.href = 'showAllGoods.do?currentPage='+page+'&goodsName='+type+'&goodsBrand='+brand+'&categoryId4Search='+categoryId4Search;
+		var pageForm = document.getElementById("pageForm");
+		document.getElementById("currentPage").value = page;
+		//var goodsName = $("#pageForm input[name=goodsName]").val();
+		//var goodsName = $("#pageForm input[name=goodsBrand]").val();
+		pageForm.submit();
 	}
 </script>
 
@@ -91,7 +97,7 @@
 				<li role="presentation" class="active"><a
 					href="showAllGoods.do">商品管理</a>
 				</li>
-				<li role="presentation"><a href="../sjgl/SJFX.html">用户数据分析</a>
+				<li role="presentation"><a href="${pageContext.request.contextPath }/jsp/dataAnalyse/SJFX.html">用户数据分析</a>
 				</li>
 				<li role="presentation"><a href="Order_myBackOrder.do?status=-1">订单管理</a>
 				</li>
@@ -156,16 +162,22 @@
 			<center>
 				<nav>
 				<ul class="pagination">
-					<li><a href="#" onclick="prePage(this, ${page.currentPage-1},'${requestScope.goodsName }','${requestScope.goodsBrand }','${requestScope.categoryId4Search }')">&laquo;</a>
+					<li><a href="#" onclick="prePage(${page.currentPage-1})">&laquo;</a>
 					</li>
 					<c:forEach begin="1" end="${requestScope.page.totalPage}" var="str" step="1">
 						<li>
-						<a href="showAllGoods.do?currentPage=${str }&name=${requestScope.goodsName }&brand=${requestScope.goodsBrand }&categoryId4Search=${requestScope.categoryId4Search}">${str }</a>
+						<a href="#" onclick="prePage(${str})">${str }</a>
 						</li>
 					</c:forEach>
-					<li><a href="#" onclick="nextPage(this, ${page.currentPage+1}, ${page.totalPage },'${requestScope.goodsName }','${requestScope.goodsBrand }','${requestScope.categoryId4Search }')">&raquo;</a>
+					<li><a href="#" onclick="nextPage(${page.currentPage+1}, ${page.totalPage })">&raquo;</a>
 					</li>
 				</ul>
+				<form action="showAllGoods.do" method="post" id="pageForm">
+					<input type="hidden" name="currentPage" id="currentPage" >
+					<input type="hidden" name="goodsName" value="${requestScope.goodsName }">
+					<input type="hidden" name="goodsBrand" value="${requestScope.goodsBrand }">
+					<input type="hidden" name="categoryId4Search" id="categoryId4Search" value="${requestScope.categoryId4Search }">
+				</form>
 				</nav>
 			</center>
 			<div id="" class="">

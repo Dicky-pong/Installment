@@ -10,10 +10,7 @@
   <script src="${pageContext.request.contextPath }/js/jquery.js"></script>
   <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
   <script>
-function jump(){
- alert("更新");
- document.getElementById("message").submit();
-}
+
 </script>
 </head>
 <body>
@@ -39,13 +36,13 @@ function jump(){
           <a href="showAllGoods.do">商品管理</a>
         </li>
         <li role="presentation">
-          <a href="../sjgl/SJFX.html">用户数据分析</a>
+          <a href="${pageContext.request.contextPath }/jsp/dataAnalyse/SJFX.html">用户数据分析</a>
         </li>
         <li role="presentation">
           <a href="Order_myBackOrder.do?status=-1">订单管理</a>
         </li>
         <li role="presentation">
-          <a href="../Login.html">退出</a>
+          <a href="#">退出</a>
         </li>
       </ul>
     </div>
@@ -82,7 +79,7 @@ function jump(){
                 </td>
                 <td>上市时间</td>
                 <td>
-                  <input type="text" value="${requestScope.goods.date.year+1900}-${requestScope.goods.date.month+1}-${requestScope.goods.date.date}" readonly />
+                  <input type="text" name="date" value="${requestScope.goods.date.year+1900}-${requestScope.goods.date.month+1}-${requestScope.goods.date.date}" readonly />
                 </td>
               </tr>
 
@@ -139,9 +136,9 @@ function jump(){
             </table>
             商品介绍信息
             <br />
-            <textarea name="detail" cols="70" rows="5"  >${requestScope.goods.descript }</textarea>
+            <textarea name="descript" cols="70" rows="5"  >${requestScope.goods.descript }</textarea>
             <br />
-            <button type="button" class="btn btn-default" onclick="jump()">更新</button>
+            <button type="button" class="btn btn-default">更新</button>
             &nbsp&nbsp&nbsp
             <button type="reset" class="btn btn-default">重置</button>
           </form>
@@ -158,5 +155,5 @@ function jump(){
   </div>
 
 </body>
-  <script src="${pageContext.request.contextPath }/js/goods-add.js"></script>
+  <script src="${pageContext.request.contextPath }/js/goods-update.js"></script>
 </html>

@@ -42,7 +42,7 @@ public class DataAction extends BaseAction implements ServletResponseAware{
 		JSONArray array1 = new JSONArray();
 		
 		JSONObject object = new JSONObject();
-		object.put("style", "iPhone6");
+		object.put("style", "iPhone6s");
 		for(int i=0; i<datas1.length; i++){
 			array1.add(datas1[i]);
 		}
@@ -51,7 +51,7 @@ public class DataAction extends BaseAction implements ServletResponseAware{
 		
 		JSONArray array2 = new JSONArray();
 		JSONObject object2 = new JSONObject();
-		object2.put("style", "iPhone6s");
+		object2.put("style", "iPhone6");
 		for(int i=0; i<datas2.length; i++){
 			array2.add(datas2[i]);
 		}

@@ -240,7 +240,7 @@ public class GoodsServiceImpl implements GoodsService{
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			
 			in.setDate(format.format(date));
-			in.setStatus(0);
+			in.setStatus(1);
 			in.setAddress(address);
 			in.setTel(tel);
 			in.setReceiver(receiver);

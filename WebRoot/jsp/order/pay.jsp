@@ -7,11 +7,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>农资联盟杯</title>
+    <title>趣分期</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/index.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/personCenter.css">
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/pay.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='${pageContext.request.contextPath }/css/pay.css'/>">
 	
 	<script type="text/javascript" src="<c:url value='/jquery/jquery-1.5.1.js'/>"></script>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -86,6 +86,7 @@
 	</c:choose>
 			 <li><a href="<c:url value='/Order_myOrder.do?status=-1'/>">我的订单</a></li>
 			 <li><a href="<c:url value='/jsp/user/personinfo.jsp'/>">个人中心</a></li>
+			 <li><a href="<c:url value='showGoods.do?searchOption=&categoryId4Search='/>">趣分期主页</a></li>
 			 <c:if test="${sessionUser.username ne null }"><li class="lilast"><a href="<c:url value='/UserInfo_quit.do'/>">退出登录</a></li></c:if>
 			</ul>
 		</nav>

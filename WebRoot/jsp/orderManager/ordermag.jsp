@@ -25,14 +25,14 @@ function jump(){
 			alert("已经是第一页了");
 			return false;
 		}
-		obj.href = 'myBackOrder.do?pageCode='+page+'&status='+status;
+		obj.href = 'Order_myBackOrder.do?pageCode='+page+'&status='+status;
 	}
 	function nextPage(obj, page, max,status ){
 		if(page > max){
 			alert("已经是最后一页了");
 			return false;
 		}
-		obj.href = 'myBackOrder.do?pageCode='+page+'&status='+status;
+		obj.href = 'Order_myBackOrder.do?pageCode='+page+'&status='+status;
 	}
 </script>
 
@@ -55,17 +55,17 @@ function jump(){
         <li role="presentation">
           <a href="showAllRole.do">角色管理</a>
         </li>
-        <li role="presentation" class="active">
+        <li role="presentation">
           <a href="showAllGoods.do">商品管理</a>
         </li>
         <li role="presentation">
-          <a href="../sjgl/SJFX.html">用户数据分析</a>
+          <a href="${pageContext.request.contextPath }/jsp/dataAnalyse/SJFX.html">用户数据分析</a>
         </li>
-        <li role="presentation">
+        <li role="presentation" class="active">
           <a href="Order_myBackOrder.do?status=-1">订单管理</a>
         </li>
         <li role="presentation">
-          <a href="../Login.html">退出</a>
+          <a href="#">退出</a>
         </li>
       </ul>
     </div>
@@ -131,7 +131,7 @@ function jump(){
 					</li>
 					<c:forEach begin="1" end="${pb.totalpage}" var="str" step="1">
 						<li>
-						<a href="myBackOrder.do?pageCode=${str }&status=${sta }">${str }</a>
+						<a href="<c:url value='/Order_myBackOrder.do?pageCode=${str }&status=${sta }'/>">${str }</a>
 						</li>
 					</c:forEach>
 					<li><a href="#" onclick="nextPage(this, ${pb.pageCode+1}, '${pb.totalpage }','${sta }')">&raquo;</a>

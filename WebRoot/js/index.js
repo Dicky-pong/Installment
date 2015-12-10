@@ -67,4 +67,8 @@ $(function(){
 	//		$(this).slideUp();
 	//	})
 	//})
+	
+	$(" .titleWrap #X").bind("click",function(){
+		$(".popWrap").hide();
+	})
 });

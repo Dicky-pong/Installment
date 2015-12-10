@@ -19,7 +19,7 @@
 <body>
 
 	<div id="gdou" class="inline_div">
-		<img src="${pageContext.request.contextPath }/imagess/qfq.png" width="300" height="80" />
+		<img src="${pageContext.request.contextPath }/images/qfq.png" width="300" height="80" />
 	</div>
 
 	<div id="" class="">
@@ -35,11 +35,11 @@
 				</li>
 				<li role="presentation"><a href="showAllGoods.do">商品管理</a>
 				</li>
-				<li role="presentation"><a href="../sjgl/SJFX.html">用户数据分析</a>
+				<li role="presentation"><a href="${pageContext.request.contextPath }/jsp/dataAnalyse/SJFX.html">用户数据分析</a>
 				</li>
 				<li role="presentation"><a href="Order_myBackOrder.do?status=-1">订单管理</a>
 				</li>
-				<li role="presentation"><a href="../Login.html">退出</a>
+				<li role="presentation"><a href="#">退出</a>
 				</li>
 			</ul>
 		</div>
@@ -48,7 +48,7 @@
 			<ol class="breadcrumb">
 				<li><a href="backIndex.do">趣分期后台管理系统</a>
 				</li>
-				<li><a href="JSGL.html">角色管理</a>
+				<li><a href="showAllRole.do">角色管理</a>
 				</li>
 				<li class="active">添加角色</li>
 			</ol>

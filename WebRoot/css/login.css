@@ -1,0 +1,32 @@
+.loginwindow {
+/*	position:absolute;
+	left:800px;
+	top:150px;
+	width:350px;
+	height:250px;
+	z-index:1;
+*/
+	margin-top: 80px;
+	width: 300px;
+	height: 300px;
+	border:2px solid #428BCA;
+
+}
+.loginwindow table tr td{
+	height: 47px;
+}
+
+#jump{
+	margin-top:25px;
+	width: 50px;
+}
+.login{
+	font-size: 20px;
+	font-weight: 700;
+	display: inline-block;
+	margin-top:10px;
+	margin-bottom: 50px;
+
+}
+
+#yw{position:absolute;top:590px;width:1330px;color:#428BCA}

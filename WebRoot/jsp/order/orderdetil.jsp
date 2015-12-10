@@ -78,6 +78,7 @@
 	</c:choose>
 			 <li><a href="<c:url value='/Order_myOrder.do?status=-1'/>">我的订单</a></li>
 			 <li><a href="<c:url value='/jsp/user/personinfo.jsp'/>">个人中心</a></li>
+			 <li><a href="<c:url value='showGoods.do?searchOption=&categoryId4Search='/>">趣分期主页</a></li>
 			 <c:if test="${sessionUser.username ne null }"><li class="lilast"><a href="<c:url value='/UserInfo_quit.do'/>">退出登录</a></li></c:if>
 			</ul>
 		</nav>
@@ -116,7 +117,7 @@
                         <tr>
                             <td>${order.goods.goodsID }</td>
                             <td class="align_Left"><a href="http://item.jd.com/982045.html" target="_blank">${order.goods.name }</a></td>
-                            <td><strong class="ftx-01">¥${order.payPrice }X${order.payPrice/order.payMonth}</strong></td>
+                            <td><strong class="ftx-01">¥${order.payMonth }X<fmt:formatNumber type="number" value="${order.payPrice/order.payMonth} " maxFractionDigits="2"/></strong></td>
                             <td>0</td>
                             <td>1</td>
                             <td class="incart">
