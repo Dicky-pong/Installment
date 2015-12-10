@@ -63,11 +63,11 @@
 				</li>
 				<li role="presentation"><a href="showAllGoods.do">商品管理</a>
 				</li>
-				<li role="presentation"><a href="../sjgl/SJFX.html">用户数据分析</a>
+				<li role="presentation"><a href="${pageContext.request.contextPath }/jsp/dataAnalyse/SJFX.html">用户数据分析</a>
 				</li>
 				<li role="presentation"><a href="Order_myBackOrder.do?status=-1">订单管理</a>
 				</li>
-				<li role="presentation"><a href="../Login.html">退出</a>
+				<li role="presentation"><a href="#">退出</a>
 				</li>
 			</ul>
 		</div>

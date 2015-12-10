@@ -32,10 +32,11 @@
 			<ul class="tn_left">
 			<c:choose>
 			<c:when test="${sessionUser.username eq null }"><li id="login">登录/注册</li></c:when>
-			<c:otherwise><li>您好，${sessionUser.username }</li></c:otherwise>
-	</c:choose>
+			<c:otherwise><li>您好，${sessionUser.username }</li>
 			 <li><a href="<c:url value='/Order_myOrder.do?status=-1'/>">我的订单</a></li>
-			 <li><a href="<c:url value='/jsp/user/personinfo.jsp'/>">个人中心</a></li>
+			 <li><a href="<c:url value='/jsp/user/personinfo.jsp'/>">个人中心</a></li></c:otherwise>
+			</c:choose>
+			 <li><a href="<c:url value='showGoods.do?searchOption=&categoryId4Search='/>">趣分期主页</a></li>
 			 <c:if test="${sessionUser.username ne null }"><li class="lilast"><a href="<c:url value='/UserInfo_quit.do'/>">退出登录</a></li></c:if>
 			</ul>
 		</nav>
@@ -51,194 +52,16 @@
 			</div>
 			<div class="show_class">
 				<div id="wrapper01" class="section">
-					<div class="title_bg">
-						<div class="title"><img src="img/gnb_banner_line.gif" alt="">
-							<ul><!--
-							--><li>手机</li><!--
-							--><li>电脑/平板</li><!--
-							--><li>摄影摄像</li><!--
-							--><li>潮流数码</li>
-							</ul>
-						</div>
-					</div>
-					<div class="other_class">
-						<div class="other_bg">
-							<img src="img/GNB_BANNER_DST_150807.jpg" alt="">
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-	                        <ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-                            <ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-                        
-						</div>
-					</div>
+					
 				</div>
 				<div id="wrapper02" class="section">
-					<div class="title_bg">
-						<div class="title"><img src="img/gnb_banner_line.gif" alt="">
-							<ul><!--
-							--><li>手机</li><!--
-							--><li>电脑/平板</li><!--
-							--><li>摄影摄像</li><!--
-							--><li>潮流数码</li>
-							</ul>
-						</div>
-					</div>
-					<div class="other_class">
-						<div class="other_bg">
-							<img src="img/tp.png" alt="">
-							<ul>
-								<li>手机</li>
-							</ul>
-							<ul>
-								<li>平板电脑</li>
-								<li>笔记本电脑</li>
-								<li>台式电脑</li>
-								<li>游戏本</li>
-								<li>摄像头</li>
-								<li>键盘</li>
-								<li>鼠标</li>
-								<li>显示器</li>
-							</ul>
-							<ul>
-								<li>数码相机</li>
-								<li>单电/微单</li>
-								<li>单反相机</li>
-								<li>摄像机</li>
-								<li>户外器材</li>
-							</ul>
-	                        <ul>
-								<li>数码配件</li>
-								<li>影视娱乐</li>
-								<li>智能设备</li>
-							</ul>
-                        
-						</div>
-					</div>
+					
 				</div>
 				<div id="wrapper03" class="section">
 					<div class="title_bg">
-						<div class="title"><img src="img/gnb_banner_line.gif" alt="">
-							<ul><!--
-							--><li>二级菜单1</li><!--
-							--><li>二级菜单2</li><!--
-							--><li>二级菜单3</li><!--
-							--><li>二级菜单4</li><!--
-						    --><li>二级菜单5</li>
-							</ul>
-						</div>
+						
 					</div>
-					<div class="other_class">
-						<div class="other_bg">
-							<img src="img/GNB_BANNER_DST_150807.jpg" alt="">
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-							<ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-	                        <ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-                            <ul>
-								<li>三级菜单1</li>
-								<li>三级菜单2</li>
-								<li>三级菜单3</li>
-								<li>三级菜单4</li>
-								<li>三级菜单5</li>
-								<li>三级菜单6</li>
-								<li>三级菜单7</li>
-								<li>三级菜单8</li>
-								<li>三级菜单9</li>
-							</ul>
-                        
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</nav>
@@ -267,6 +90,7 @@
 			<div class="popInner">
 				<div class="titleWrap">
 					<h1><span class="loginTit"><i>登录</i></span></h1>
+					<span id="X">x</span>
 				</div>
 
 				<div class="popBody">
@@ -300,7 +124,7 @@
 		</div>
 
 	</div>
-	<script src="js/index.js"></script>
-	<script src="js/silder.js"></script>
+	<script src="${pageContext.request.contextPath }/js/index.js"></script>
+	<script src="${pageContext.request.contextPath }/js/silder.js"></script>
 </body>
 </html>

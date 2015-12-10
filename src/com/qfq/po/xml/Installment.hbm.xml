@@ -10,13 +10,13 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="goods" class="com.qfq.po.Goods" fetch="select">
+        <many-to-one name="goods" class="com.qfq.po.Goods" fetch="select" lazy="false">
             <column name="g_id" />
         </many-to-one>
-        <many-to-one name="userinfo" class="com.qfq.po.Userinfo" fetch="select">
+        <many-to-one name="userinfo" class="com.qfq.po.Userinfo" fetch="select" lazy="false">
             <column name="u_id" />
         </many-to-one>
-        <many-to-one name="color" class="com.qfq.po.Color" fetch="select">
+        <many-to-one name="color" class="com.qfq.po.Color" fetch="select" lazy="false">
             <column name="color_id" />
         </many-to-one>
         <property name="orderID" type="java.lang.String">

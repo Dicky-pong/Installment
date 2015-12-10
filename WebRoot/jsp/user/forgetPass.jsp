@@ -88,9 +88,7 @@
     </style>
 </head>
 <body>
- <header>
-		<div class="logo"><h4>地球表面最好的分期商城</h4><h1>趣分期 <span>网上商城</span></h1></div>
-	</header>
+
     <section class="main">
 
         <section class="container">

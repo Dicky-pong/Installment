@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>农资联盟杯</title>
+    <title>趣分期</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/index.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/personCenter.css">
@@ -88,9 +88,7 @@
     </style>
 </head>
 <body>
- <header>
-		<div class="logo"><h4>地球表面最好的分期商城</h4><h1>趣分期 <span>网上商城</span></h1></div>
-	</header>
+
     <section class="main">
 
         <section class="container">

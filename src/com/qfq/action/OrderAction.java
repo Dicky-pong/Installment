@@ -63,7 +63,7 @@ public class OrderAction extends BaseAction{
 		/*
 		 * 如果url中存在pageCode参数，截取掉，如果不存在那就不用截取
 		 */
-		int index = url.lastIndexOf("&pc=");
+		int index = url.lastIndexOf("&pageCode=");
 			if(index!=-1){
 				url=url.substring(0,index);
 			}

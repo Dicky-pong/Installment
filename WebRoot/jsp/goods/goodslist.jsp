@@ -18,24 +18,27 @@
  				document.write(unescape("%3Cscript src='js/jquery-2.1.4.min.js' type='text/javascript'%3E%3C/script%3E"));
 			}
 		})()
-		function prePage(obj, page, searchOption, categoryId4Search){
+		function prePage(page){
 		if(page == '0'){
 			alert("已经是第一页了");
 			return false;
 		}
-		obj.href = 'showGoods.do?currentPage='+page+'&searchOption='+searchOption+'&categoryId4Search='+categoryId4Search;
+		var pageForm = document.getElementById("pageForm");
+		document.getElementById("currentPage").value = page;
+		pageForm.submit();
 	}
-	function nextPage(obj, page, max, searchOption, categoryId4Search){
+	function nextPage(page, max){
 		if(page > max){
 			alert("已经是最后一页了");
 			return false;
 		}
-		obj.href = 'showGoods.do?currentPage='+page+'&searchOption='+searchOption+'&categoryId4Search='+categoryId4Search;
+		var pageForm = document.getElementById("pageForm");
+		document.getElementById("currentPage").value = page;
+		pageForm.submit();
 	}
 	function searchFun(obj) {
 		var searchOption = document.getElementById("key").value;
 		var searchForm = document.getElementById("searchForm");
-		//searchForm.action = 'showGoods.do';
 		searchForm.submit();
 		//obj.href = 'showAllGoods.do?searchOption='+searchOption;
 	}
@@ -46,7 +49,7 @@
 		<nav class="top_nav">
 			<ul class="tn_left">
 			<c:choose>
-			<c:when test="${sessionUser.username eq null }"><li id="login">登录/注册</li></c:when>
+			<c:when test="${sessionUser.username eq null }"><li id="login"><a href="${pageContext.request.contextPath }/jsp/index.jsp">登录/注册</a></li></c:when>
 			<c:otherwise><li>您好，${sessionUser.username }</li></c:otherwise>
 	</c:choose>
 			 <li><a href="<c:url value='/Order_myOrder.do?status=-1'/>">我的订单</a></li>
@@ -59,8 +62,16 @@
 	<section class="main">
 	<div class="form">
 		<form action="showGoods.do" id="searchForm" method="post">
-			<input type="hidden" value="" name="categoryId4Search">
-			<input type="text" class="text" accesskey="s" name="searchOption" id="key" autocomplete="off" value="" placeholder="搜索商品名称或商品品牌名">
+			<input type="hidden" value="" name="categoryId4Search"><%-- 搜索时不受商品类型限制 --%>
+			<c:choose>
+			<c:when test="${requestScope.searchOption eq null }">
+				<input type="text" class="text" accesskey="s" name="searchOption" id="key" autocomplete="off" value="" placeholder="搜索商品名称或商品品牌名">
+			</c:when>
+			<c:otherwise>
+				<input type="text" class="text" accesskey="s" name="searchOption" id="key" autocomplete="off" value="${requestScope.searchOption}" placeholder="搜索商品名称或商品品牌名">
+			</c:otherwise>
+			</c:choose>
+			
 			<i><input class="button cw-icon" onclick="searchFun(this)">
 				</i>
 		</form>	
@@ -101,22 +112,7 @@
 			<div class="class_selection_container">
 				<div class="ad_img"></div>
 				<div class="class_selection">
-					<ul>
-						<c:forEach items="${requestScope.categoryList }" var="category"> 
-							<li><a href="javascript:;">${category.name }</a></li>
-						</c:forEach>
-					</ul>
-					<ol>
-						<li><a href="javascript:;">三级分类1</a></li><!--
-					 --><li><a href="javascript:;">三级分类2</a></li><!--
-					 --><li><a href="javascript:;">三级分类3</a></li><!--
-					 --><li><a href="javascript:;">三级分类4</a></li><!--
-					 --><li><a href="javascript:;">三级分类5</a></li><!--
-					 --><li><a href="javascript:;">三级分类6</a></li><!--
-					 --><li><a href="javascript:;">三级分类7</a></li><!--
-					 --><li><a href="javascript:;">三级分类8</a></li><!--
-				     --><li><a href="javascript:;">三级分类9</a></li>
-					</ol>
+					
 				</div>
 			</div>
 
@@ -139,17 +135,21 @@
 				</div>
 			</div>
 			<div class="page_wrap">
-				<a href="#" onclick="prePage(this, ${page.currentPage-1},'${requestScope.searchOption }','${requestScope.categoryId4Search }')" class="arrow_ll"></a>
+				<a href="#" onclick="prePage(${page.currentPage-1})" class="arrow_ll"></a>
 				<c:forEach begin="1" end="${requestScope.page.totalPage}" var="str" step="1">
 					<c:if test="${page.currentPage == str }">
-						<a href="showGoods.do?currentPage=${str }&searchOption=${requestScope.searchOption }&categoryId4Search=${requestScope.categoryId4Search}" class="on"><b>${str }</b></a>
+						<a href="#" onclick="nextPage(${str}, ${page.totalPage })" class="on"><b>${str }</b></a>
 					</c:if>
 					<c:if test="${page.currentPage != str }">
-						<a href="showGoods.do?currentPage=${str }&searchOption=${requestScope.searchOption }&categoryId4Search=${requestScope.categoryId4Search}">${str }</a>
+						<a href="#" onclick="nextPage(${str}, ${page.totalPage })">${str }</a>
 					</c:if>
 				</c:forEach>
-				<a href="#" onclick="nextPage(this, ${page.currentPage+1}, ${page.totalPage },'${requestScope.searchOption }','${requestScope.categoryId4Search }')" class="arrow_rr"></a>
-				
+				<a href="#" onclick="nextPage(${page.currentPage+1}, ${page.totalPage })" class="arrow_rr"></a>
+				<form action="showGoods.do" method="post" id="pageForm">
+					<input type="hidden" name="currentPage" id="currentPage" >
+					<input type="hidden" name="searchOption" id="searchOption" value="${requestScope.searchOption }">
+					<input type="hidden" name="categoryId4Search" id="categoryId4Search" value="${requestScope.categoryId4Search }">
+				</form>
 			</div>
 		</section>
 	</section>

@@ -3,16 +3,16 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/jsp/pager/pager.css'/>" />
 <script type="text/javascript">
 	function _go() {
-		var pc = $("#pageCode").val();//获取文本框中的当前页码
-		if(!/^[1-9]\d*$/.test(pc)) {//对当前页码进行整数校验
+		var pageCode = $("#pageCode").val();//获取文本框中的当前页码
+		if(!/^[1-9]\d*$/.test(pageCode)) {//对当前页码进行整数校验
 			alert('请输入正确的页码！');
 			return;
 		}
-		if(pc > ${pb.totalpage}) {//判断当前页码是否大于最大页
+		if(pageCode > ${pb.totalpage}) {//判断当前页码是否大于最大页
 			alert('请输入正确的页码！');
 			return;
 		}
-		location = "${pb.url}&pc="+pc;
+		location = "${pb.url}&pageCode="+pageCode;
 	}
 </script>
 
@@ -23,7 +23,7 @@
 
 <c:choose>
 <c:when test="${pb.pageCode eq 1}"><span class="spanBtnDisabled">上一页</span></c:when>
-<c:otherwise><a href="${pb.url }&pc=${pb.pageCode-1}" class="aBtn bold">上一页</a></c:otherwise>
+<c:otherwise><a href="${pb.url }&pageCode=${pb.pageCode-1}" class="aBtn bold">上一页</a></c:otherwise>
 </c:choose>
         
         
@@ -60,7 +60,7 @@
     	<span class="spanBtnSelect">${i }</span>
     	</c:when>
     	<c:otherwise>
-    	<a href="${pb.url }&pc=${i}" class="aBtn">${i }</a>
+    	<a href="${pb.url }&pageCode=${i}" class="aBtn">${i }</a>
     	</c:otherwise>
     	</c:choose>
     	
@@ -78,7 +78,7 @@
 	</c:if>
   	<c:choose>
   	<c:when test="${pb.pageCode eq pb.totalpage}"> <span class="spanBtnDisabled">下一页</span></c:when>
-  	<c:otherwise><a href="${pb.url }&pc=${pb.pageCode+1}" class="aBtn bold">下一页</a> </c:otherwise>
+  	<c:otherwise><a href="${pb.url }&pageCode=${pb.pageCode+1}" class="aBtn bold">下一页</a> </c:otherwise>
   	</c:choose>
      <%--下一页 --%>
        

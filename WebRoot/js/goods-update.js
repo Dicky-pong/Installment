@@ -12,8 +12,8 @@
 
 	function validate_form(form) {
 		with(form) {
-			if (validate(goodsName, "请填写商品名") == false) {
-				goodsName.focus();
+			if (validate(name, "请填写商品名") == false) {
+				name.focus();
 				return false
 			}
 			if (validate(brand, "请填写品牌名") == false) {
@@ -24,15 +24,18 @@
 				price.focus();
 				return false
 			}
-			if (validate(time, "请填写上市时间") == false) {
-				time.focus();
+			if (validate(date, "请填写上市时间") == false) {
+				date.focus();
 				return false
 			}
-			if (validate(detail, "请填写商品描述") == false) {
-				detail.focus();
+			if (validate(descript, "请填写商品描述") == false) {
+				descript.focus();
 				return false
 			} else {
-				window.location.href = "SPGL.html";
+				console.log('sdsd');
+				form.submit();
+//				
+//				window.location.href = "";
 			}
 		}
 	}
@@ -41,7 +44,7 @@
 		validate_form(form);
 	};
 
-<<<<<<< HEAD
+
 
 	var add =function(){
 		document.getElementById('add').onclick=function(){
@@ -56,40 +59,5 @@
 	}
 
 	add();
-//=======
-//	var add = function() {
-//		document.body.onclick = function(e) {
-//			var e = e || event;
-//			var current = e.target || e.srcElement
-//			if(current.id=='add'){
-//			var style = document.getElementsByClassName('style')[0];
-//			var str = document.getElementsByClassName('style')[0].innerHTML;
-//			str = str + "</tr><tr class='style'><td>类型</td><td><input type='text' name='style'/></td><td>价格</td><td><input type='text' name='price'/></td>";
-//			document.getElementsByClassName('style')[0].outerHTML = str;
-//			// document.getElementsByClassName('style')[0].class='sdd';
-//		}
-//	}
-//}
-//	add();
-//
-//
-//>>>>>>> 173627cc19c4995e8da15f27e635c4c856029654
-=======
-	var add = function() {
-		document.body.onclick = function(e) {
-			var e = e || event;
-			var current = e.target || e.srcElement
-			if(current.id=='add'){
-			var style = document.getElementsByClassName('style')[0];
-			var str = document.getElementsByClassName('style')[0].innerHTML;
-			str = str + "</tr><tr class='style'><td>类型</td><td><input type='text' name='style'/></td><td>价格</td><td><input type='text' name='price'/></td>";
-			document.getElementsByClassName('style')[0].outerHTML = str;
-			// document.getElementsByClassName('style')[0].class='sdd';
-		}
-	}
-}
-	add();
 
-
->>>>>>> 8bab15c6d02b6bb5f3c4837e2ea9298d30e75f55
 })();

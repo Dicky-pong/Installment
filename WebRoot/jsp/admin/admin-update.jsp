@@ -32,11 +32,11 @@
 				</li>
 				<li role="presentation"><a href="showAllGoods.do">商品管理</a>
 				</li>
-				<li role="presentation"><a href="../sjgl/SJFX.html">用户数据分析</a>
+				<li role="presentation"><a href="${pageContext.request.contextPath }/jsp/dataAnalyse/SJFX.html">用户数据分析</a>
 				</li>
 				<li role="presentation"><a href="Order_myBackOrder.do?status=-1">订单管理</a>
 				</li>
-				<li role="presentation"><a href="../Login.html">退出</a>
+				<li role="presentation"><a href="#">退出</a>
 				</li>
 			</ul>
 		</div>
@@ -45,7 +45,7 @@
 			<ol class="breadcrumb">
 				<li><a href="backIndex.do">趣分期后台管理系统</a>
 				</li>
-				<li><a href="GLYGL.html">管理员管理</a>
+				<li><a href="showAllAdmin.do">管理员管理</a>
 				</li>
 				<li class="active">更新管理员用户</li>
 			</ol>
@@ -73,8 +73,11 @@
 					                  <c:forEach items="${requestScope.roleList }" var="role">
 					                  	<option value="${role.id }">${role.name }</option>
 					                  </c:forEach>
-					                </select>原角色：${requestScope.admin.roleinfo.name }
+					                </select>
 								</td>
+							</tr>
+							<tr>
+								<td></td><td>原角色：${requestScope.admin.roleinfo.name }</td>
 							</tr>
 						</table>
 

@@ -40,17 +40,17 @@ function jump(){
         <li role="presentation">
           <a href="showAllRole.do">角色管理</a>
         </li>
-        <li role="presentation" class="active">
+        <li role="presentation">
           <a href="showAllGoods.do">商品管理</a>
         </li>
         <li role="presentation">
-          <a href="../sjgl/SJFX.html">用户数据分析</a>
+          <a href="${pageContext.request.contextPath }/jsp/dataAnalyse/SJFX.html">用户数据分析</a>
         </li>
-        <li role="presentation">
+        <li role="presentation" class="active">
           <a href="Order_myBackOrder.do?status=-1">订单管理</a>
         </li>
         <li role="presentation">
-          <a href="../Login.html">退出</a>
+          <a href="#">退出</a>
         </li>
       </ul>
     </div>

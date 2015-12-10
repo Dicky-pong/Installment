@@ -28,10 +28,10 @@ public class DataServiceImpl implements DataService{
 		String baseHql = "select count(i.id) from Installment i where i.goods.id = "+goodsId+" and i.date like '"+year+"-";
 		String hql;
 		for(int i = 0; i < 12; i++){
-			if(i<10){
-				hql = baseHql + "0" + i + "-%'";
+			if((i+1)<10){
+				hql = baseHql + "0" + (i+1) + "-%'";
 			}else{
-				hql = baseHql + i + "-%'";
+				hql = baseHql + (i+1) + "-%'";
 			}
 			System.out.println("getSalesByGoods - hql: "+hql);
 			
